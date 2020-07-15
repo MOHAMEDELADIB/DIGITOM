@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        tools:ignore="Overdraw">
+
+
+    <EditText
+            android:id="@+id/mkks2"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:autofillHints=""
+            android:background="#F3F3F3"
+            android:hint="Write your KKS here"
+            android:inputType="textCapCharacters"
+            android:paddingLeft="8dp"
+            android:textAllCaps="true"
+            android:textCursorDrawable="@drawable/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/dsearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry,UnusedAttribute" />
+
+    <Button
+            android:id="@+id/dsearch"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/buttoncolors"
+            android:text="Search"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText" />
+
+    <Button
+            android:layout_width="13dp"
+            android:layout_height="27dp"
+            android:text="Cancel"
+            android:visibility="invisible"
+            tools:ignore="HardcodedText,MissingConstraints"
+            tools:layout_editor_absoluteX="193dp"
+            tools:layout_editor_absoluteY="153dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="left" />
+
+    <TextView
+            android:id="@+id/textView3"
+            android:layout_width="400dp"
+            android:layout_height="42dp"
+            android:background="@drawable/shadow"
+            android:gravity="center"
+            android:text="KKS"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

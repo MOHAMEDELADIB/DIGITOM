@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        package="burullus.digitom.app">
+
+    <uses-sdk tools:overrideLibrary="android.support.v17.leanback" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission
+            android:name="android.permission.INTERNET"
+            android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.cameraw2" />
+    <uses-feature android:name="android.hardware.camera2.flash" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+
+    <application
+            android:name=".APPContext"
+            android:allowBackup="false"
+            android:fullBackupContent="@xml/backup_descriptor"
+            android:hardwareAccelerated="true"
+            android:icon="@mipmap/ic_launcher"
+            android:installLocation="internalOnly"
+            android:label="DIGITOM"
+            android:largeHeap="true"
+            android:roundIcon="@mipmap/ic_launcher"
+            android:supportsRtl="false"
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true"
+            tools:targetApi="m">
+        <!--
+             The api key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the api key is linked to the encryption key used to sign the APK.
+             You need a different api key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version" />
+        <meta-data
+                android:name="com.google.android.gms.vision.DEPENDENCIES"
+                android:value="ocr" />
+
+        <activity
+                android:name=".ui.register.RegisterActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateVisible" />
+
+        <activity
+                android:name=".ui.login.Login"
+                android:launchMode="singleTask"
+                android:noHistory="true"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateVisible" />
+        <activity
+                android:name="burullus.digitom.app.ui.deeplinks.Deeplink"
+                android:noHistory="true">
+            <intent-filter android:label="Activation">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                        android:host="emd.digitom.mosaic-dev.siemens.cloud"
+                        android:scheme="https" />
+                <data
+                        android:host="emd.digitom.mosaic-dev.siemens.cloud"
+                        android:scheme="http" />
+
+                <data
+                        android:host="digitom.mosiac.siemens"
+                        android:scheme="https" />
+                <data
+                        android:host="digitom.mosiac.siemens"
+                        android:scheme="http" />
+
+                <data
+                        android:host="digitom.mosaic-dev.siemens.cloud"
+                        android:scheme="https" />
+                <data
+                        android:host="digitom.mosaic-dev.siemens.cloud"
+                        android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".ui.home.Home"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.mainActivity.MainActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name="burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity"
+                android:launchMode="singleTask"
+                android:windowSoftInputMode="stateVisible" />
+        <activity
+                android:name="burullus.digitom.app.ui.forgetpassword.ForgetpasswordActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateVisible" />
+        <activity
+                android:name=".ui.changepassword.ChangePassword"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateVisible" />
+        <activity
+                android:name=".ui.PhotoActivity.SlideActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.splash.SplashActivity"
+                android:noHistory="true"
+                android:screenOrientation="nosensor"
+                android:theme="@style/SplashTheme">
+            <meta-data
+                    android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+                    android:value="ocr" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <item
+            android:id="@+id/operscr"
+            android:title="Operations"
+            tools:ignore="HardcodedText" />
+    <item
+            android:id="@+id/mechscr"
+            android:checkable="false"
+            android:checked="false"
+            android:title="@string/mechanical_maintenance" />
+    <item
+            android:id="@+id/elecscr"
+            android:title="@string/electrical_maintenance" />
+    <item
+            android:id="@+id/icscr"
+            android:title="@string/i_amp_c_maintenance"
+
+            />
+    <item
+            android:id="@+id/menn"
+            android:checkable="false"
+            android:checked="false"
+            app:actionLayout="@layout/switch_item"
+            tools:ignore="MenuTitle" />
+
+</menu>

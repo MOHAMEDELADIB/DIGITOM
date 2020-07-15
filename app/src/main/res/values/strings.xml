@@ -1,0 +1,27 @@
+<resources>
+    <string name="enter_your_registered_email">Enter your registered email</string>
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
+    <string name="openNavDrawer">Navigation Drawer Open</string>
+    <string name="closeNavDrawer">Navigation Drawer Close</string>
+    <string name="site_name">SITE NAME</string>
+    <string name="shift">shift</string>
+    <string name="searching_for_kks">SEARCHING FOR KKS</string>
+    <string name="forget_password2">Forget Password</string>
+    <string name="change_password2">Change Password</string>
+    <string name="login">login</string>
+    <string name="forgot_password">FORGOT PASSWORD</string>
+    <string name="password">Password</string>
+    <string name="home">Home</string>
+    <string name="todo">TODO</string>
+    <string name="email">Email</string>
+    <string name="electrical_maintenance">Electrical Maintenance</string>
+    <string name="i_amp_c_maintenance"><![CDATA[I&C Maintenance]]></string>
+    <string name="mechanical_maintenance">Mechanical Maintenance</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">register</string>
+    <string name="digitom">DIGITOM</string>
+    <string name="gp_digitalization">GP Digitalization</string>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    <item
+            android:id="@+id/contact1"
+            android:checkable="false"
+            android:checked="false"
+            android:enabled="true"
+            android:icon="@drawable/call"
+            android:title="CCR"
+            tools:ignore="HardcodedText" />
+    <item
+            android:id="@+id/contact2"
+            android:checkable="false"
+            android:enabled="true"
+            android:icon="@drawable/call"
+            android:title="Muataz Abady"
+            tools:ignore="HardcodedText" />
+    <item
+            android:id="@+id/contact3"
+            android:icon="@drawable/call"
+            android:title="Youness Jarir"
+            tools:ignore="HardcodedText" />
+    <item
+            android:id="@+id/contact4"
+            android:icon="@drawable/call"
+            android:title="Hendrik Pelser"
+            tools:ignore="HardcodedText" />
+
+</menu>

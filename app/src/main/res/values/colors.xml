@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#025F8A</color>
+    <color name="inbox_accent">#03A9F4</color>
+
+    <!-- Material Color Palette -->
+
+    <color name="material_blue_700">#1976D2</color>
+    <color name="material_blue_a700">#2962FF</color>
+
+    <color name="material_purple_500">#9C27B0</color>
+
+    <!-- Selectors -->
+</resources>

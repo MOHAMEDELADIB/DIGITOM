@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconLauncherShape">
+        <ignore path="src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
+    </issue>
+    <issue id="IconLocation">
+        <ignore path="src/main/res/drawable/call.png" />
+        <ignore path="src/main/res/drawable/didi.png" />
+        <ignore path="src/main/res/drawable/error.jpg" />
+        <ignore path="src/main/res/drawable/error.jpg" />
+        <ignore path="src/main/res/drawable/error.jpg" />
+        <ignore path="src/main/res/drawable/home.png" />
+        <ignore path="src/main/res/drawable/launch_screen.png" />
+        <ignore path="src/main/res/drawable/launch_screen.png" />
+        <ignore path="src/main/res/drawable/lock.png" />
+        <ignore path="src/main/res/drawable/logo1.png" />
+        <ignore path="src/main/res/drawable/menu.png" />
+        <ignore path="src/main/res/drawable/rst.png" />
+        <ignore path="src/main/res/drawable/sample.png" />
+        <ignore path="src/main/res/drawable/sosbtn.png" />
+        <ignore path="src/main/res/drawable/sosbtn.png" />
+    </issue>
+</lint>
