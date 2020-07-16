@@ -14,23 +14,44 @@ import javax.crypto.IllegalBlockSizeException
 import javax.crypto.NoSuchPaddingException
 
 
+/**
+ *
+ */
 @Suppress("SENSELESS_COMPARISON")
-class LoginPresenter(val view: LoginMvpView, private val mEncrypt: Encrypt) : LoginMvpPresenter {
+class LoginPresenter(
+    /**
+     *
+     */
+    val view: LoginMvpView, private val mEncrypt: Encrypt
+) : LoginMvpPresenter {
     private var interactor: LoginMvpInteractor = LoginInteractor(this)
+
+    /**
+     *
+     */
     override fun signinpressed(email: String, password: String) {
         view.showprogressbar()
         interactor.signin(email, password)
     }
 
+    /**
+     *
+     */
     override fun forgetpressed() {
         view.forgetActivity()
     }
 
+    /**
+     *
+     */
     override fun onsuccess() {
         view.hideprogressbar()
         view.onsucess()
     }
 
+    /**
+     *
+     */
     override fun onerror(merror: ErrorModelClass) {
         var message = ""
         view.hideprogressbar()
@@ -51,15 +72,24 @@ class LoginPresenter(val view: LoginMvpView, private val mEncrypt: Encrypt) : Lo
         }
     }
 
+    /**
+     *
+     */
     override fun registerPressed() {
         view.registerActivity()
     }
 
+    /**
+     *
+     */
     override fun onNetworkError(message: String) {
         view.hideprogressbar()
         view.onerror(Network_Message)
     }
 
+    /**
+     *
+     */
     override fun encrypt(token: String) {
         try {
             accesstoken = token

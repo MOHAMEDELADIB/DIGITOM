@@ -8,7 +8,13 @@ import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ *
+ */
 class DialogInteractor(private val presenter: DialogPresenter) : DailogMvpInteractor {
+    /**
+     *
+     */
     override fun send(KKS: String, header: String) {
         when (header) {
             "Operations " -> {
@@ -25,12 +31,13 @@ class DialogInteractor(private val presenter: DialogPresenter) : DailogMvpIntera
                                 error.response()?.errorBody()
                             mError =
                                 gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                            if (error.code() == 401) presenter.onerror(noauthenticate) else presenter.onerror(
+                            if (error.code() == 401) presenter.onerror(noauthenticate)
+                            else presenter.onerror(
                                 mError.detail
                             )
                         }
                         if (error is IOException) {
-                            presenter.onerror(error.message!!)
+                            presenter.onerror(error.message ?: return@subscribe)
                         }
 
                     }
@@ -49,12 +56,13 @@ class DialogInteractor(private val presenter: DialogPresenter) : DailogMvpIntera
                                 error.response()?.errorBody()
                             mError =
                                 gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                            if (error.code() == 401) presenter.onerror(noauthenticate) else presenter.onerror(
+                            if (error.code() == 401) presenter.onerror(noauthenticate)
+                            else presenter.onerror(
                                 mError.detail
                             )
                         }
                         if (error is IOException) {
-                            presenter.onerror(error.message!!)
+                            presenter.onerror(error.message ?: return@subscribe)
                         }
 
                     }
@@ -73,12 +81,13 @@ class DialogInteractor(private val presenter: DialogPresenter) : DailogMvpIntera
                                 error.response()?.errorBody()
                             mError =
                                 gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                            if (error.code() == 401) presenter.onerror(noauthenticate) else presenter.onerror(
+                            if (error.code() == 401) presenter.onerror(noauthenticate)
+                            else presenter.onerror(
                                 mError.detail
                             )
                         }
                         if (error is IOException) {
-                            presenter.onerror(error.message!!)
+                            presenter.onerror(error.message ?: return@subscribe)
                         }
 
                     }
@@ -98,12 +107,13 @@ class DialogInteractor(private val presenter: DialogPresenter) : DailogMvpIntera
                                 error.response()?.errorBody()
                             mError =
                                 gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                            if (error.code() == 401) presenter.onerror(noauthenticate) else presenter.onerror(
+                            if (error.code() == 401) presenter.onerror(noauthenticate)
+                            else presenter.onerror(
                                 mError.detail
                             )
                         }
                         if (error is IOException) {
-                            presenter.onerror(error.message!!)
+                            presenter.onerror(error.message ?: return@subscribe)
                         }
 
                     }

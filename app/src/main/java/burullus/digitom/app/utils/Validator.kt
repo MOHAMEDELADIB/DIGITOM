@@ -5,9 +5,21 @@ import burullus.digitom.app.R
 import com.google.android.material.textfield.TextInputLayout
 
 
+/**
+ *
+ */
+/**
+ *
+ */
 class Validator {
     private var validations = mutableListOf<TextInputLayout>()
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     fun add(value: TextInputLayout): Validator {
         validations.add(value)
         return this
@@ -29,7 +41,8 @@ class Validator {
 
         check2.map {
             //  declare Drawable
-            // val errorD = ContextCompat.getDrawable(APPContext.applicationContext(), R.drawable.error)
+            // val errorD = ContextCompat.getDrawable(APPContext.applicationContext()
+            , R.drawable.error)
             //it.error = APPContext.applicationContext().resources.getString(R.string.error_empty)
             it.errorIconDrawable = null
             it.setErrorIconDrawable(R.drawable.error)
@@ -41,13 +54,15 @@ class Validator {
         return check2.isEmpty()
     }*/
     private fun validateForNotEmpty(): Boolean {
+
         val check = validations.filter {
             it.editText?.text.isNullOrEmpty()
         }
 
         check.map {
             //  declare Drawable
-            // val errorD = ContextCompat.getDrawable(APPContext.applicationContext(), R.drawable.error)
+            // val errorD = ContextCompat.getDrawable(APPContext.applicationContext(),
+            // R.drawable.error)
             //it.error = APPContext.applicationContext().resources.getString(R.string.error_empty)
             it.errorIconDrawable = null
             it.setErrorIconDrawable(R.drawable.error)
@@ -60,6 +75,12 @@ class Validator {
     }
 
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     fun result(): Boolean {
         validations.map {
             it.error = null

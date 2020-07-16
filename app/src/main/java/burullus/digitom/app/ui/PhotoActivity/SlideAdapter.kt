@@ -13,11 +13,17 @@ import burullus.digitom.app.ui.mainActivity.MainActivity.Companion.imagesArray
 import com.github.chrisbanes.photoview.PhotoView
 import com.squareup.picasso.Picasso
 
+/**
+ *
+ */
 class SlideAdapter(
     private var imagelist: List<DataSheet>,
     private val next: ImageButton,
     private val pervious: ImageButton
 ) : RecyclerView.Adapter<SlideAdapter.MyViewHolder>() {
+    /**
+     *
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SlideAdapter.MyViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
@@ -25,15 +31,24 @@ class SlideAdapter(
         return MyViewHolder(photoView)
     }
 
+    /**
+     *
+     */
     fun updateAllTask(list: List<DataSheet>) {
         imagelist = list
         notifyDataSetChanged()
     }
 
+    /**
+     *
+     */
     override fun getItemCount(): Int {
         return imagelist.size
     }
 
+    /**
+     *
+     */
     override fun onBindViewHolder(holder: SlideAdapter.MyViewHolder, position: Int) {
         currentPosition = position
         if (currentPosition == (itemCount - 1)) next.visibility =
@@ -54,8 +69,14 @@ class SlideAdapter(
             .into(imageView)
     }
 
+    /**
+     *
+     */
     inner class MyViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
+        /**
+         *
+         */
         var photoImageView: PhotoView = itemView.findViewById(R.id.imgfs)
 
     }

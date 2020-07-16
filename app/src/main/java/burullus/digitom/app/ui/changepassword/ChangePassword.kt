@@ -9,16 +9,27 @@ import androidx.core.content.ContextCompat
 import burullus.digitom.app.R
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.login.Login
+import burullus.digitom.app.ui.register.RegisterActivity
 import burullus.digitom.app.utils.Validator
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_forget_password.*
 
 
+/**
+ * Change Password View
+ */
 @Suppress("DEPRECATED_IDENTITY_EQUALS")
 class ChangePassword : BaseActivity(), ChangePasswordMvpView {
+    /**
+     * Present Interface declaration
+     */
     lateinit var presenter: ChangePasswordMvpPresenter
     private val validator = Validator()
     private var tokenkeys: String = ""
+
+    /**
+     *On create Function for activity
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -43,14 +54,20 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
 
     }
 
-    companion object;
-
+    /**
+     * Show error message
+     */
     override fun onerror(message: String) {
         Snackbar.make(layout, message, Snackbar.LENGTH_SHORT)
             .setTextColor(ContextCompat.getColor(this, R.color.material_blue_a700))
             .show()
+        val intent = Intent(this@ChangePassword, RegisterActivity::class.java)
+        startActivity(intent)
     }
 
+    /**
+     * Show sucess message
+     */
     override fun onsucess(message: String) {
         val intent = Intent(this@ChangePassword, Login::class.java)
         startActivity(intent)
@@ -59,14 +76,25 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
             .show()
     }
 
+    /**
+     * Navigate to register Activity
+     */
     override fun backActivity() {
+        val intent = Intent(this@ChangePassword, RegisterActivity::class.java)
+        startActivity(intent)
 
     }
 
+    /**
+     * Show Progressbar
+     */
     override fun showprogressbar() {
         Progressbar.visibility = View.VISIBLE
     }
 
+    /**
+     * Hide progressbar
+     */
     override fun hideprogressbar() {
         Progressbar.visibility = View.INVISIBLE
     }

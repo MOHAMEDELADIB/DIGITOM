@@ -20,13 +20,31 @@ import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity.Companion.getkks
 import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity.Companion.head
 import kotlinx.android.synthetic.main.activity_main2.*
 
+/**
+ *
+ */
+/**
+ *
+ */
 @Suppress("SENSELESS_COMPARISON")
 class MainActivity : BaseActivity(), MainMvpview {
     private var mainAdapter: MainAdapter? = null
     private var mainAdapter2: MainAdapter? = null
     private var mainAdapter3: MainAdapter? = null
     private var detectedkks = ""
+    /**
+     *
+     */
+    /**
+     *
+     */
     lateinit var presenter: MainMvpPresenter
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -93,30 +111,66 @@ class MainActivity : BaseActivity(), MainMvpview {
         }
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun getdata(kks: String, header: String) {
         presenter.getdata(detectedkks, header)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun showProgress() {
         scrollLayout.visibility = View.INVISIBLE
         progressBar3.visibility = View.VISIBLE
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun hideProgress() {
         scrollLayout.visibility = View.VISIBLE
         progressBar3.visibility = View.INVISIBLE
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun back() {
         val intent = Intent(this@MainActivity, OcrCaptureActivity::class.java)
         startActivity(intent)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun homePage() {
         val intent = Intent(this@MainActivity, Home::class.java)
         startActivity(intent)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun operationData(data: OperationData) {
         if (data.fault != null) {
             val fault = ArrayList<DataSheet>()
@@ -134,6 +188,12 @@ class MainActivity : BaseActivity(), MainMvpview {
         updateUI()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun mechanicalData(data: MechenicalData) {
         if (!data.dataSheet.isNullOrEmpty()) mainAdapter?.updateAllTask(data.dataSheet)
         if (!data.drawing.isNullOrEmpty()) mainAdapter2?.updateAllTask(data.drawing)
@@ -143,6 +203,12 @@ class MainActivity : BaseActivity(), MainMvpview {
         updateUI()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun electricalData(data: ElectricalData) {
         if (!data.dataSheet.isNullOrEmpty()) mainAdapter3?.updateAllTask(data.dataSheet)
         if (!data.wiring.isNullOrEmpty()) mainAdapter2?.updateAllTask(data.wiring)
@@ -155,6 +221,12 @@ class MainActivity : BaseActivity(), MainMvpview {
         updateUI()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun icData(data: ICData) {
         if (!data.datasheet.isNullOrEmpty()) mainAdapter?.updateAllTask(data.datasheet)
         if (!data.faults.isNullOrEmpty()) mainAdapter2?.updateAllTask(data.faults)
@@ -164,6 +236,12 @@ class MainActivity : BaseActivity(), MainMvpview {
         updateUI()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onerror(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
@@ -208,10 +286,34 @@ class MainActivity : BaseActivity(), MainMvpview {
     }
 
     companion object {
+        /**
+         *
+         */
+        /**
+         *
+         */
         lateinit var imagesArray: List<DataSheet>
-        var currentPosition = 0
-        var currentImage = ""
-        var activityopened = false
+        /**
+         *
+         */
+        /**
+         *
+         */
+        var currentPosition: Int = 0
+        /**
+         *
+         */
+        /**
+         *
+         */
+        var currentImage: String = ""
+        /**
+         *
+         */
+        /**
+         *
+         */
+        var activityopened: Boolean = false
     }
 
 }

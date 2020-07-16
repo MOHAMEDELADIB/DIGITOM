@@ -2,9 +2,24 @@ package burullus.digitom.app.ui.register
 
 import burullus.digitom.app.data.network.model.ErrorModelClass
 
+/**
+ *
+ */
 @Suppress("SENSELESS_COMPARISON")
-class RegisterPresenter(val view: RegisterMvpView) : RegisterMvpPresenter {
+class RegisterPresenter(
+    /**
+     *
+     */
+    val view: RegisterMvpView
+) : RegisterMvpPresenter {
+    /**
+     *
+     */
     var interactor: RegisterMvpInteractor = RegisterInteractor(this)
+
+    /**
+     *
+     */
     override fun signuppressed(email: String, password1: String, password2: String) {
         view.showprogressbar()
         if (password1 == password2) interactor.signup(email, password1, password2) else {
@@ -13,15 +28,24 @@ class RegisterPresenter(val view: RegisterMvpView) : RegisterMvpPresenter {
         }
     }
 
+    /**
+     *
+     */
     override fun backpressed() {
         view.backActivity()
     }
 
+    /**
+     *
+     */
     override fun onsuccess(message: String) {
         view.onsucess(message)
         view.hideprogressbar()
     }
 
+    /**
+     *
+     */
     override fun onerror(merror: ErrorModelClass) {
         view.hideprogressbar()
         var message = ""
@@ -54,6 +78,9 @@ class RegisterPresenter(val view: RegisterMvpView) : RegisterMvpPresenter {
         view.onerror(message)
     }
 
+    /**
+     *
+     */
     override fun onNetworkError(message: String) {
         view.hideprogressbar()
         view.onerror(message)

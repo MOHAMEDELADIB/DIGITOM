@@ -9,7 +9,13 @@ import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ *
+ */
 class OcrInteractor(private val presenter: OcrPresenter) : OcrMvpInteractor {
+    /**
+     *
+     */
     @SuppressLint("CheckResult")
     override fun send(kks: String, head: String) {
         when (head) {

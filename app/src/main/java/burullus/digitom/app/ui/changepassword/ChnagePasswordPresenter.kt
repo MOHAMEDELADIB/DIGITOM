@@ -3,8 +3,19 @@ package burullus.digitom.app.ui.changepassword
 import burullus.digitom.app.data.network.model.ErrorModelClass
 
 
+/**
+ * Class Presenter
+ */
 @Suppress("SENSELESS_COMPARISON")
-class ChnagePasswordPresenter(val view: ChangePasswordMvpView) : ChangePasswordMvpPresenter {
+class ChnagePasswordPresenter(
+    /**
+     * declare View Interface
+     */
+    val view: ChangePasswordMvpView
+) : ChangePasswordMvpPresenter {
+    /**
+     * attach interactor
+     */
     var interactor: ChangePasswordMvpInteractor = ChangePasswordInteractor(this)
     override fun authtoken(token: String, new_password1: String, new_password2: String) {
         view.showprogressbar()
@@ -41,9 +52,9 @@ class ChnagePasswordPresenter(val view: ChangePasswordMvpView) : ChangePasswordM
                 message += merror.new_password1[i]
                 if (i > 0) message += ",\n"
             }
-            if (merror.new_password2 != null) {
-                for (i in 0 until merror.new_password2.size) {
-                    message += merror.new_password2[i]
+            if (merror.token != null) {
+                for (i in 0 until merror.token.size) {
+                    message += merror.token[i]
                     if (i > 0) message += ",\n"
                 }
                 view.onerror(message)

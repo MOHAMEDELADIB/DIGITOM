@@ -10,7 +10,13 @@ import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ *
+ */
 class HomeInteractor(private val presenter: HomeMvpPresenter) : HomeMvpInteractor {
+    /**
+     *
+     */
     @SuppressLint("CheckResult")
     override fun getnews(url: String) {
         Repository.getArticle(url)
@@ -25,23 +31,27 @@ class HomeInteractor(private val presenter: HomeMvpPresenter) : HomeMvpInteracto
                             error.response()?.errorBody()
                         mError =
                             gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                        if (error.code() == 401) presenter.onerror(noauthenticate) else presenter.onerror(
+                        if (error.code() == 401) presenter.onerror(noauthenticate)
+                        else presenter.onerror(
                             mError.detail
                         )
                     } else presenter.onerror(Server_error)
                 }
                 if (error is IOException) {
-                    presenter.onerror(error.message!!)
+                    presenter.onerror(error.message ?: return@subscribe)
                 }
 
             })
     }
 
+    /**
+     *
+     */
     @SuppressLint("CheckResult")
     override fun signout() {
         Repository.logout()
-            .subscribe({ result ->
-                presenter.loggedout(result.detail)
+            .subscribe({ (detail) ->
+                presenter.loggedout(detail)
                 MySharedPreferences.clearToken()
             }, { error ->
 
@@ -53,18 +63,22 @@ class HomeInteractor(private val presenter: HomeMvpPresenter) : HomeMvpInteracto
                             error.response()?.errorBody()
                         mError =
                             gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                        if (error.code() == 401) presenter.onerror(noauthenticate) else presenter.onerror(
+                        if (error.code() == 401) presenter.onerror(noauthenticate)
+                        else presenter.onerror(
                             mError.detail
                         )
                     }
                 }
                 if (error is IOException) {
-                    presenter.onerror(error.message!!)
+                    presenter.onerror(error.message ?: return@subscribe)
                 } else presenter.onerror(Server_error)
 
             })
     }
 
+    /**
+     *
+     */
     override fun getnumber(id: Int) {
         var number = ""
         if (id == 1) number = CCRNumber

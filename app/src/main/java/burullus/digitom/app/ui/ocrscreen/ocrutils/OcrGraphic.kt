@@ -12,11 +12,28 @@ import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class OcrGraphic internal constructor(overlay: GraphicOverlay<*>, val textBlock: TextBlock) :
+/**
+ *
+ */
+class OcrGraphic internal constructor(
+    overlay: GraphicOverlay<*>,
+    /**
+     *
+     */
+    val textBlock: TextBlock
+) :
     GraphicOverlay.Graphic(overlay) {
     private var kksLength = 0
     private var kksString: String = ""
+
+    /**
+     *
+     */
     var context: OcrCaptureActivity? = null
+
+    /**
+     *
+     */
     var id: Int = 0
 
     init {
@@ -33,24 +50,30 @@ class OcrGraphic internal constructor(overlay: GraphicOverlay<*>, val textBlock:
         }
     }
 
+    /**
+     *
+     */
     override fun contains(x: Float, y: Float): Boolean {
         var rect = RectF(textBlock.boundingBox)
         rect = translateRect(rect)
         return rect.contains(x, y)
     }
 
+    /**
+     *
+     */
     override fun draw(canvas: Canvas?) {
         var rect = RectF(textBlock.boundingBox)
         rect = translateRect(rect)
-        canvas?.drawRect(rect, rectPaint!!)
+        canvas?.drawRect(rect, rectPaint ?: return)
         val textComponents = textBlock.components
         loop1@ for (currentText in textComponents) {
             val left = translateX(currentText.boundingBox.left.toFloat())
             val bottom = translateY(currentText.boundingBox.bottom.toFloat())
             val kksno: String = currentText.value.toUpperCase(Locale.ENGLISH)
             if (isKKSValid(kksno)) {
-                canvas?.drawText(kksno, left, bottom, textPaint!!)
-                OcrCaptureActivity.getkks()!!.text = kksString
+                canvas?.drawText(kksno, left, bottom, textPaint ?: return)
+                (OcrCaptureActivity.getkks() ?: return).text = kksString
                 break@loop1
             }
         }
@@ -61,7 +84,7 @@ class OcrGraphic internal constructor(overlay: GraphicOverlay<*>, val textBlock:
         var pattern: Pattern
         var matcher: Matcher
         var result = false
-        if (kks.length > 13) {
+        if (kks.length > 11) {
             loop2@ for (i: Int in KKSPattern.indices) {
                 kksLength = KKSPatternlength[i]
                 kksString =

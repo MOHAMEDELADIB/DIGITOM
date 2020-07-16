@@ -8,7 +8,13 @@ import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ *
+ */
 class MainInteractor(private val presenter: MainMvpPresenter) : MainMvpInteractor {
+    /**
+     *
+     */
     override fun getdata(kks: String, header: String) {
         when (header) {
             "Operations " -> {
@@ -28,13 +34,14 @@ class MainInteractor(private val presenter: MainMvpPresenter) : MainMvpInteracto
                                     responseBody?.string(),
                                     ErrorModelClass::class.java
                                 )
-                                if (error.code() == 401) presenter.onerror(noauthenticate) else presenter.onerror(
+                                if (error.code() == 401) presenter.onerror(noauthenticate)
+                                else presenter.onerror(
                                     mError.detail
                                 )
                             } else presenter.onerror(Server_error)
                         }
                         if (error is IOException) {
-                            presenter.onerror(error.message!!)
+                            presenter.onerror(error.message ?: return@subscribe)
                         }
 
                     }
@@ -56,12 +63,13 @@ class MainInteractor(private val presenter: MainMvpPresenter) : MainMvpInteracto
                                     responseBody?.string(),
                                     ErrorModelClass::class.java
                                 )
-                                if (error.code() == 401) presenter.onerror(noauthenticate) else presenter.onerror(
+                                if (error.code() == 401) presenter.onerror(noauthenticate)
+                                else presenter.onerror(
                                     mError.detail
                                 )
                             }
                             if (error is IOException) {
-                                presenter.onerror(error.message!!)
+                                presenter.onerror(error.message ?: return@subscribe)
                             }
                         } catch (e: java.lang.Exception) {
                         }
@@ -83,12 +91,13 @@ class MainInteractor(private val presenter: MainMvpPresenter) : MainMvpInteracto
                                     responseBody?.string(),
                                     ErrorModelClass::class.java
                                 )
-                                if (error.code() == 401) presenter.onerror(noauthenticate) else presenter.onerror(
+                                if (error.code() == 401) presenter.onerror(noauthenticate)
+                                else presenter.onerror(
                                     mError.detail
                                 )
                             }
                             if (error is IOException) {
-                                presenter.onerror(error.message!!)
+                                presenter.onerror(error.message ?: return@subscribe)
                             }
                         } catch (e: java.lang.Exception) {
                         }
@@ -111,12 +120,13 @@ class MainInteractor(private val presenter: MainMvpPresenter) : MainMvpInteracto
                                     responseBody?.string(),
                                     ErrorModelClass::class.java
                                 )
-                                if (error.code() == 401) presenter.onerror(noauthenticate) else presenter.onerror(
+                                if (error.code() == 401) presenter.onerror(noauthenticate)
+                                else presenter.onerror(
                                     mError.detail
                                 )
                             }
                             if (error is IOException) {
-                                presenter.onerror(error.message!!)
+                                presenter.onerror(error.message ?: return@subscribe)
                             }
                         } catch (e: java.lang.Exception) {
                         }

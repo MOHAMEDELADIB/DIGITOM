@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+    <issue id="ConvertToWebp">
+        <ignore path="src/main/res/drawable/launch_screen.png" />
+    </issue>
+    <issue id="IconExpectedSize">
+        <ignore path="src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
+    </issue>
     <issue id="IconLauncherShape">
         <ignore path="src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
     </issue>

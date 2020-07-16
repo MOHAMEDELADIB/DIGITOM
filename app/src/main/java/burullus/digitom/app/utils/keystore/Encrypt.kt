@@ -9,9 +9,15 @@ import java.io.IOException
 import java.security.*
 import javax.crypto.*
 
+/**
+ *
+ */
 class Encrypt internal constructor() {
     private lateinit var iv: ByteArray
 
+    /**
+     *
+     */
     @Throws(
         UnrecoverableEntryException::class,
         NoSuchAlgorithmException::class,
@@ -49,8 +55,6 @@ class Encrypt internal constructor() {
                     KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
                 )
                     .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                    //.setUserAuthenticationRequired(true) // 2 requires lock screen, invalidated if lock screen is disabled
-                    //.setUserAuthenticationValidityDurationSeconds(120) // 3 only available x seconds from password authentication. -1 requires finger print - every time
                     .setRandomizedEncryptionRequired(true)
                     .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
                     .build()

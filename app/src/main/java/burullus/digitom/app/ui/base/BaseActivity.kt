@@ -12,10 +12,24 @@ import burullus.digitom.app.ui.splash.SplashActivity.Companion.onetime
 import com.squareup.picasso.LruCache
 import com.squareup.picasso.Picasso
 
+/**
+ *
+ */
 abstract class BaseActivity : AppCompatActivity() {
 
+    /**
+     *
+     */
     fun hideKeyboard() {}
+
+    /**
+     *
+     */
     override fun onPointerCaptureChanged(hasCapture: Boolean) {}
+
+    /**
+     *
+     */
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
             val v = currentFocus
@@ -34,6 +48,9 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
+    /**
+     *
+     */
     fun setuppicasso() {
         if (!onetime) {
             onetime = true

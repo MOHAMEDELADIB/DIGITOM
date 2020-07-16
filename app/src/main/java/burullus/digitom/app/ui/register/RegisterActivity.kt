@@ -16,10 +16,19 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
+/**
+ *
+ */
 class RegisterActivity : BaseActivity(), RegisterMvpView {
+    /**
+     *
+     */
     lateinit var presenter: RegisterMvpPresenter
     private val validator = Validator()
 
+    /**
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -49,10 +58,16 @@ class RegisterActivity : BaseActivity(), RegisterMvpView {
 
     }
 
+    /**
+     *
+     */
     override fun onsucess(message: String) {
         Toast.makeText(this@RegisterActivity, "$message $Verify", Toast.LENGTH_LONG).show()
     }
 
+    /**
+     *
+     */
     override fun onerror(message: String) {
 
         Snackbar.make(Layout, message, Snackbar.LENGTH_SHORT)
@@ -60,15 +75,24 @@ class RegisterActivity : BaseActivity(), RegisterMvpView {
             .show()
     }
 
+    /**
+     *
+     */
     override fun backActivity() {
         val intent = Intent(this@RegisterActivity, Login::class.java)
         startActivity(intent)
     }
 
+    /**
+     *
+     */
     override fun showprogressbar() {
         progressBar2.visibility = View.VISIBLE
     }
 
+    /**
+     *
+     */
     override fun hideprogressbar() {
         progressBar2.visibility = View.INVISIBLE
     }

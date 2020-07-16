@@ -18,9 +18,18 @@ package burullus.digitom.app.ui.ocrscreen.ocrutils
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.text.TextBlock
 
-class OcrDetectorProcessor internal constructor(private val graphicOverlay: GraphicOverlay<OcrGraphic>) :
+/**
+ *
+ */
+class OcrDetectorProcessor internal constructor(
+    private val graphicOverlay
+    : GraphicOverlay<OcrGraphic>
+) :
     Detector.Processor<TextBlock> {
 
+    /**
+     *
+     */
     override fun receiveDetections(detections: Detector.Detections<TextBlock>) {
         graphicOverlay.clear()
 
@@ -39,6 +48,9 @@ class OcrDetectorProcessor internal constructor(private val graphicOverlay: Grap
 
     }
 
+    /**
+     *
+     */
     override fun release() {
         graphicOverlay.clear()
     }

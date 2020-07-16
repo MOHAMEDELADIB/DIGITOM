@@ -6,6 +6,12 @@ import java.security.cert.CertificateException
 import javax.crypto.*
 import javax.crypto.spec.GCMParameterSpec
 
+/**
+ *
+ */
+/**
+ *
+ */
 class Decrypt {
     private var keyStore: KeyStore? = null
 
@@ -20,6 +26,12 @@ class Decrypt {
         keyStore?.load(null)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     @Throws(
         UnrecoverableEntryException::class,
         NoSuchAlgorithmException::class,

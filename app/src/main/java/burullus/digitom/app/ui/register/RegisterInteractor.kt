@@ -9,13 +9,19 @@ import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ *
+ */
 @SuppressLint("CheckResult")
 class RegisterInteractor(private val presenter: RegisterMvpPresenter) : RegisterMvpInteractor {
 
+    /**
+     *
+     */
     override fun signup(email: String, password: String, confirmPassword: String) {
         Repository.signup(email, password, confirmPassword)
-            .subscribe({ result ->
-                presenter.onsuccess(result.detail)
+            .subscribe({ (detail) ->
+                presenter.onsuccess(detail)
             })
             { error ->
 

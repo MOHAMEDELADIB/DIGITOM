@@ -1,3 +1,5 @@
+@file:Suppress("Annotator")
+
 package burullus.digitom.app.data.network.api
 
 import burullus.digitom.app.data.network.model.*
@@ -12,46 +14,85 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
+/**
+ * API Interface
+ */
 interface ApiService {
+    /**
+     * Register function
+     */
     @POST("signup/")
     @Headers("Accept: application/json", "No-Authentication: true")
     fun register(@Body signUp: SignUP): Observable<SignUpResponse>
 
+    /**
+     * Login Function
+     */
     @Headers("Accept: application/json", "No-Authentication: true")
     @POST("login/")
     fun login(@Body login: Login): Observable<LoginResponse>
 
+    /**
+     * Reset Password Function
+     */
     @POST("password/reset/")
     @Headers("Accept: application/json", "No-Authentication: true")
     fun reset(@Body reset: ResetPassword): Observable<ResetResponse>
 
+    /**
+     * Get Data
+     */
     @GET
     fun getMEData(@Url url: String): Observable<MechenicalData>
 
+    /**
+     * Get Data
+     */
     @GET
     fun getOPData(@Url url: String): Observable<OperationData>
 
+    /**
+     * Get News Feed
+     */
     @GET
     fun getNew(@Url url: String): Observable<List<ArticleData>>
 
+    /**
+     * Get Data
+     */
     @GET
     fun gerELData(@Url url: String): Observable<ElectricalData>
 
+    /**
+     * Get Data
+     */
     @GET
     fun getICData(@Url url: String): Observable<ICData>
 
+    /**
+     * Forgetpassword Function
+     */
     @POST("password/reset/confirm/")
     @Headers("Accept: application/json", "No-Authentication: true")
     fun forgetAuth(@Body forgetAuth: ForgetAuth): Observable<ForgetAuthResponse>
 
+    /**
+     * SignOut Function
+     */
     @POST("logout/")
     fun signOut(): Observable<SignoutResponse>
 
+    /**
+     * Active account
+     */
     @POST("verify-email/")
     @Headers("Accept: application/json", "No-Authentication: true")
     fun activate(@Body active: ActivateRequest): Observable<ActivateResponse>
 
     companion object {
+        /**
+         * Retrofit client
+         */
         fun getApiService(): ApiService {
             val client: OkHttpClient = OkHttpClient.Builder()
                 .addInterceptor {

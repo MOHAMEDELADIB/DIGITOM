@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DynamicElementsStorage">
+    <option name="containingClasses">
+      <map>
+        <entry key="build">
+          <value>
+            <DClassElement>
+              <option name="name" value="build" />
+              <option name="myName" value="build" />
+              <option name="myMethods">
+                <set>
+                  <DMethodElement>
+                    <option name="name" value="applicationId" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="s" />
+                          <option name="type" value="java.lang.String" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="applicationId" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="buildTypes" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="closure" />
+                          <option name="type" value="groovy.lang.Closure" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="buildTypes" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="compileOptions" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="closure" />
+                          <option name="type" value="groovy.lang.Closure" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="compileOptions" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="compileSdkVersion" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="i" />
+                          <option name="type" value="int" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="compileSdkVersion" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="defaultConfig" />
+                    <option name="static" value="true" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="closure" />
+                          <option name="type" value="groovy.lang.Closure" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="true" />
+                    <option name="myName" value="defaultConfig" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="getDefaultProguardFile" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="s" />
+                          <option name="type" value="java.lang.String" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="getDefaultProguardFile" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="kotlinOptions" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="closure" />
+                          <option name="type" value="groovy.lang.Closure" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="kotlinOptions" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="minSdkVersion" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="i" />
+                          <option name="type" value="int" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="minSdkVersion" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="minifyEnabled" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="b" />
+                          <option name="type" value="boolean" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="minifyEnabled" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="multiDexEnabled" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="b" />
+                          <option name="type" value="boolean" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="multiDexEnabled" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="proguardFiles" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="o" />
+                          <option name="type" value="java.lang.Object" />
+                        </ParamInfo>
+                        <ParamInfo>
+                          <option name="name" value="s" />
+                          <option name="type" value="java.lang.String" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="proguardFiles" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="release" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="closure" />
+                          <option name="type" value="groovy.lang.Closure" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="release" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="sourceCompatibility" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="javaVersion" />
+                          <option name="type" value="org.gradle.api.JavaVersion" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="sourceCompatibility" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="targetCompatibility" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="javaVersion" />
+                          <option name="type" value="org.gradle.api.JavaVersion" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="targetCompatibility" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="targetSdkVersion" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="i" />
+                          <option name="type" value="int" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="targetSdkVersion" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="testInstrumentationRunner" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="s" />
+                          <option name="type" value="java.lang.String" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="testInstrumentationRunner" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="versionCode" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="i" />
+                          <option name="type" value="int" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="versionCode" />
+                  </DMethodElement>
+                  <DMethodElement>
+                    <option name="name" value="versionName" />
+                    <option name="static" value="false" />
+                    <option name="type" value="java.lang.Object" />
+                    <option name="myPairs">
+                      <list>
+                        <ParamInfo>
+                          <option name="name" value="s" />
+                          <option name="type" value="java.lang.String" />
+                        </ParamInfo>
+                      </list>
+                    </option>
+                    <option name="myType" value="java.lang.Object" />
+                    <option name="myStatic" value="false" />
+                    <option name="myName" value="versionName" />
+                  </DMethodElement>
+                </set>
+              </option>
+            </DClassElement>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

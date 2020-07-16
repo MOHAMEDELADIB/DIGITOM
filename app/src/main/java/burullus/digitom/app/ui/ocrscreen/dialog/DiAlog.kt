@@ -16,12 +16,22 @@ import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity.Companion.getkks
 import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity.Companion.head
 import java.util.*
 
+/**
+ *
+ */
 class DiAlog(activity: OcrCaptureActivity) : Dialog(activity),
     DialogView {
+    /**
+     *
+     */
     lateinit var presenter: DialogPresenter
     private var text: EditText? = null
     private val thisDiAlog: DiAlog = this
     private var mcontext: Context? = null
+
+    /**
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog)
@@ -41,9 +51,12 @@ class DiAlog(activity: OcrCaptureActivity) : Dialog(activity),
 
     }
 
+    /**
+     *
+     */
     override fun onsucess(KKS: String) {
 
-        getkks()!!.text = text?.text.toString()
+        (getkks() ?: return).text = text?.text.toString()
         val intent = Intent(mcontext, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
@@ -52,10 +65,16 @@ class DiAlog(activity: OcrCaptureActivity) : Dialog(activity),
 
     }
 
+    /**
+     *
+     */
     override fun onerror(message: String) {
         Toast.makeText(mcontext, message, Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     *
+     */
     override fun close() {
         thisDiAlog.dismiss()
     }

@@ -15,6 +15,7 @@
  */
 package burullus.digitom.app.ui.ocrscreen.ocrutils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.RectF
@@ -24,6 +25,9 @@ import burullus.digitom.app.ui.ocrscreen.ocrutils.GraphicOverlay.Graphic
 import com.google.android.gms.vision.CameraSource
 import java.util.*
 
+/**
+ *
+ */
 class GraphicOverlay<T : Graphic?>(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     private val lock = Any()
     private var previewWidth = 0
@@ -33,21 +37,41 @@ class GraphicOverlay<T : Graphic?>(context: Context?, attrs: AttributeSet?) : Vi
     private var facing = CameraSource.CAMERA_FACING_BACK
     private val graphics: MutableSet<T> = HashSet()
 
+    /**
+     *
+     */
     abstract class Graphic(private val mOverlay: GraphicOverlay<*>) {
+        /**
+         *
+         */
         abstract fun draw(canvas: Canvas?)
+
+        /**
+         *
+         */
         fun contains(): Boolean {
             return contains()
         }
 
+        /**
+         *
+         */
         abstract fun contains(x: Float, y: Float): Boolean
+
+        @SuppressLint("SyntheticAccessor")
         private fun scaleX(horizontal: Float): Float {
             return horizontal * mOverlay.widthScaleFactor
         }
 
+        @SuppressLint("SyntheticAccessor")
         private fun scaleY(vertical: Float): Float {
             return vertical * mOverlay.heightScaleFactor
         }
 
+        /**
+         *
+         */
+        @SuppressLint("SyntheticAccessor")
         fun translateX(x: Float): Float {
             return if (mOverlay.facing == CameraSource.CAMERA_FACING_FRONT) {
                 mOverlay.width - scaleX(x)
@@ -56,10 +80,16 @@ class GraphicOverlay<T : Graphic?>(context: Context?, attrs: AttributeSet?) : Vi
             }
         }
 
+        /**
+         *
+         */
         fun translateY(y: Float): Float {
             return scaleY(y)
         }
 
+        /**
+         *
+         */
         fun translateRect(inputRect: RectF): RectF {
             val returnRect = RectF()
             returnRect.left = translateX(inputRect.left)
@@ -70,16 +100,25 @@ class GraphicOverlay<T : Graphic?>(context: Context?, attrs: AttributeSet?) : Vi
         }
     }
 
+    /**
+     *
+     */
     fun clear() {
         synchronized(lock) { graphics.clear() }
         postInvalidate()
     }
 
+    /**
+     *
+     */
     fun add(graphic: T) {
         synchronized(lock) { graphics.add(graphic) }
         postInvalidate()
     }
 
+    /**
+     *
+     */
     fun getGraphicAtLocation(rawX: Float, rawY: Float): T? {
         synchronized(lock) {
             val location = IntArray(2)
@@ -93,6 +132,9 @@ class GraphicOverlay<T : Graphic?>(context: Context?, attrs: AttributeSet?) : Vi
         }
     }
 
+    /**
+     *
+     */
     fun setCameraInfo(previewWidth: Int, previewHeight: Int, facing: Int) {
         synchronized(lock) {
             this.previewWidth = previewWidth
@@ -102,6 +144,9 @@ class GraphicOverlay<T : Graphic?>(context: Context?, attrs: AttributeSet?) : Vi
         postInvalidate()
     }
 
+    /**
+     *
+     */
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         synchronized(lock) {

@@ -32,9 +32,27 @@ import com.leinardi.android.speeddial.SpeedDialView
 import kotlinx.android.synthetic.main.activity_home.*
 
 
+/**
+ *
+ */
+/**
+ *
+ */
+/**
+ *
+ */
 @Suppress("DEPRECATED_IDENTITY_EQUALS")
 class Home : BaseActivity(), HomeMvpView {
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     lateinit var presenter: HomeMvpPresenter
     private lateinit var adapter: NewsAdapter
     private var drawerLayout: DrawerLayout? = null
@@ -42,6 +60,15 @@ class Home : BaseActivity(), HomeMvpView {
     private var mDrawerToggle: ActionBarDrawerToggle? = null
     private var speedDialView: SpeedDialView? = null
     private var requestCallPhone = 101
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -86,7 +113,7 @@ class Home : BaseActivity(), HomeMvpView {
 
         }
         //val mDrawerToggle: ActionBarDrawerToggle? = null
-        mDrawerToggle?.let { drawerLayout!!.addDrawerListener(it) }
+        mDrawerToggle?.let { (drawerLayout ?: return@let).addDrawerListener(it) }
         mDrawerToggle?.syncState()
         setupNavMenu()
         setupSpeedDail()
@@ -97,27 +124,29 @@ class Home : BaseActivity(), HomeMvpView {
 
     private fun setupSpeedDail() {
         speedDialView?.inflate(R.menu.menu_speed)
-        speedDialView?.setOnActionSelectedListener(SpeedDialView.OnActionSelectedListener { actionItem ->
-            when (actionItem.id) {
-                R.id.contact1 -> {
-                    presenter.contactpressed(1)
-                    return@OnActionSelectedListener true // false will close it without animation
+        speedDialView?.setOnActionSelectedListener(
+            SpeedDialView.OnActionSelectedListener
+            { actionItem ->
+                when (actionItem.id) {
+                    R.id.contact1 -> {
+                        presenter.contactpressed(1)
+                        return@OnActionSelectedListener true // false will close it without animation
+                    }
+                    R.id.contact2 -> {
+                        presenter.contactpressed(2)
+                        return@OnActionSelectedListener true // false will close it without animation
+                    }
+                    R.id.contact3 -> {
+                        presenter.contactpressed(3)
+                        return@OnActionSelectedListener true // false will close it without animation
+                    }
+                    R.id.contact4 -> {
+                        presenter.contactpressed(4)
+                        return@OnActionSelectedListener true // false will close it without animation
+                    }
                 }
-                R.id.contact2 -> {
-                    presenter.contactpressed(2)
-                    return@OnActionSelectedListener true // false will close it without animation
-                }
-                R.id.contact3 -> {
-                    presenter.contactpressed(3)
-                    return@OnActionSelectedListener true // false will close it without animation
-                }
-                R.id.contact4 -> {
-                    presenter.contactpressed(4)
-                    return@OnActionSelectedListener true // false will close it without animation
-                }
-            }
-            false
-        })
+                false
+            })
     }
 
     private fun setupNavMenu() {
@@ -145,39 +174,104 @@ class Home : BaseActivity(), HomeMvpView {
         }
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun getnews() {
         presenter.getnews(NewsUrl)
 
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onsuccess(news: List<ArticleData>) {
         adapter.updateAllTask(news.toMutableList())
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onerror(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun initDrawer() {
         if (drawerLayout != null) {
-            drawerLayout!!.closeDrawer(GravityCompat.START)
+            (drawerLayout ?: return).closeDrawer(GravityCompat.START)
         }
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun lockDrawer() {
-        if (drawerLayout != null) drawerLayout!!.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        if (drawerLayout != null) (drawerLayout
+            ?: return).setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun unlockDrawer() {
-        if (drawerLayout != null) drawerLayout!!.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        if (drawerLayout != null) (drawerLayout
+            ?: return).setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun opendrawer() {
         if (drawerLayout != null) {
             drawerLayout?.run { openDrawer(GravityCompat.START) }
         }
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun singout(message: String) {
 
         val intent = Login.getStartIntent(this@Home as Context)
@@ -185,30 +279,75 @@ class Home : BaseActivity(), HomeMvpView {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun openOperation() {
         val intent = OcrCaptureActivity.getStartIntent(this@Home as Context)
         intent?.putExtra("header", "Operations ")
         this@Home.startActivity(intent)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun openMechanical() {
         val intent = OcrCaptureActivity.getStartIntent(this@Home as Context)
         intent?.putExtra("header", "Mechanical ")
         this@Home.startActivity(intent)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun openIC() {
         val intent = OcrCaptureActivity.getStartIntent(this@Home as Context)
         intent?.putExtra("header", "I&C ")
         this@Home.startActivity(intent)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun openElectrical() {
         val intent = OcrCaptureActivity.getStartIntent(this@Home as Context)
         intent?.putExtra("header", "Electrical ")
         this@Home.startActivity(intent)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     @SuppressLint("LogNotTimber")
     override fun callNumber(number: String) {
 
@@ -231,22 +370,59 @@ class Home : BaseActivity(), HomeMvpView {
 
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun closeSpeedDial() {
         speedDialView?.close()
     }
 
     companion object {
+        /**
+         *
+         */
+        /**
+         *
+         */
+        /**
+         *
+         */
         fun getStartIntent(context: Context?): Intent? {
             return Intent(context, Home::class.java)
 
         }
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onResume() {
         super.onResume()
-        if (drawerLayout != null) drawerLayout!!.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        if (drawerLayout != null) (drawerLayout
+            ?: return).setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onBackPressed() {
     }
 }

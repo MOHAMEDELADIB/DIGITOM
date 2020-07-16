@@ -9,14 +9,20 @@ import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ *
+ */
 @SuppressLint("CheckResult")
 class LoginInteractor(private val presenter: LoginMvpPresenter) : LoginMvpInteractor {
 
 
+    /**
+     *
+     */
     override fun signin(email: String, password: String) {
         Repository.login(email, password)
-            .subscribe({ result ->
-                presenter.encrypt(result.token)
+            .subscribe({ (token) ->
+                presenter.encrypt(token)
                 presenter.onsuccess()
             }, { error ->
 
@@ -24,13 +30,14 @@ class LoginInteractor(private val presenter: LoginMvpPresenter) : LoginMvpIntera
                     if (error.code() != 500) {
                         val gson = GsonBuilder().create()
                         val mError: ErrorModelClass
-                        val responseBody: ResponseBody = error.response()!!.errorBody()!!
+                        val responseBody: ResponseBody =
+                            (error.response() ?: return@subscribe).errorBody() ?: return@subscribe
                         mError = gson.fromJson(responseBody.string(), ErrorModelClass::class.java)
                         presenter.onerror(mError)
                     } else presenter.onNetworkError(Server_error)
                 }
                 if (error is IOException) {
-                    presenter.onNetworkError(error.message!!)
+                    presenter.onNetworkError(error.message ?: return@subscribe)
                 }
             })
 

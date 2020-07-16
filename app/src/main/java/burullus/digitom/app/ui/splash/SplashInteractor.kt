@@ -11,8 +11,14 @@ import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ *
+ */
 class SplashInteractor(private val presenter: SplashMvpPresenter) : SplashMvpInteractor {
 
+    /**
+     *
+     */
     @SuppressLint("CheckResult")
     override fun isAuthen(kks: String) {
         Repository.getOperation(kks)

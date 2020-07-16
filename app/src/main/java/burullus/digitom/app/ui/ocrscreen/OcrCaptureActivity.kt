@@ -50,6 +50,12 @@ import java.util.*
 class OcrCaptureActivity : BaseActivity(), OcrMvpView {
     private var flash: Boolean = false
     private var activity: OcrCaptureActivity? = null
+    /**
+     *
+     */
+    /**
+     *
+     */
     lateinit var presenter: OcrMvpPresenter
     private var cameraSource: CameraSource? = null
     private var preview: CameraSourcePreview? = null
@@ -60,6 +66,12 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
     private val focusTag = "AutoFocus"
     private val cameraRc = 2
     private val permissions = arrayOf(Manifest.permission.CAMERA)
+    /**
+     *
+     */
+    /**
+     *
+     */
     public override fun onCreate(bundle: Bundle?) {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -113,11 +125,11 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
             requestCameraPermission()
         }
         Snackbar.make(
-            graphicOverlay!!, "Tap to Speak. Pinch/Stretch to zoom", Snackbar.LENGTH_LONG
+            graphicOverlay ?: return, "Tap to Speak. Pinch/Stretch to zoom", Snackbar.LENGTH_LONG
         ).show()
         val listener = TextToSpeech.OnInitListener { status ->
             if (status == TextToSpeech.SUCCESS) {
-                tts!!.language = Locale.US
+                (tts ?: return@OnInitListener).language = Locale.US
             }
         }
         tts = TextToSpeech(this.applicationContext, listener)
@@ -137,7 +149,7 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
         }
 
         Snackbar.make(
-            graphicOverlay!!,
+            graphicOverlay ?: return,
             R.string.permission_camera_rationale,
             Snackbar.LENGTH_INDEFINITE
         )
@@ -145,6 +157,12 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
             .show()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onTouchEvent(e: MotionEvent): Boolean {
         val b = scaleGestureDetector!!.onTouchEvent(e)
 
@@ -178,21 +196,45 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
             .build()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onResume() {
         super.onResume()
         presenter.activityresume()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onPause() {
         super.onPause()
         presenter.activityPause()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onDestroy() {
         super.onDestroy()
         presenter.activityDestroy()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -215,36 +257,60 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
             .show()
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     @Throws(SecurityException::class)
     override fun startCameraSource() {
         if (cameraSource != null) {
             try {
-                preview!!.start(cameraSource, graphicOverlay)
+                (preview ?: return).start(cameraSource, graphicOverlay)
             } catch (e: IOException) {
-                cameraSource!!.release()
+                (cameraSource ?: return).release()
                 cameraSource = null
             }
 
         }
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onsucess(KKS: String) {
         val intent = Intent(this@OcrCaptureActivity, MainActivity::class.java)
         startActivity(intent)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onerror(messsage: String) {
         Toast.makeText(this, messsage, Toast.LENGTH_SHORT).show()
     }
 
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun stopview() {
         if (preview != null) {
-            preview!!.stop()
+            (preview ?: return).stop()
         }
     }
 
-    private fun onTap(rawX: Float, rawY: Float): Boolean {
+    internal fun onTap(rawX: Float, rawY: Float): Boolean {
         val graphic = graphicOverlay!!.getGraphicAtLocation(rawX, rawY)
         var text: TextBlock? = null
         if (graphic != null) {
@@ -274,34 +340,79 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
             return true
         }
 
+        @SuppressLint("SyntheticAccessor")
         override fun onScaleEnd(detector: ScaleGestureDetector) {
             if (cameraSource != null) {
-                cameraSource!!.doZoom(detector.scaleFactor)
+                (cameraSource ?: return).doZoom(detector.scaleFactor)
             }
         }
     }
 
     companion object {
+        /**
+         *
+         */
+        /**
+         *
+         */
         var head: String = ""
+        /**
+         *
+         */
+        /**
+         *
+         */
         var kksview: TextView? = null
-        var kks = ""
+        /**
+         *
+         */
+        /**
+         *
+         */
+        var kks: String = ""
+        /**
+         *
+         */
+        /**
+         *
+         */
         fun getkks(): TextView? {
             return kksview
         }
 
+        /**
+         *
+         */
+        /**
+         *
+         */
         fun getStartIntent(context: Context?): Intent? {
             return Intent(context, OcrCaptureActivity::class.java)
         }
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun backActivity() {
         val intent = Intent(this@OcrCaptureActivity, Home::class.java)
         // finish()
         startActivity(intent)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun flasher() {
-        if (APPContext.applicationContext().packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
+        if (APPContext.applicationContext().packageManager.hasSystemFeature
+                (PackageManager.FEATURE_CAMERA_FLASH)
+        ) {
             if (!flash) {
                 flash = true
                 cameraSource?.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH)
@@ -314,8 +425,14 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
         }
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun dailog() {
-        val yourDialog = DiAlog(activity!!)
+        val yourDialog = DiAlog(activity ?: return)
         yourDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         yourDialog.show()
     }

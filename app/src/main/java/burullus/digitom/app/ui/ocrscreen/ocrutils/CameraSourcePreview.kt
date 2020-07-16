@@ -16,6 +16,7 @@
 package burullus.digitom.app.ui.ocrscreen.ocrutils
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.util.AttributeSet
@@ -28,6 +29,15 @@ import java.io.IOException
 import kotlin.math.max
 import kotlin.math.min
 
+/**
+ *
+ */
+/**
+ *
+ */
+/**
+ *
+ */
 class CameraSourcePreview(
     context: Context, attrs: AttributeSet?
 ) : ViewGroup(context, attrs) {
@@ -37,6 +47,15 @@ class CameraSourcePreview(
     private var cameraSource: CameraSource? = null
     private var overlay: GraphicOverlay<*>? = null
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     @RequiresPermission(Manifest.permission.CAMERA)
     @Throws(IOException::class, SecurityException::class)
     fun start(cameraSource: CameraSource?) {
@@ -50,6 +69,15 @@ class CameraSourcePreview(
         }
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     @RequiresPermission(Manifest.permission.CAMERA)
     @Throws(IOException::class, SecurityException::class)
     fun start(
@@ -60,33 +88,51 @@ class CameraSourcePreview(
         start(cameraSource)
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     fun stop() {
         if (cameraSource != null) {
-            cameraSource!!.stop()
+            (cameraSource ?: return).stop()
         }
     }
 
     @RequiresPermission(Manifest.permission.CAMERA)
     @Throws(IOException::class, SecurityException::class)
-    private fun startIfReady() {
+    internal fun startIfReady() {
         if (startRequested && surfaceAvailable) {
-            cameraSource!!.start(surfaceView.holder)
+            (cameraSource ?: return).start(surfaceView.holder)
             if (overlay != null) {
-                val size = cameraSource!!.previewSize
+                val size = (cameraSource ?: return).previewSize
                 val min = min(size.width, size.height)
                 val max = max(size.width, size.height)
                 if (isPortraitMode) {
-                    overlay!!.setCameraInfo(min, max, cameraSource!!.cameraFacing)
+                    (overlay ?: return).setCameraInfo(
+                        min,
+                        max,
+                        (cameraSource ?: return).cameraFacing
+                    )
                 } else {
-                    overlay!!.setCameraInfo(max, min, cameraSource!!.cameraFacing)
+                    (overlay ?: return).setCameraInfo(
+                        max,
+                        min,
+                        (cameraSource ?: return).cameraFacing
+                    )
                 }
-                overlay!!.clear()
+                (overlay ?: return).clear()
             }
             startRequested = false
         }
     }
 
     private inner class SurfaceCallback : SurfaceHolder.Callback {
+        @SuppressLint("SyntheticAccessor")
         override fun surfaceCreated(surface: SurfaceHolder) {
             surfaceAvailable = true
             try {
@@ -103,11 +149,21 @@ class CameraSourcePreview(
         ) {
         }
 
+        @SuppressLint("SyntheticAccessor")
         override fun surfaceDestroyed(surface: SurfaceHolder) {
             surfaceAvailable = false
         }
     }
 
+    /**
+     *
+     */
+    /**
+     *
+     */
+    /**
+     *
+     */
     override fun onLayout(
         changed: Boolean,
         left: Int,
@@ -118,7 +174,7 @@ class CameraSourcePreview(
         var previewWidth = 320
         var previewHeight = 240
         if (cameraSource != null) {
-            val size = cameraSource!!.previewSize
+            val size = (cameraSource ?: return).previewSize
             if (size != null) {
                 previewWidth = size.width
                 previewHeight = size.height

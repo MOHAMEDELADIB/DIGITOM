@@ -13,11 +13,24 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-    <uses-feature android:name="android.hardware.cameraw2" />
-    <uses-feature android:name="android.hardware.camera2.flash" />
+    <uses-feature
+            android:name="android.hardware.camera2"
+            android:required="false" />
+    <uses-feature
+            android:name="android.hardware.camera2.flash"
+            android:required="false" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-feature
+            android:name="android.hardware.camera.autofocus"
+            android:required="false" />
+    <uses-feature
+            android:name="android.hardware.camera"
+            android:required="false" />
+    <uses-feature
+            android:name="android.hardware.telephony"
+            android:required="false" />
 
 
     <application
@@ -38,9 +51,11 @@
              The api key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the api key is linked to the encryption key used to sign the APK.
-             You need a different api key for each encryption key, including the release key that is used to
+             You need a different api key for each encryption key
+             , including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+             You can define the keys for the debug
+             and release targets in src/debug/ and src/release/.
         -->
         <meta-data
                 android:name="com.google.android.gms.version"
@@ -52,19 +67,19 @@
         <activity
                 android:name=".ui.register.RegisterActivity"
                 android:launchMode="singleTask"
-                android:screenOrientation="portrait"
+                android:screenOrientation="nosensor"
                 android:windowSoftInputMode="stateVisible" />
 
         <activity
                 android:name=".ui.login.Login"
                 android:launchMode="singleTask"
                 android:noHistory="true"
-                android:screenOrientation="portrait"
+                android:screenOrientation="nosensor"
                 android:windowSoftInputMode="stateVisible" />
         <activity
                 android:name="burullus.digitom.app.ui.deeplinks.Deeplink"
                 android:noHistory="true">
-            <intent-filter android:label="Activation">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -95,11 +110,11 @@
         <activity
                 android:name=".ui.home.Home"
                 android:launchMode="singleTask"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="nosensor" />
         <activity
                 android:name=".ui.mainActivity.MainActivity"
                 android:launchMode="singleTask"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="nosensor" />
         <activity
                 android:name="burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity"
                 android:launchMode="singleTask"
@@ -107,17 +122,17 @@
         <activity
                 android:name="burullus.digitom.app.ui.forgetpassword.ForgetpasswordActivity"
                 android:launchMode="singleTask"
-                android:screenOrientation="portrait"
+                android:screenOrientation="nosensor"
                 android:windowSoftInputMode="stateVisible" />
         <activity
                 android:name=".ui.changepassword.ChangePassword"
                 android:launchMode="singleTask"
-                android:screenOrientation="portrait"
+                android:screenOrientation="nosensor"
                 android:windowSoftInputMode="stateVisible" />
         <activity
                 android:name=".ui.PhotoActivity.SlideActivity"
                 android:launchMode="singleTask"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="nosensor" />
         <activity
                 android:name=".ui.splash.SplashActivity"
                 android:noHistory="true"

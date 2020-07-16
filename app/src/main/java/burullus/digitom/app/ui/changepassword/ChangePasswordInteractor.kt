@@ -10,14 +10,20 @@ import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ * Interactor Class
+ */
 class ChangePasswordInteractor(private val presenter: ChangePasswordMvpPresenter) :
     ChangePasswordMvpInteractor {
+    /**
+     * Authentication function to change password
+     */
     @SuppressLint("CheckResult")
 
     override fun auth(token: String, new_password1: String, new_password2: String) {
         Repository.forgetauth(token, new_password1, new_password2)
-            .subscribe({ result ->
-                presenter.onsuccess(result.detail)
+            .subscribe({ (detail) ->
+                presenter.onsuccess(detail)
             }, { error ->
 
                 if (error is HttpException) {

@@ -21,9 +21,20 @@ import javax.microedition.khronos.egl.EGLDisplay
 //import com.digitom.app.MainActivity.Companion.img
 //import com.squareup.picasso.Picasso
 
+/**
+ *
+ */
 class SlideActivity : BaseActivity(), SlideMvpView {
     private var adapter: SlideAdapter? = null
+
+    /**
+     *
+     */
     lateinit var presenter: SlideMvpPresenter
+
+    /**
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -54,21 +65,30 @@ class SlideActivity : BaseActivity(), SlideMvpView {
         presenter.loaddata()
     }
 
+    /**
+     *
+     */
     override fun back() {
         val intent = Intent(this@SlideActivity, MainActivity::class.java)
         startActivity(intent)
     }
 
+    /**
+     *
+     */
     override fun nextimag() {
         rev_img.scrollToPosition(currentPosition + 1)
-        if (currentPosition < (adapter?.itemCount!! - 1)) {
+        if (currentPosition < ((adapter?.itemCount ?: return) - 1)) {
             nextimg.visibility = View.VISIBLE
             rev_img.scrollToPosition(currentPosition + 1)
-            if (currentPosition + 1 == (adapter?.itemCount!! - 1)) nextimg.visibility =
+            if (currentPosition + 1 == ((adapter?.itemCount ?: return) - 1)) nextimg.visibility =
                 View.INVISIBLE
         }
     }
 
+    /**
+     *
+     */
     override fun perviousimg() {
 
         if (currentPosition > 0) {
@@ -78,11 +98,17 @@ class SlideActivity : BaseActivity(), SlideMvpView {
         }
     }
 
+    /**
+     *
+     */
     override fun getdata() {
         adapter?.updateAllTask(imagesArray)
     }
 
     companion object {
+        /**
+         *
+         */
         fun getMaximumTextureSize(): Int {
             val egl: EGL10 = EGLContext.getEGL() as EGL10
             val display: EGLDisplay = egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY)

@@ -5,12 +5,19 @@ import android.graphics.Canvas
 import android.text.StaticLayout
 import android.util.AttributeSet
 
+/**
+ *
+ */
 class JustifyTextView(
     context: Context?,
     attrs: AttributeSet?
 ) : androidx.appcompat.widget.AppCompatTextView(context, attrs) {
     private var mLineY = 0
     private var mViewWidth = 0
+
+    /**
+     *
+     */
     override fun onDraw(canvas: Canvas) {
         val paint = this.paint
         paint.color = this.currentTextColor

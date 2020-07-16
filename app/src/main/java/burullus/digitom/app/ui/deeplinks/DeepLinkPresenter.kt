@@ -2,15 +2,29 @@ package burullus.digitom.app.ui.deeplinks
 
 import burullus.digitom.app.data.network.model.ErrorModelClass
 
+/**
+ * The presenter Class for deeplink
+ */
 @Suppress("SENSELESS_COMPARISON")
-class DeepLinkPresenter(val view: DeeplinkMvpview) : DeeplinkMvpPresenter {
+class DeepLinkPresenter(
+    /**
+     * View interface
+     */
+    val view: DeeplinkMvpview
+) : DeeplinkMvpPresenter {
     private var interactor: DeepLinkMvpInteractor = DeepLinkInteractor(this)
 
+    /**
+     * for send token to check
+     */
     override fun activeAccount(key: String) {
         view.showprogressbar()
         interactor.activedeeplink(key)
     }
 
+    /**
+     * in case of non valid token
+     */
     override fun onDeeplinkError(merror: ErrorModelClass) {
         view.hideprogressbar()
         var message = ""
@@ -33,15 +47,24 @@ class DeepLinkPresenter(val view: DeeplinkMvpview) : DeeplinkMvpPresenter {
 
     }
 
+    /**
+     *
+     */
     override fun onDeepLinkSuccess(message: String) {
         view.hideprogressbar()
         view.deeplinkSuccess(message)
     }
 
+    /**
+     * Presenter function for pass key to another activity
+     */
     override fun forgetpass(key: String) {
         view.deeplinknavigate(key)
     }
 
+    /**
+     * Presenter function in case Network error or Server Error
+     */
     override fun onNetworkError(message: String) {
         view.hideprogressbar()
         view.deeplinkError(message)

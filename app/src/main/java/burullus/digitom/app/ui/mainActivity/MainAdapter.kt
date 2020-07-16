@@ -15,8 +15,14 @@ import burullus.digitom.app.ui.mainActivity.MainActivity.Companion.currentPositi
 import burullus.digitom.app.ui.mainActivity.MainActivity.Companion.imagesArray
 import com.squareup.picasso.Picasso
 
+/**
+ *
+ */
 class MainAdapter(private var imagelist: List<DataSheet>, private val ctx: Context?) :
     RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
+    /**
+     *
+     */
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
     ): MyViewHolder {
@@ -25,11 +31,17 @@ class MainAdapter(private var imagelist: List<DataSheet>, private val ctx: Conte
         return MyViewHolder(view)
     }
 
+    /**
+     *
+     */
     fun updateAllTask(list: List<DataSheet>) {
         imagelist = list
         notifyDataSetChanged()
     }
 
+    /**
+     *
+     */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val image = imagelist[position]
         val imageView = holder.photoImageView
@@ -45,19 +57,31 @@ class MainAdapter(private var imagelist: List<DataSheet>, private val ctx: Conte
         }
     }
 
+    /**
+     *
+     */
     override fun getItemCount(): Int {
         return imagelist.size
     }
 
+    /**
+     *
+     */
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
 
+        /**
+         *
+         */
         var photoImageView: ImageView = itemView.findViewById(R.id.iv_photo)
 
         init {
             itemView.setOnClickListener(this)
         }
 
+        /**
+         *
+         */
         override fun onClick(view: View) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
