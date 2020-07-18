@@ -6,13 +6,11 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import burullus.digitom.app.R
 import burullus.digitom.app.data.network.api.Verify
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.login.Login
 import burullus.digitom.app.utils.Validator
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
@@ -62,17 +60,14 @@ class RegisterActivity : BaseActivity(), RegisterMvpView {
      *
      */
     override fun onsucess(message: String) {
-        Toast.makeText(this@RegisterActivity, "$message $Verify", Toast.LENGTH_LONG).show()
+        Toast.makeText(this@RegisterActivity, "$message $Verify", Toast.LENGTH_SHORT).show()
     }
 
     /**
      *
      */
     override fun onerror(message: String) {
-
-        Snackbar.make(Layout, message, Snackbar.LENGTH_SHORT)
-            .setTextColor(ContextCompat.getColor(this, R.color.material_blue_a700))
-            .show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     /**

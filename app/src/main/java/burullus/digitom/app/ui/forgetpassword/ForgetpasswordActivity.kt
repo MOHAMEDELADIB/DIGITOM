@@ -53,8 +53,9 @@ class ForgetpasswordActivity : BaseActivity(), ForgetpasswordMvpView {
      *
      */
     override fun onsucess(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this@ForgetpasswordActivity, Login::class.java)
+        startActivity(intent)
     }
 
     /**
@@ -63,7 +64,6 @@ class ForgetpasswordActivity : BaseActivity(), ForgetpasswordMvpView {
     override fun onerror(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
-
 
     /**
      *

@@ -82,9 +82,9 @@ class Deeplink : BaseActivity(), DeeplinkMvpview {
      *  and navigate to Register activity for get another token
      */
     override fun deeplinkError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         intent = Intent(this@Deeplink, RegisterActivity::class.java)
         startActivity(intent)
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     /**

@@ -12,7 +12,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
@@ -105,10 +104,6 @@ class Home : BaseActivity(), HomeMvpView {
             R.string.openNavDrawer,
             R.string.closeNavDrawer
         ) {
-            override fun onDrawerOpened(drawerView: View) {
-                super.onDrawerOpened(drawerView)
-                hideKeyboard()
-            }
 
 
         }

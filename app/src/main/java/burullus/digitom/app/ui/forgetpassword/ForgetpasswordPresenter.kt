@@ -63,8 +63,8 @@ class ForgetpasswordPresenter(
             view.onerror(message)
         }
         if (mError.email != null) {
-            for (i in 0 until mError.new_password1.size) {
-                message += mError.new_password1[i]
+            for (i in 0 until mError.email.size) {
+                message += mError.email[i]
                 if (i > 0) message += ",\n"
                 view.onerror(message)
             }

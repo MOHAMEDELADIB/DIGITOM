@@ -5,13 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import burullus.digitom.app.R
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.login.Login
 import burullus.digitom.app.ui.register.RegisterActivity
 import burullus.digitom.app.utils.Validator
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_forget_password.*
 
 
@@ -58,11 +57,10 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
      * Show error message
      */
     override fun onerror(message: String) {
-        Snackbar.make(layout, message, Snackbar.LENGTH_SHORT)
-            .setTextColor(ContextCompat.getColor(this, R.color.material_blue_a700))
-            .show()
+
         val intent = Intent(this@ChangePassword, RegisterActivity::class.java)
         startActivity(intent)
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -71,9 +69,7 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
     override fun onsucess(message: String) {
         val intent = Intent(this@ChangePassword, Login::class.java)
         startActivity(intent)
-        Snackbar.make(layout, message, Snackbar.LENGTH_SHORT)
-            .setTextColor(ContextCompat.getColor(this, R.color.material_blue_a700))
-            .show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     /**

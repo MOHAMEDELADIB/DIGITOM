@@ -16,16 +16,7 @@ import com.squareup.picasso.Picasso
  *
  */
 abstract class BaseActivity : AppCompatActivity() {
-
-    /**
-     *
-     */
-    fun hideKeyboard() {}
-
-    /**
-     *
-     */
-    override fun onPointerCaptureChanged(hasCapture: Boolean) {}
+    
 
     /**
      *

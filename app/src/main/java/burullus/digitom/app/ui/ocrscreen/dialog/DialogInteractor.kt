@@ -25,19 +25,25 @@ class DialogInteractor(private val presenter: DialogPresenter) : DailogMvpIntera
                     { error ->
 
                         if (error is HttpException) {
-                            val gson = GsonBuilder().create()
-                            val mError: ErrorModelClass
-                            val responseBody: ResponseBody? =
-                                error.response()?.errorBody()
-                            mError =
-                                gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                            if (error.code() == 401) presenter.onerror(noauthenticate)
-                            else presenter.onerror(
-                                mError.detail
-                            )
+                            if (error.code() == 500) {
+                                val gson = GsonBuilder().create()
+                                val mError: ErrorModelClass
+                                val responseBody: ResponseBody? =
+                                    error.response()?.errorBody()
+                                mError =
+                                    gson.fromJson(
+                                        responseBody?.string(),
+                                        ErrorModelClass::class.java
+                                    )
+
+                                presenter.onerror(mError.detail)
+                            }
+                        } else {
+                            presenter.onerror(Server_error)
+
                         }
                         if (error is IOException) {
-                            presenter.onerror(error.message ?: return@subscribe)
+                            presenter.onerror(Network_Message)
                         }
 
                     }

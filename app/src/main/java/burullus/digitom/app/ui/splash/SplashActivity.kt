@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import burullus.digitom.app.R
 import burullus.digitom.app.data.network.api.TokenCheck
 import burullus.digitom.app.ui.base.BaseActivity
@@ -12,8 +12,6 @@ import burullus.digitom.app.ui.home.Home.Companion.getStartIntent
 import burullus.digitom.app.ui.login.Login
 import burullus.digitom.app.utils.MySharedPreferences
 import burullus.digitom.app.utils.keystore.Decrypt
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.splash_screen.*
 import burullus.digitom.app.ui.splash.SplashMvpView as SplashMvpView1
 
 /**
@@ -80,9 +78,7 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
      *
      */
     override fun loginMessage(message: String) {
-        Snackbar.make(linearLayout, message, Snackbar.LENGTH_LONG)
-            .setTextColor(ContextCompat.getColor(this, R.color.material_blue_a700))
-            .show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     /**

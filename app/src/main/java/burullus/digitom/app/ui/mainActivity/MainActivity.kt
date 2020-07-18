@@ -19,6 +19,8 @@ import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity
 import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity.Companion.getkks
 import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity.Companion.head
 import kotlinx.android.synthetic.main.activity_main2.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  *
@@ -61,7 +63,7 @@ class MainActivity : BaseActivity(), MainMvpview {
             presenter.homeActivity()
         }
 
-        detectedkks = getkks()?.text.toString()
+        detectedkks = getkks()?.text.toString().toUpperCase(Locale.US)
         initUI()
     }
 

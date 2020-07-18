@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import burullus.digitom.app.R
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.forgetpassword.ForgetpasswordActivity
@@ -14,7 +14,6 @@ import burullus.digitom.app.ui.home.Home
 import burullus.digitom.app.ui.register.RegisterActivity
 import burullus.digitom.app.utils.Validator
 import burullus.digitom.app.utils.keystore.Encrypt
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -74,9 +73,7 @@ class Login : BaseActivity(), LoginMvpView {
      *
      */
     override fun onerror(message: String) {
-        Snackbar.make(Layout, message, Snackbar.LENGTH_SHORT)
-            .setTextColor(ContextCompat.getColor(this, R.color.design_default_color_error))
-            .show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     /**

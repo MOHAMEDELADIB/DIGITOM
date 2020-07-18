@@ -86,7 +86,7 @@ class OcrGraphic internal constructor(
         var result = false
         if (kks.length > 11) {
             loop2@ for (i: Int in KKSPattern.indices) {
-                kksLength = KKSPatternlength[i]
+                this.kksLength = KKSPatternlength[i]
                 kksString =
                     if (kks.length > kksLength) kks.subSequence(0, kksLength).toString() else kks
                 val element = KKSPattern[i]

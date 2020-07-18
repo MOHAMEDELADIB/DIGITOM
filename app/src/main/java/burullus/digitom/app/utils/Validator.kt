@@ -26,33 +26,7 @@ class Validator {
     }
 
     @SuppressLint("ResourceType")
-    /*private fun validateForValidMail(): Boolean {
-        val check2 = validations.filter {
-            var know :Int =it.editText!!.inputType
-            val pattern: Pattern
-            val matcher: Matcher
-            val valid:Boolean
-            val emailPattern = ("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@"
-                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
-            pattern = Pattern.compile(emailPattern)
-            matcher = pattern.matcher( it.editText?.text!!)
-            matcher.matches()
-        }
 
-        check2.map {
-            //  declare Drawable
-            // val errorD = ContextCompat.getDrawable(APPContext.applicationContext()
-            , R.drawable.error)
-            //it.error = APPContext.applicationContext().resources.getString(R.string.error_empty)
-            it.errorIconDrawable = null
-            it.setErrorIconDrawable(R.drawable.error)
-            it.editText?.setBackgroundResource(R.drawable.angle44)
-            it.editText?.setError("Not Valid Mail,null")
-
-        }
-
-        return check2.isEmpty()
-    }*/
     private fun validateForNotEmpty(): Boolean {
 
         val check = validations.filter {

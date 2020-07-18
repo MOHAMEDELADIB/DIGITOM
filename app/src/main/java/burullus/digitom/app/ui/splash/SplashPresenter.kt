@@ -56,25 +56,31 @@ class SplashPresenter(
      */
     override fun decode(token: ByteArray?) {
 
-        if ((MySharedPreferences.getiv() ?: return).isNotEmpty() && (MySharedPreferences.getToken()
-                ?: return)
-                .isNotEmpty()
-        ) {
-            try {
-                accesstoken = mDecrypt.decryptData("ALIAS", token, MySharedPreferences.getiv())
-            } catch (e: UnrecoverableEntryException) {
-            } catch (e: NoSuchAlgorithmException) {
-            } catch (e: KeyStoreException) {
-            } catch (e: NoSuchPaddingException) {
-            } catch (e: NoSuchProviderException) {
-            } catch (e: IOException) {
-            } catch (e: InvalidKeyException) {
-            } catch (e: IllegalBlockSizeException) {
-                e.printStackTrace()
-            } catch (e: BadPaddingException) {
-                e.printStackTrace()
-            } catch (e: InvalidAlgorithmParameterException) {
-                e.printStackTrace()
+        if ((MySharedPreferences.getiv() ?: return).isNotEmpty()) {
+            if ((MySharedPreferences.getToken() ?: return).isNotEmpty()) {
+                try {
+                    accesstoken = mDecrypt.decryptData("ALIAS", token, MySharedPreferences.getiv())
+                } catch (e: UnrecoverableEntryException) {
+
+                } catch (e: NoSuchAlgorithmException) {
+                    e.printStackTrace()
+                } catch (e: KeyStoreException) {
+                    e.printStackTrace()
+                } catch (e: NoSuchPaddingException) {
+                    e.printStackTrace()
+                } catch (e: NoSuchProviderException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } catch (e: InvalidKeyException) {
+                    e.printStackTrace()
+                } catch (e: IllegalBlockSizeException) {
+                    e.printStackTrace()
+                } catch (e: BadPaddingException) {
+                    e.printStackTrace()
+                } catch (e: InvalidAlgorithmParameterException) {
+                    e.printStackTrace()
+                }
             }
         }
     }
