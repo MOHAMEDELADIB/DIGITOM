@@ -3,14 +3,19 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
  apply plugin: 'kotlin-kapt'
 android {
-    compileSdkVersion 29
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\20109\\key.jks')
+        }
+    }
+    compileSdkVersion 30
     defaultConfig {
         applicationId "burullus.digitom.app"
-        minSdkVersion 23
+        minSdkVersion 21
         //noinspection OldTargetApi
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 30
+        versionCode 4
+        versionName "4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         compileOptions {
@@ -127,5 +132,8 @@ dependencies {
  //   kapt 'com.jakewharton:butterknife-compiler:10.2.1'
     //noinspection GroovyUntypedAccess
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+
+
 }
  apply plugin: 'com.google.gms.google-services'

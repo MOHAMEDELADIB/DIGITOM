@@ -16,15 +16,14 @@ import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import burullus.digitom.app.APPContext
+import burullus.digitom.app.DIGITOM
 import burullus.digitom.app.R
+import burullus.digitom.app.data.network.model.responses.Paging
 import burullus.digitom.app.ui.base.BaseActivity
-import burullus.digitom.app.ui.home.Home
 import burullus.digitom.app.ui.mainActivity.MainActivity
 import burullus.digitom.app.ui.ocrscreen.dialog.DiAlog
 import burullus.digitom.app.ui.ocrscreen.ocrutils.CameraSourcePreview
@@ -82,7 +81,7 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
         head = intent.extras?.getString("header").toString()
         preview = findViewById(R.id.preview)
         graphicOverlay = findViewById(R.id.graphicOverlay)
-        kksview = findViewById<EditText>(R.id.kkstext)
+        kksview = findViewById(R.id.kkstext)
         presenter = OcrPresenter(this)
         val flasher = findViewById<ImageView>(R.id.manual)
         gestureDetector = GestureDetector(this, CaptureGestureListener())
@@ -92,19 +91,7 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
         flasher.setOnClickListener {
             presenter.flashPressed()
         }
-        kksview?.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                presenter.kksdetected(getkks()?.text.toString(), head)
-            }
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-
-        })
         oback.setOnClickListener {
             presenter.backpressed()
         }
@@ -117,7 +104,34 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
         initUI()
     }
 
+    /**
+     *
+     */
+
+    override fun onStart() {
+        super.onStart()
+
+        kksview?.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                presenter.kksdetected(getkks()?.text.toString(), head)
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+        })
+
+    }
+
     private fun initUI() {
+        kkstext.text = getString(R.string.search)
+        if (DIGITOM.applicationContext().packageManager.hasSystemFeature
+                (PackageManager.FEATURE_CAMERA_FLASH)
+        ) manual.visibility = View.VISIBLE else manual.visibility = View.INVISIBLE
         val rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
         if (rc == PackageManager.PERMISSION_GRANTED) {
             createCameraSource()
@@ -190,7 +204,7 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
         cameraSource = CameraSource.Builder(applicationContext, textRecognizer)
             .setFacing(CameraSource.CAMERA_FACING_BACK)
             .setRequestedPreviewSize(1280, 1024)
-            .setRequestedFps(120.0f)
+            .setRequestedFps(20.0f)
             .setFlashMode(if (flash) Camera.Parameters.FLASH_MODE_TORCH else null)
             .setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)
             .build()
@@ -283,13 +297,11 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
      *
      */
     override fun onsucess(KKS: String) {
+
         val intent = Intent(this@OcrCaptureActivity, MainActivity::class.java)
         startActivity(intent)
     }
 
-    /**
-     *
-     */
     /**
      *
      */
@@ -389,45 +401,41 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
         fun getStartIntent(context: Context?): Intent? {
             return Intent(context, OcrCaptureActivity::class.java)
         }
+
+        /**
+         *
+         */
+        var pagelist: Paging? = null
+
+        /**
+         *
+         */
+        var kkssearch: String = ""
     }
 
-    /**
-     *
-     */
     /**
      *
      */
     override fun backActivity() {
-        val intent = Intent(this@OcrCaptureActivity, Home::class.java)
-        // finish()
-        startActivity(intent)
+        super.onBackPressed()
     }
 
-    /**
-     *
-     */
     /**
      *
      */
     override fun flasher() {
-        if (APPContext.applicationContext().packageManager.hasSystemFeature
-                (PackageManager.FEATURE_CAMERA_FLASH)
-        ) {
-            if (!flash) {
-                flash = true
-                cameraSource?.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH)
-            } else {
-                flash = false
-                cameraSource?.setFlashMode(Camera.Parameters.FLASH_MODE_OFF)
-            }
+
+
+        if (!flash) {
+            flash = true
+            cameraSource?.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH)
         } else {
-            manual.visibility = View.INVISIBLE
+            flash = false
+            cameraSource?.setFlashMode(Camera.Parameters.FLASH_MODE_OFF)
         }
+
     }
 
-    /**
-     *
-     */
     /**
      *
      */

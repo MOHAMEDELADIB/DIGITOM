@@ -1,6 +1,7 @@
 package burullus.digitom.app.data.repository
 
 import burullus.digitom.app.data.network.api.ApiService
+import burullus.digitom.app.data.network.api.userURL
 import burullus.digitom.app.data.network.model.*
 import burullus.digitom.app.data.network.model.requests.*
 import burullus.digitom.app.data.network.model.responses.*
@@ -56,6 +57,15 @@ object Repository {
      */
     fun getOperation(url: String): Observable<OperationData> {
         return ApiService.getApiService().getOPData(url)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    /**
+     *
+     */
+    fun getPaging(url: String): Observable<Paging> {
+        return ApiService.getApiService().getPaging(url)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
@@ -121,5 +131,22 @@ object Repository {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
+    /**
+     * get contact list from back end
+     */
+    fun getContact(): Observable<List<ContactList>> {
+        return ApiService.getApiService().getContact()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    /**
+     * get user Profile
+     */
+    fun getProfile(): Observable<UserProfile> {
+        return ApiService.getApiService().userProfile(userURL)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
 }
 

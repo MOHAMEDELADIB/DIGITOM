@@ -4,6 +4,6 @@
         android:shape="rectangle">
     <stroke
             android:width="1dp"
-            android:color="#C7C7C7" />
+            android:color="#5D596E" />
     <solid android:color="#FFFFFFFF" />
 </shape>

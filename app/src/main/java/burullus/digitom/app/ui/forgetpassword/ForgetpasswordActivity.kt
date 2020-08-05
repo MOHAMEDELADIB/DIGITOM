@@ -30,6 +30,7 @@ class ForgetpasswordActivity : BaseActivity(), ForgetpasswordMvpView {
      *
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
@@ -52,6 +53,14 @@ class ForgetpasswordActivity : BaseActivity(), ForgetpasswordMvpView {
     /**
      *
      */
+    override fun onStart() {
+        super.onStart()
+        reg_mail.text?.clear()
+    }
+
+    /**
+     *
+     */
     override fun onsucess(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         val intent = Intent(this@ForgetpasswordActivity, Login::class.java)
@@ -69,9 +78,7 @@ class ForgetpasswordActivity : BaseActivity(), ForgetpasswordMvpView {
      *
      */
     override fun backActivity() {
-        val intent = Login.getStartIntent(this@ForgetpasswordActivity as Context)
-        this@ForgetpasswordActivity.startActivity(intent)
-
+        super.onBackPressed()
     }
 
     /**

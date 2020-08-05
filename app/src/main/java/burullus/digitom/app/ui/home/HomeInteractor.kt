@@ -31,14 +31,11 @@ class HomeInteractor(private val presenter: HomeMvpPresenter) : HomeMvpInteracto
                             error.response()?.errorBody()
                         mError =
                             gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                        if (error.code() == 401) presenter.onerror(noauthenticate)
-                        else presenter.onerror(
-                            mError.detail
-                        )
+                        presenter.onError(mError)
                     } else presenter.onerror(Server_error)
                 }
                 if (error is IOException) {
-                    presenter.onerror(error.message ?: return@subscribe)
+                    presenter.onerror(Network_Message)
                 }
 
             })
@@ -86,6 +83,17 @@ class HomeInteractor(private val presenter: HomeMvpPresenter) : HomeMvpInteracto
         if (id == 3) number = OpertionNumber
         if (id == 4) number = StationNumber
         presenter.getNumber(number)
+    }
+
+    /**
+     *
+     */
+    @SuppressLint("CheckResult")
+    override fun getuser() {
+        Repository.getProfile()
+            .subscribe { (username) ->
+                presenter.getusername(username)
+            }
     }
 
 }

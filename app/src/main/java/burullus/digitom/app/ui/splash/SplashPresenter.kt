@@ -42,6 +42,7 @@ class SplashPresenter(
      */
     override fun onsucess() {
         View.homeActivity()
+
     }
 
     /**

@@ -39,27 +39,33 @@ class ChnagePasswordPresenter(
     override fun onError(merror: ErrorModelClass) {
         var message = ""
         view.hideprogressbar()
-        if (merror.detail != null) view.onerror(merror.detail)
+        if (merror.detail != null) message = merror.detail
         if (merror.non_field_errors != null) {
             for (i in 0 until merror.non_field_errors.size) {
                 message += merror.non_field_errors[i]
                 if (i > 0) message += ",\n"
             }
-            view.onerror(message)
         }
         if (merror.new_password1 != null) {
             for (i in 0 until merror.new_password1.size) {
                 message += merror.new_password1[i]
                 if (i > 0) message += ",\n"
             }
-            if (merror.token != null) {
-                for (i in 0 until merror.token.size) {
-                    message += merror.token[i]
-                    if (i > 0) message += ",\n"
-                }
-                view.onerror(message)
+        }
+        if (merror.new_password2 != null) {
+            for (i in 0 until merror.new_password2.size) {
+                message += merror.new_password2[i]
+                if (i > 0) message += ",\n"
             }
         }
+        if (merror.token != null) {
+            for (i in 0 until merror.token.size) {
+                message += merror.token[i]
+                if (i > 0) message += ",\n"
+            }
+            view.backActivity()
+        }
+        view.onerror(message)
     }
 
 }

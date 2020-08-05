@@ -6,8 +6,7 @@
     <!-- Material Color Palette -->
 
     <color name="material_blue_700">#1976D2</color>
-    <color name="material_blue_a700">#2962FF</color>
-
+    <color name="lightgrey">#f0f0f0</color>
     <color name="material_purple_500">#9C27B0</color>
 
     <!-- Selectors -->

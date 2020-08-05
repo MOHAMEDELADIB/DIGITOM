@@ -14,7 +14,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/angle3"
+            app:srcCompat="@drawable/backgroundcolor"
             tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -28,8 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/siemens"
-            android:text="@string/digitom"
-            android:textColor="#673AB7"
+            android:text="Digitom"
+            android:textColor="#2D373C"
             android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView4"
             app:layout_constraintEnd_toEndOf="@+id/imageView4"
@@ -39,8 +39,8 @@
     <ProgressBar
             android:id="@+id/pbar"
             style="?android:attr/progressBarStyle"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="61dp"
+            android:layout_height="63dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

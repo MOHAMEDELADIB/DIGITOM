@@ -23,4 +23,5 @@ interface SlideMvpPresenter {
      *
      */
     fun perviousimg()
+
 }

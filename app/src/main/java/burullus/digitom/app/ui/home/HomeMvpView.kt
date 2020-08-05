@@ -39,6 +39,11 @@ interface HomeMvpView {
     /**
      *
      */
+    fun closedrawer()
+
+    /**
+     *
+     */
     fun singout(message: String)
 
     /**
@@ -70,4 +75,9 @@ interface HomeMvpView {
      *
      */
     fun closeSpeedDial()
+
+    /**
+     *
+     */
+    fun setusername(username: String)
 }

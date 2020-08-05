@@ -3,7 +3,7 @@ package burullus.digitom.app.ui.PhotoActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import burullus.digitom.app.R
 import burullus.digitom.app.data.network.model.DataSheet
@@ -13,13 +13,14 @@ import burullus.digitom.app.ui.mainActivity.MainActivity.Companion.imagesArray
 import com.github.chrisbanes.photoview.PhotoView
 import com.squareup.picasso.Picasso
 
+
 /**
  *
  */
 class SlideAdapter(
     private var imagelist: List<DataSheet>,
-    private val next: ImageButton,
-    private val pervious: ImageButton
+    private val next: ImageView,
+    private val pervious: ImageView
 ) : RecyclerView.Adapter<SlideAdapter.MyViewHolder>() {
     /**
      *
@@ -56,9 +57,11 @@ class SlideAdapter(
         if (currentPosition == 0) pervious.visibility = View.INVISIBLE else pervious.visibility =
             View.VISIBLE
         val imageView = holder.photoImageView
+        imageView.attacher.maximumScale = 14.0f
+        imageView.attacher.mediumScale = 3.0f
+        imageView.attacher.minimumScale = 1.0f
         val photo = imagesArray[position].image
         val height = getMaximumTextureSize() * .85
-
         val swdith = height.toInt()
         Picasso.get()
             .load(photo)

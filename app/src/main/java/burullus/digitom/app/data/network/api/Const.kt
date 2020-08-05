@@ -32,6 +32,12 @@ const val operationURL: String =
     "https://emd.digitom.mosaic-dev.siemens.cloud/operation/apiv1/detial/?q="
 
 /**
+ *
+ */
+const val pagingurl: String =
+    "https://emd.digitom.mosaic-dev.siemens.cloud/operation/apiv1/list/?q="
+
+/**
  * ُElectrical URL
  */
 const val ElectURL: String =
@@ -67,7 +73,7 @@ const val noauthenticate: String = "You are not logged in or registered"
 /**
  * CCR Number
  */
-const val CCRNumber: String = "+201099793228"
+const val CCRNumber: String = "+201284545599"
 
 /**
  * Safety number
@@ -168,25 +174,25 @@ val KKSPatternlength: Array<Int> = arrayOf(25, 22, 20, 20, 20, 19, 18, 15, 14, 1
  *
  */
 val OperationHeaders: Array<String> =
-    arrayOf("Operation&troubleshooting", "Fault Description", "PID", "General Information")
+    arrayOf("Operations tips", "Fault description", "PID", "General information")
 
 /**
  *
  */
 val MechenicalHeader: Array<String> =
-    arrayOf("Drawing&PartList", "DataSheet", "Mehanical Documentation", "General Information")
+    arrayOf("Drawing & Partlist", "Datasheet", "Mehanical documentation", "General information")
 
 /**
  *
  */
 val ElectricalHeader: Array<String> =
-    arrayOf("Wiring Digram", "DataSheet", "TroubleShooting", "General Information")
+    arrayOf("Wiring digram", "Datasheet", "Troubleshooting", "General information")
 
 /**
  *
  */
 val ICHeader: Array<String> =
-    arrayOf("InterConnection", "DataSheet", "FaultDescriptions", "General Information")
+    arrayOf("Interconnection", "Datasheet", "Fault descriptions", "General information")
 
 /**
  *
@@ -212,3 +218,8 @@ const val Verify: String = "Please Press the link to Verify your Email"
  *
  */
 const val Rest_key: String = "android-password-reset-key"
+
+/**
+ *
+ */
+const val userURL: String = "https://emd.digitom.mosaic-dev.siemens.cloud/user/user/"

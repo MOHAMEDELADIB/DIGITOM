@@ -1,10 +1,12 @@
 package burullus.digitom.app.ui.home
 
 import burullus.digitom.app.data.network.model.ArticleData
+import burullus.digitom.app.data.network.model.ErrorModelClass
 
 /**
  *
  */
+@Suppress("SENSELESS_COMPARISON")
 class HomePresenter(
     /**
      *
@@ -21,6 +23,7 @@ class HomePresenter(
      */
     override fun getnews(url: String) {
         interactor.getnews(url)
+        interactor.getuser()
     }
 
     /**
@@ -63,6 +66,7 @@ class HomePresenter(
      */
     override fun drawerOperationPressed() {
         view.openOperation()
+        view.closedrawer()
     }
 
     /**
@@ -70,6 +74,7 @@ class HomePresenter(
      */
     override fun drawerMechanicalPressed() {
         view.openMechanical()
+        view.closedrawer()
     }
 
     /**
@@ -77,6 +82,7 @@ class HomePresenter(
      */
     override fun drawerElectricalPressed() {
         view.openElectrical()
+        view.closedrawer()
     }
 
     /**
@@ -84,6 +90,7 @@ class HomePresenter(
      */
     override fun drawerICPressed() {
         view.openIC()
+        view.closedrawer()
     }
 
 
@@ -99,6 +106,7 @@ class HomePresenter(
      */
     override fun loggedout(message: String) {
         view.singout(message)
+        view.closedrawer()
     }
 
     /**
@@ -116,5 +124,25 @@ class HomePresenter(
         view.closeSpeedDial()
     }
 
+    /**
+     *
+     */
+    override fun onError(merror: ErrorModelClass) {
+        var message = ""
+        if (merror.detail != null) view.onerror(merror.detail)
+        if (merror.non_field_errors != null) {
+            for (i in 0 until merror.non_field_errors.size) {
+                message += merror.non_field_errors[i]
+                if (i > 0) message += ",\n"
+            }
+            view.onerror(message)
+        }
+    }
 
+    /**
+     *
+     */
+    override fun getusername(username: String) {
+        view.setusername(username)
+    }
 }

@@ -18,4 +18,9 @@ interface HomeMvpInteractor {
      *
      */
     fun getnumber(id: Int)
+
+    /**
+     *
+     */
+    fun getuser()
 }

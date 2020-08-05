@@ -25,6 +25,10 @@ class ErrorModelClass(
     /**
      *
      */
+    var new_password2: ArrayList<String>,
+    /**
+     *
+     */
     var token: ArrayList<String>,
     /**
      *

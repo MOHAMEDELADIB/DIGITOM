@@ -1,5 +1,7 @@
 package burullus.digitom.app.ui.ocrscreen.dialog
 
+import burullus.digitom.app.data.network.model.responses.Paging
+
 /**
  *
  */
@@ -24,17 +26,16 @@ class DialogPresenter(
     /**
      *
      */
-    override fun onsucess(kks: String) {
+    override fun onsucess(pagedata: Paging) {
         view.close()
-        view.onsucess(kks)
+        if (pagedata.results.isNotEmpty()) view.onsucess(pagedata)
+        else view.onerror("KKS not found")
     }
 
     /**
      *
      */
     override fun onerror(message: String) {
-
-
         view.onerror(message)
     }
 

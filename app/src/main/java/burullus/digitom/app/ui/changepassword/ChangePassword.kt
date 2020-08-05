@@ -9,7 +9,6 @@ import android.widget.Toast
 import burullus.digitom.app.R
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.login.Login
-import burullus.digitom.app.ui.register.RegisterActivity
 import burullus.digitom.app.utils.Validator
 import kotlinx.android.synthetic.main.activity_forget_password.*
 
@@ -36,8 +35,9 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
         )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forget_password)
-        validator.add(inputPassword)
-        validator.add(password1layout)
+        validator
+            .add(password1layout)
+            .add(inputPassword)
         presenter = ChnagePasswordPresenter(this)
         fback.setOnClickListener {
             presenter.backpressed()
@@ -46,8 +46,13 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
         changePassword.setOnClickListener {
             val password1 = password1.text.toString()
             val password2 = password2.text.toString()
+
             if (password1 == password2 && validator.result()) {
                 presenter.authtoken(tokenkeys, password1, password2)
+            }
+
+            if (password1 != password2) {
+                Toast.makeText(this, "Password doesn't Match", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -58,9 +63,17 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
      */
     override fun onerror(message: String) {
 
-        val intent = Intent(this@ChangePassword, RegisterActivity::class.java)
-        startActivity(intent)
+
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    /**
+     *
+     */
+    override fun onStart() {
+        super.onStart()
+        password1.text?.clear()
+        password2.text?.clear()
     }
 
     /**
@@ -76,9 +89,7 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
      * Navigate to register Activity
      */
     override fun backActivity() {
-        val intent = Intent(this@ChangePassword, RegisterActivity::class.java)
-        startActivity(intent)
-
+        super.onBackPressed()
     }
 
     /**

@@ -63,6 +63,15 @@ class Login : BaseActivity(), LoginMvpView {
     /**
      *
      */
+    override fun onStart() {
+        super.onStart()
+        email_login.text?.clear()
+        pswrd.text?.clear()
+    }
+
+    /**
+     *
+     */
     override fun onsucess() {
         val intent = Home.getStartIntent(this@Login as Context)
         intent?.flags = Intent.FLAG_ACTIVITY_NEW_TASK

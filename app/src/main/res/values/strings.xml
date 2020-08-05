@@ -8,22 +8,26 @@
         due to low device storage</string>
     <string name="openNavDrawer">Navigation Drawer Open</string>
     <string name="closeNavDrawer">Navigation Drawer Close</string>
-    <string name="site_name">SITE NAME</string>
-    <string name="shift">shift</string>
     <string name="searching_for_kks">SEARCHING FOR KKS</string>
-    <string name="forget_password2">Forget Password</string>
-    <string name="change_password2">Change Password</string>
-    <string name="login">login</string>
-    <string name="forgot_password">FORGOT PASSWORD</string>
+    <string name="forget_password2">Forget password</string>
     <string name="password">Password</string>
     <string name="home">Home</string>
-    <string name="todo">TODO</string>
     <string name="email">Email</string>
-    <string name="electrical_maintenance">Electrical Maintenance</string>
-    <string name="i_amp_c_maintenance"><![CDATA[I&C Maintenance]]></string>
-    <string name="mechanical_maintenance">Mechanical Maintenance</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="register">register</string>
-    <string name="digitom">DIGITOM</string>
-    <string name="gp_digitalization">GP Digitalization</string>
+    <string name="electrical_maintenance">Electrical maintenance</string>
+    <string name="i_amp_c_maintenance"><![CDATA[I&C maintenance]]></string>
+    <string name="mechanical_maintenance">Mechanical maintenance</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="register2">Register</string>
+    <string name="login2">Login</string>
+    <string name="forgot_password2">Forgot password</string>
+    <string name="terms_privacy_policy2"><![CDATA[ terms & privacy policy]]></string>
+    <string name="search">SEARCHING FOR KKS</string>
+    <string name="digitomstr">Digitom</string>
+    <string name="todo">PictureDescription</string>
+    <string name="slc">SLC</string>
+    <string name="_42mbv21ap001">42MBV21Ap001</string>
+    <string name="background">background</string>
+    <string name="asset_statements" translatable="false">[{ \"include\": \"https://178.128.28.204/.well-known/assetlinks.json\" }]</string>
+
+
 </resources>

@@ -1,9 +1,11 @@
 package burullus.digitom.app.ui.mainActivity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,7 +17,6 @@ import burullus.digitom.app.data.network.api.OperationHeaders
 import burullus.digitom.app.data.network.model.*
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.home.Home
-import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity
 import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity.Companion.getkks
 import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity.Companion.head
 import kotlinx.android.synthetic.main.activity_main2.*
@@ -28,22 +29,18 @@ import kotlin.collections.ArrayList
 /**
  *
  */
-@Suppress("SENSELESS_COMPARISON")
+@Suppress("SENSELESS_COMPARISON", "UselessCallOnNotNull")
 class MainActivity : BaseActivity(), MainMvpview {
     private var mainAdapter: MainAdapter? = null
     private var mainAdapter2: MainAdapter? = null
     private var mainAdapter3: MainAdapter? = null
     private var detectedkks = ""
-    /**
-     *
-     */
+
     /**
      *
      */
     lateinit var presenter: MainMvpPresenter
-    /**
-     *
-     */
+
     /**
      *
      */
@@ -62,8 +59,14 @@ class MainActivity : BaseActivity(), MainMvpview {
         hdata.setOnClickListener {
             presenter.homeActivity()
         }
-
-        detectedkks = getkks()?.text.toString().toUpperCase(Locale.US)
+        val info1 = findViewById<TextView>(R.id.info1)
+        val info2 = findViewById<TextView>(R.id.info2)
+        val info3 = findViewById<TextView>(R.id.info3)
+        val info4 = findViewById<TextView>(R.id.info4)
+        detectedkks = intent.extras?.getString("pressedkks").toString()
+        if (detectedkks == "null") {
+            detectedkks = getkks()?.text.toString().toUpperCase(Locale.US)
+        }
         initUI()
     }
 
@@ -152,8 +155,7 @@ class MainActivity : BaseActivity(), MainMvpview {
      *
      */
     override fun back() {
-        val intent = Intent(this@MainActivity, OcrCaptureActivity::class.java)
-        startActivity(intent)
+        super.onBackPressed()
     }
 
     /**
@@ -173,6 +175,7 @@ class MainActivity : BaseActivity(), MainMvpview {
     /**
      *
      */
+    @SuppressLint("SetTextI18n")
     override fun operationData(data: OperationData) {
         if (data.fault != null) {
             val fault = ArrayList<DataSheet>()
@@ -185,11 +188,32 @@ class MainActivity : BaseActivity(), MainMvpview {
         if (!data.system.trouble.isNullOrEmpty()) {
             mainAdapter?.updateAllTask(data.system.trouble)
         }
-        eqdesc.text = data.description
-        sysdesc.text = data.system.description
+        if (!data.description.isNullOrEmpty()) eqdesc.text =
+            data.description.replace("N/A", " Not available yet")
+        if (!data.description.isNullOrEmpty()) sysdesc.text =
+            data.system.description.replace("N/A", " Not available yet")
+        if (data.loc1 != null) {
+            info1.text =
+                "Site KKS : " + data.loc1.kks.replace(
+                    "N/A",
+                    " Not available yet"
+                ) + "\n" + "Site Description : " + data.loc1.description.replace(
+                    "N/A",
+                    " Not available yet"
+                )
+        }
+        if (data.loc2 != null) {
+            info2.text =
+                "Feeder KKS : " + data.loc2.kks.replace("N/A", " Not available yet") + "\n" +
+                        "Feeder Description : " + data.loc1.description.replace(
+                    "N/A",
+                    " Not available yet"
+                )
+
+
+        }
         updateUI()
     }
-
     /**
      *
      */
@@ -208,9 +232,6 @@ class MainActivity : BaseActivity(), MainMvpview {
     /**
      *
      */
-    /**
-     *
-     */
     override fun electricalData(data: ElectricalData) {
         if (!data.dataSheet.isNullOrEmpty()) mainAdapter3?.updateAllTask(data.dataSheet)
         if (!data.wiring.isNullOrEmpty()) mainAdapter2?.updateAllTask(data.wiring)
@@ -226,9 +247,6 @@ class MainActivity : BaseActivity(), MainMvpview {
     /**
      *
      */
-    /**
-     *
-     */
     override fun icData(data: ICData) {
         if (!data.datasheet.isNullOrEmpty()) mainAdapter?.updateAllTask(data.datasheet)
         if (!data.faults.isNullOrEmpty()) mainAdapter2?.updateAllTask(data.faults)
@@ -238,9 +256,6 @@ class MainActivity : BaseActivity(), MainMvpview {
         updateUI()
     }
 
-    /**
-     *
-     */
     /**
      *
      */
@@ -276,7 +291,7 @@ class MainActivity : BaseActivity(), MainMvpview {
             textView11.visibility = View.INVISIBLE
             rv_images3.visibility = View.INVISIBLE
         }
-        if (info1.text == "" && info2.text == "" && info3.text == "") {
+        if (info1.text.isEmpty() && info2.text.isEmpty() && info3.text.isEmpty()) {
             textView12.text = ""
             val lp = textView12.layoutParams as ConstraintLayout.LayoutParams
             lp.height = 0

@@ -52,6 +52,12 @@ interface ApiService {
     fun getOPData(@Url url: String): Observable<OperationData>
 
     /**
+     *
+     */
+    @GET
+    fun getPaging(@Url url: String): Observable<Paging>
+
+    /**
      * Get News Feed
      */
     @GET
@@ -88,6 +94,24 @@ interface ApiService {
     @POST("verify-email/")
     @Headers("Accept: application/json", "No-Authentication: true")
     fun activate(@Body active: ActivateRequest): Observable<ActivateResponse>
+
+    /**
+     *
+     */
+    @GET("contacts/apiv1/list/")
+    fun getContact(): Observable<List<ContactList>>
+
+    /**
+     *
+     */
+    @GET
+    fun userProfile(@Url url: String): Observable<UserProfile>
+
+    /**
+     *
+     */
+    @GET
+    fun getResult(@Url url: String): Observable<List<Paging>>
 
     companion object {
         /**

@@ -41,14 +41,13 @@
             app:layout_constraintTop_toBottomOf="@+id/imagehead"
             tools:itemCount="1" />
 
-    <ImageButton
+    <ImageView
             android:id="@+id/previmg"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
             android:clickable="true"
+            android:elevation="25dp"
             android:focusable="true"
-            app:backgroundTint="#CFCECE"
             app:layout_constraintBottom_toTopOf="@+id/guideline110"
             app:layout_constraintEnd_toStartOf="@+id/guideline123"
             app:layout_constraintHorizontal_bias="1.0"
@@ -58,14 +57,14 @@
             app:srcCompat="@drawable/ic_navigate_before_black_24dp"
             tools:ignore="ContentDescription,VectorDrawableCompat" />
 
-    <ImageButton
+    <ImageView
             android:id="@+id/nextimg"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="8dp"
+            android:background="#00AFA6A6"
             android:clickable="true"
+            android:elevation="25dp"
             android:focusable="true"
-            app:backgroundTint="#CFCECE"
             app:layout_constraintBottom_toTopOf="@+id/guideline110"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -80,14 +79,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".45" />
+            app:layout_constraintGuide_percent="0.42" />
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline110"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.53" />
+            app:layout_constraintGuide_percent="0.56" />
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline113"
@@ -104,14 +103,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/angle5"
+            app:srcCompat="@drawable/backgroundcolor"
             tools:ignore="ContentDescription" />
 
     <TextView
             android:id="@+id/imagehead"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="@drawable/angle5"
+            android:background="@drawable/backgroundcolor"
             android:enabled="false"
             android:fontFamily="@font/siemens"
             android:gravity="center|center_horizontal"
@@ -128,21 +127,20 @@
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="Autofill,HardcodedText,LabelFor,TextFields" />
 
-    <ImageView
+    <ImageButton
             android:id="@+id/backk"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             android:background="?attr/selectableItemBackground"
-            android:contentDescription="TODO"
             android:soundEffectsEnabled="true"
             app:layout_constraintBottom_toBottomOf="@+id/imagehead"
             app:layout_constraintEnd_toStartOf="@+id/guideline9"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline121"
+            app:layout_constraintTop_toTopOf="@+id/imagehead"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/back2"
-            tools:ignore="ContentDescription,HardcodedText,VectorDrawableCompat" />
+            tools:ignore="ContentDescription,VectorDrawableCompat" />
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline9"

@@ -40,8 +40,8 @@ class MainPresenter(private val view: MainMvpview) : MainMvpPresenter {
      *
      */
     override fun operationData(data: OperationData) {
-        view.operationData(data)
         view.hideProgress()
+        view.operationData(data)
     }
 
     /**

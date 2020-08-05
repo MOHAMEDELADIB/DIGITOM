@@ -110,7 +110,7 @@ class CameraSourcePreview(
             (cameraSource ?: return).start(surfaceView.holder)
             if (overlay != null) {
                 val size = (cameraSource ?: return).previewSize
-                val min = min(size.width, size.height)
+                val min = min(size?.width ?: return, size.height)
                 val max = max(size.width, size.height)
                 if (isPortraitMode) {
                     (overlay ?: return).setCameraInfo(
@@ -171,8 +171,8 @@ class CameraSourcePreview(
         right: Int,
         bottom: Int
     ) {
-        var previewWidth = 320
-        var previewHeight = 240
+        var previewWidth = 100
+        var previewHeight = 200
         if (cameraSource != null) {
             val size = (cameraSource ?: return).previewSize
             if (size != null) {

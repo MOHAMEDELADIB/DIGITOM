@@ -78,7 +78,7 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
      *
      */
     override fun loginMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     /**

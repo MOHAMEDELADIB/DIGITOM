@@ -31,7 +31,7 @@
             android:id="@+id/headtextocr"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="@drawable/angle5"
+            android:background="@drawable/backgroundcolor"
             android:enabled="false"
             android:fontFamily="@font/siemens"
             android:gravity="center"
@@ -94,7 +94,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/shadow"
+            app:srcCompat="@drawable/backgroundcolor"
             tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -175,16 +175,13 @@
     <ImageButton
             android:id="@+id/oback"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="8dp"
             android:soundEffectsEnabled="true"
             app:layout_constraintBottom_toBottomOf="@+id/headtextocr"
             app:layout_constraintEnd_toStartOf="@+id/guideline37"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline46"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toTopOf="@+id/headtextocr"
             app:srcCompat="@drawable/back2"
             tools:ignore="ContentDescription,VectorDrawableCompat" />
 

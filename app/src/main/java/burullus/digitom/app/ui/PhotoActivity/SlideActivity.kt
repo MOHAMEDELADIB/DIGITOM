@@ -1,13 +1,11 @@
 package burullus.digitom.app.ui.PhotoActivity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import burullus.digitom.app.R
 import burullus.digitom.app.ui.base.BaseActivity
-import burullus.digitom.app.ui.mainActivity.MainActivity
 import burullus.digitom.app.ui.mainActivity.MainActivity.Companion.currentPosition
 import burullus.digitom.app.ui.mainActivity.MainActivity.Companion.imagesArray
 import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity.Companion.head
@@ -53,6 +51,7 @@ class SlideActivity : BaseActivity(), SlideMvpView {
             presenter.perviousimg()
         }
         initUI()
+
     }
 
     private fun initUI() {
@@ -69,8 +68,7 @@ class SlideActivity : BaseActivity(), SlideMvpView {
      *
      */
     override fun back() {
-        val intent = Intent(this@SlideActivity, MainActivity::class.java)
-        startActivity(intent)
+        super.onBackPressed()
     }
 
     /**

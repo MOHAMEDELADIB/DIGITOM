@@ -23,10 +23,10 @@
             app:sdExpansionMode="top"
 
             app:sdMainFabAnimationRotateAngle="90"
-            app:sdMainFabClosedBackgroundColor="#2387AA"
+            app:sdMainFabClosedBackgroundColor="#8512FA"
             app:sdMainFabClosedIconColor="#FFFFFF"
             app:sdMainFabClosedSrc="@drawable/call"
-            app:sdMainFabOpenedBackgroundColor="#005F87"
+            app:sdMainFabOpenedBackgroundColor="#4D217A"
             app:sdMainFabOpenedIconColor="#FFFFFF"
             app:sdMainFabOpenedSrc="@drawable/call"
             app:sdOverlayLayout="@id/overlay">
@@ -64,7 +64,7 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/shadow" />
+                    app:srcCompat="@drawable/backgroundcolor" />
 
             <TextView
                     android:id="@+id/textView14"
@@ -74,7 +74,7 @@
                     android:fontFamily="@font/siemens"
                     android:includeFontPadding="false"
                     android:text="@string/home"
-                    android:textColor="#005F87"
+                    android:textColor="#000000"
                     android:textSize="36sp"
                     app:layout_constraintBottom_toTopOf="@+id/guideline125"
                     app:layout_constraintStart_toStartOf="@+id/guideline130"
@@ -130,6 +130,7 @@
                     android:alpha=".95"
                     android:orientation="vertical" />
 
+
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/my_news"
                     android:layout_width="0dp"
@@ -140,7 +141,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/guideline125"
                     app:layout_constraintVertical_bias="0.0" />
-
 
             <burullus.digitom.app.utils.JustifyTextView
                     android:layout_width="wrap_content"

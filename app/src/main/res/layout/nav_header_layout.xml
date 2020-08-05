@@ -14,7 +14,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/shadow"
+            app:srcCompat="@drawable/backgroundcolor"
             tools:ignore="ContentDescription" />
 
     <TextView
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/siemens"
             android:text="DIGITOM"
-            android:textColor="#005F87"
+            android:textColor="#000000"
             android:textSize="30sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/guideline112"
@@ -56,14 +56,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="24dp" />
+            app:layout_constraintGuide_percent="0.06082725" />
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline112"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="115dp" />
+            app:layout_constraintGuide_percent="0.59585494" />
 
     <TextView
             android:id="@+id/name"
@@ -72,12 +72,12 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/siemens"
             android:includeFontPadding="false"
-            android:text="@string/site_name"
-            android:textColor="#005F87 "
+            android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline111"
+            android:textIsSelectable="true"
             app:layout_constraintTop_toTopOf="@+id/guideline112" />
 
     <TextView
@@ -86,10 +86,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/siemens"
             android:includeFontPadding="false"
-            android:text="@string/shift"
             android:textColor="#2D373C"
             android:textSize="18sp"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

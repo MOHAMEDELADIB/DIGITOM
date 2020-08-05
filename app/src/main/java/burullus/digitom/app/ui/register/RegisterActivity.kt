@@ -61,6 +61,8 @@ class RegisterActivity : BaseActivity(), RegisterMvpView {
      */
     override fun onsucess(message: String) {
         Toast.makeText(this@RegisterActivity, "$message $Verify", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this@RegisterActivity, Login::class.java)
+        startActivity(intent)
     }
 
     /**
@@ -74,8 +76,7 @@ class RegisterActivity : BaseActivity(), RegisterMvpView {
      *
      */
     override fun backActivity() {
-        val intent = Intent(this@RegisterActivity, Login::class.java)
-        startActivity(intent)
+        super.onBackPressed()
     }
 
     /**

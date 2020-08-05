@@ -7,6 +7,7 @@ import android.graphics.RectF
 import burullus.digitom.app.data.network.api.KKSPattern
 import burullus.digitom.app.data.network.api.KKSPatternlength
 import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity
+import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity.Companion.kkssearch
 import com.google.android.gms.vision.text.TextBlock
 import java.util.*
 import java.util.regex.Matcher
@@ -70,10 +71,11 @@ class OcrGraphic internal constructor(
         loop1@ for (currentText in textComponents) {
             val left = translateX(currentText.boundingBox.left.toFloat())
             val bottom = translateY(currentText.boundingBox.bottom.toFloat())
-            val kksno: String = currentText.value.toUpperCase(Locale.ENGLISH)
+            var kksno: String = currentText.value.toUpperCase(Locale.ENGLISH)
             if (isKKSValid(kksno)) {
                 canvas?.drawText(kksno, left, bottom, textPaint ?: return)
                 (OcrCaptureActivity.getkks() ?: return).text = kksString
+                kkssearch = kksString
                 break@loop1
             }
         }
@@ -83,12 +85,14 @@ class OcrGraphic internal constructor(
     private fun isKKSValid(kks: String): Boolean {
         var pattern: Pattern
         var matcher: Matcher
+        var name: String = ""
         var result = false
         if (kks.length > 11) {
+            name = kks.replace("O", "0")
             loop2@ for (i: Int in KKSPattern.indices) {
                 this.kksLength = KKSPatternlength[i]
                 kksString =
-                    if (kks.length > kksLength) kks.subSequence(0, kksLength).toString() else kks
+                    if (name.length > kksLength) name.subSequence(0, kksLength).toString() else name
                 val element = KKSPattern[i]
                 pattern = Pattern.compile(element)
                 matcher = pattern.matcher(kksString)

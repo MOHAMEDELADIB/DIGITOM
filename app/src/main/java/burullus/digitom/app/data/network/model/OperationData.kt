@@ -19,10 +19,13 @@ class OperationData(
     /**
      *
      */
-    var location: Location,
+    var loc2: Location,
     /**
      *
      */
-    var fault: DataSheet
-
+    var fault: DataSheet,
+    /**
+     *
+     */
+    var loc1: Location
 )

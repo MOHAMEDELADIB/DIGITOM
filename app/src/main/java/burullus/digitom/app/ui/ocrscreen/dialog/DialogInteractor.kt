@@ -1,6 +1,8 @@
 package burullus.digitom.app.ui.ocrscreen.dialog
 
-import burullus.digitom.app.data.network.api.*
+import burullus.digitom.app.data.network.api.Network_Message
+import burullus.digitom.app.data.network.api.Server_error
+import burullus.digitom.app.data.network.api.pagingurl
 import burullus.digitom.app.data.network.model.ErrorModelClass
 import burullus.digitom.app.data.repository.Repository
 import com.google.gson.GsonBuilder
@@ -18,14 +20,14 @@ class DialogInteractor(private val presenter: DialogPresenter) : DailogMvpIntera
     override fun send(KKS: String, header: String) {
         when (header) {
             "Operations " -> {
-                Repository.getOperation(operationURL + KKS)
-                    .subscribe({
-                        presenter.onsucess(KKS)
+                Repository.getPaging(pagingurl + KKS)
+                    .subscribe({ result ->
+                        presenter.onsucess(result)
                     })
                     { error ->
 
                         if (error is HttpException) {
-                            if (error.code() == 500) {
+                            if (error.code() != 500) {
                                 val gson = GsonBuilder().create()
                                 val mError: ErrorModelClass
                                 val responseBody: ResponseBody? =
@@ -48,9 +50,9 @@ class DialogInteractor(private val presenter: DialogPresenter) : DailogMvpIntera
 
                     }
             }
-            "Mechanical " -> {
+            /*"Mechanical " -> {
                 Repository.getMechenical(MechURL + KKS)
-                    .subscribe({
+                    .subscribe({result ->
                         presenter.onsucess(KKS)
                     })
                     { error ->
@@ -87,10 +89,7 @@ class DialogInteractor(private val presenter: DialogPresenter) : DailogMvpIntera
                                 error.response()?.errorBody()
                             mError =
                                 gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                            if (error.code() == 401) presenter.onerror(noauthenticate)
-                            else presenter.onerror(
-                                mError.detail
-                            )
+                            presenter.onerror(mError.detail)
                         }
                         if (error is IOException) {
                             presenter.onerror(error.message ?: return@subscribe)
@@ -113,17 +112,14 @@ class DialogInteractor(private val presenter: DialogPresenter) : DailogMvpIntera
                                 error.response()?.errorBody()
                             mError =
                                 gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                            if (error.code() == 401) presenter.onerror(noauthenticate)
-                            else presenter.onerror(
-                                mError.detail
-                            )
+                            presenter.onerror(mError.detail)
                         }
                         if (error is IOException) {
                             presenter.onerror(error.message ?: return@subscribe)
                         }
 
                     }
-            }
+            }*/
 
         }
     }

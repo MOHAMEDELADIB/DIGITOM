@@ -30,9 +30,9 @@ class LoginInteractor(private val presenter: LoginMvpPresenter) : LoginMvpIntera
                     if (error.code() != 500) {
                         val gson = GsonBuilder().create()
                         val mError: ErrorModelClass
-                        val responseBody: ResponseBody =
-                            (error.response() ?: return@subscribe).errorBody() ?: return@subscribe
-                        mError = gson.fromJson(responseBody.string(), ErrorModelClass::class.java)
+                        val responseBody: ResponseBody? =
+                            error.response()?.errorBody()
+                        mError = gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
                         presenter.onerror(mError)
                     } else presenter.onNetworkError(Server_error)
                 }

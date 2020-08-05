@@ -3,8 +3,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         package="burullus.digitom.app">
 
-    <uses-sdk tools:overrideLibrary="android.support.v17.leanback" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission
@@ -34,18 +32,19 @@
 
 
     <application
-            android:name=".APPContext"
+            android:name=".DIGITOM"
             android:allowBackup="false"
             android:fullBackupContent="@xml/backup_descriptor"
-            android:hardwareAccelerated="true"
+            android:debuggable="false"
             android:icon="@mipmap/ic_launcher"
             android:installLocation="internalOnly"
+            android:hardwareAccelerated="false"
             android:label="DIGITOM"
             android:largeHeap="true"
             android:roundIcon="@mipmap/ic_launcher"
             android:supportsRtl="false"
             android:theme="@style/AppTheme"
-            android:usesCleartextTraffic="true"
+            tools:ignore="HardcodedDebugMode"
             tools:targetApi="m">
         <!--
              The api key for Google Maps-based APIs is defined as a string resource.
@@ -57,6 +56,9 @@
              You can define the keys for the debug
              and release targets in src/debug/ and src/release/.
         -->
+        <meta-data
+                android:name="asset_statements"
+                android:resource="@string/asset_statements" />
         <meta-data
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version" />
@@ -73,37 +75,33 @@
         <activity
                 android:name=".ui.login.Login"
                 android:launchMode="singleTask"
-                android:noHistory="true"
                 android:screenOrientation="nosensor"
                 android:windowSoftInputMode="stateVisible" />
         <activity
+                android:name=".ui.paging.Paging"
+                android:launchMode="singleTask"
+                android:screenOrientation="nosensor" />
+        <activity
+
                 android:name="burullus.digitom.app.ui.deeplinks.Deeplink"
                 android:noHistory="true">
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                        android:host="emd.digitom.mosaic-dev.siemens.cloud"
+                        android:host="*.cloud"
                         android:scheme="https" />
                 <data
-                        android:host="emd.digitom.mosaic-dev.siemens.cloud"
+                        android:host="*.cloud"
                         android:scheme="http" />
-
                 <data
-                        android:host="digitom.mosiac.siemens"
+                        android:host="*.siemens"
                         android:scheme="https" />
                 <data
-                        android:host="digitom.mosiac.siemens"
-                        android:scheme="http" />
-
-                <data
-                        android:host="digitom.mosaic-dev.siemens.cloud"
-                        android:scheme="https" />
-                <data
-                        android:host="digitom.mosaic-dev.siemens.cloud"
+                        android:host="*.siemens"
                         android:scheme="http" />
             </intent-filter>
         </activity>
@@ -131,8 +129,7 @@
                 android:windowSoftInputMode="stateVisible" />
         <activity
                 android:name=".ui.PhotoActivity.SlideActivity"
-                android:launchMode="singleTask"
-                android:screenOrientation="nosensor" />
+                android:launchMode="singleTask" />
         <activity
                 android:name=".ui.splash.SplashActivity"
                 android:noHistory="true"

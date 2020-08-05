@@ -3,7 +3,7 @@ package burullus.digitom.app.utils
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Base64
-import burullus.digitom.app.APPContext
+import burullus.digitom.app.DIGITOM
 import burullus.digitom.app.data.network.api.SHARED_PREFERENCE_FILE
 import burullus.digitom.app.data.network.api.SP_TOKEN
 
@@ -13,7 +13,7 @@ import burullus.digitom.app.data.network.api.SP_TOKEN
  */
 object MySharedPreferences {
     private val sharedPreferences: SharedPreferences =
-        APPContext.applicationContext()
+        DIGITOM.applicationContext()
             .getSharedPreferences(SHARED_PREFERENCE_FILE, Context.MODE_PRIVATE)
 
     /**
