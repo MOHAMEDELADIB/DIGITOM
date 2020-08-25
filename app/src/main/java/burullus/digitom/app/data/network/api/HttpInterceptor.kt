@@ -37,7 +37,7 @@ class HttpInterceptor : Interceptor {
 
         //Build new request
         val builder: Request.Builder = request.newBuilder()
-        val token: String = "accesstoken" //save token of this request for future
+        val token: String = accesstoken //save token of this request for future
         setAuthHeader(builder, token) //write current token to request
         request = builder.build() //overwrite old request
         val response: Response =
@@ -46,8 +46,8 @@ class HttpInterceptor : Interceptor {
         if (response.code == 401) { //if unauthorized
             if (accesstoken != "") {
                 response.close()
-                refreshToken("refresh_Token")
-                setAuthHeader(builder, "accesstoken") /* set auth token to updated */
+                refreshToken(refresh_Token)
+                setAuthHeader(builder, accesstoken) /* set auth token to updated */
                 request = builder.build()
                 return chain.proceed(request) //repeat request with new token
             }

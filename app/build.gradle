@@ -72,8 +72,6 @@ dependencies {
     //noinspection GroovyUntypedAccess
     implementation 'androidx.appcompat:appcompat:1.2.0'
     //noinspection GroovyUntypedAccess
-    implementation 'com.google.android.gms:play-services-vision:20.1.1'
-    //noinspection GroovyUntypedAccess
     implementation 'com.google.android.gms:play-services-vision-license:12.0.1'
     //noinspection GroovyUntypedAccess
     implementation 'com.google.android.gms:play-services-vision-image-label:18.0.5'

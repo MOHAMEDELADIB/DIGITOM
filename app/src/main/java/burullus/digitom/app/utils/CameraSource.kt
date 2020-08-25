@@ -964,7 +964,7 @@ private constructor() {
             if (javaClass.desiredAssertionStatus()) {
                 assert((processingThread ?: return).state == Thread.State.TERMINATED)
             }
-            mDetector.release()
+            mDetector?.release()
             mDetector = null
         }
 
