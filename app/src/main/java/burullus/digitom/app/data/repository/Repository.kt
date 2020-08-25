@@ -148,5 +148,16 @@ object Repository {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
+
+    /**
+     *
+     */
+    fun getrefresh(refresh: String): Observable<RefreshResponse>? {
+        val data = Refresh(refresh)
+        return ApiService.getApiService().getRefresh(data)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
 }
 

@@ -5,7 +5,6 @@ package burullus.digitom.app.data.network.api
 import burullus.digitom.app.data.network.model.*
 import burullus.digitom.app.data.network.model.requests.*
 import burullus.digitom.app.data.network.model.responses.*
-import burullus.digitom.app.ui.splash.SplashActivity.Companion.accesstoken
 import com.google.gson.GsonBuilder
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
@@ -13,6 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import burullus.digitom.app.data.network.api.HttpInterceptor as HttpInterceptor1
 
 /**
  * API Interface
@@ -113,25 +113,21 @@ interface ApiService {
     @GET
     fun getResult(@Url url: String): Observable<List<Paging>>
 
+    /**
+     *
+     */
+    @POST("token/refresh/")
+    @Headers("Accept: application/json", "No-Authentication: true")
+    fun getRefresh(@Body refresh: Refresh): Observable<RefreshResponse>
+
     companion object {
         /**
          * Retrofit client
          */
         fun getApiService(): ApiService {
             val client: OkHttpClient = OkHttpClient.Builder()
-                .addInterceptor {
-                    val header = it.request().header("No-Authentication")
-                    val token = accesstoken
-                    val newRequest =
-                        if (header == null) {
-                            it.request().newBuilder()
-                                .addHeader("Authorization", "Bearer $token")
-                                .build()
-                        } else {
-                            it.request()
-                        }
-                    it.proceed(newRequest)
-                }.build()
+                .addInterceptor(HttpInterceptor1())
+                .build()
             val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
             val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

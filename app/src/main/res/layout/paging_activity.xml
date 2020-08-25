@@ -92,8 +92,8 @@
 
     <ImageButton
             android:id="@+id/back"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="?attr/selectableItemBackground"
             android:contentDescription="@string/todo"
             app:layout_constraintBottom_toBottomOf="@+id/headtext"

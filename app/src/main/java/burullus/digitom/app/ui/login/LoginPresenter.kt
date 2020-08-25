@@ -5,6 +5,7 @@ import android.util.Base64
 import burullus.digitom.app.data.network.api.Network_Message
 import burullus.digitom.app.data.network.model.ErrorModelClass
 import burullus.digitom.app.ui.splash.SplashActivity.Companion.accesstoken
+import burullus.digitom.app.ui.splash.SplashActivity.Companion.refresh_Token
 import burullus.digitom.app.utils.MySharedPreferences
 import burullus.digitom.app.utils.keystore.Encrypt
 import java.io.IOException
@@ -90,12 +91,19 @@ class LoginPresenter(
     /**
      *
      */
-    override fun encrypt(token: String) {
+    override fun encrypt(token: String, ref_token: String) {
+
+
         try {
             accesstoken = token
-            val encryptedText = mEncrypt.encryptText("ALIAS", accesstoken)
+            refresh_Token = ref_token
+            val encryptedText = mEncrypt.encryptaccesstoken("ALIAS", accesstoken)
             val text = Base64.encodeToString(encryptedText, Base64.NO_WRAP)
+            val encryptedText2 = mEncrypt.encryptRefreshToken("ALIAS2", refresh_Token)
+            val text2 = Base64.encodeToString(encryptedText2, Base64.NO_WRAP)
             MySharedPreferences.saveToken(text)
+            MySharedPreferences.saveRefToken(text2)
+
         } catch (e: InvalidAlgorithmParameterException) {
             e.printStackTrace()
         } catch (e: SignatureException) {

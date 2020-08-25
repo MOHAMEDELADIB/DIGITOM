@@ -38,41 +38,39 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
         setContentView(R.layout.splash_screen)
         mDecrypt = Decrypt()
         presenter = SplashPresenter(this, mDecrypt ?: return)
-        presenter.decode(MySharedPreferences.getToken())
-        presenter.isAuthen(TokenCheck)
+        presenter.decode(MySharedPreferences.getToken(), MySharedPreferences.getRefresh())
+        mRunnable = Runnable {
+            if (!this@SplashActivity.isFinishing) {
+                setuppicasso()
+                presenter.isAuthen(TokenCheck)
+            }
+        }
+        mDelayHandler = Handler()
+        (mDelayHandler ?: return).postDelayed(mRunnable, 1000)
+
     }
 
     /**
      *
      */
     override fun homeActivity() {
-        mRunnable = Runnable {
-            if (!this@SplashActivity.isFinishing) {
-                setuppicasso()
-                val intent =
-                    getStartIntent(this@SplashActivity as Context)
-                this@SplashActivity.startActivity(intent)
-            }
-        }
-        mDelayHandler = Handler()
-        (mDelayHandler ?: return).postDelayed(mRunnable, 1000)
+
+        val intent =
+            getStartIntent(this@SplashActivity as Context)
+        this@SplashActivity.startActivity(intent)
+
     }
 
     /**
      *
      */
     override fun loginActivity() {
-        mRunnable = Runnable {
-            if (!this@SplashActivity.isFinishing) {
-                setuppicasso()
-                val intent =
-                    Login.getStartIntent(this@SplashActivity as Context)
-                this@SplashActivity.startActivity(intent)
-            }
-        }
-        mDelayHandler = Handler()
-        (mDelayHandler ?: return).postDelayed(mRunnable, 1000)
+
+        val intent =
+            Login.getStartIntent(this@SplashActivity as Context)
+        this@SplashActivity.startActivity(intent)
     }
+
 
     /**
      *
@@ -107,5 +105,6 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
          *
          */
         var accesstoken: String = ""
+        var refresh_Token: String = ""
     }
 }

@@ -171,8 +171,8 @@ class CameraSourcePreview(
         right: Int,
         bottom: Int
     ) {
-        var previewWidth = 100
-        var previewHeight = 200
+        var previewWidth = 320
+        var previewHeight = 240
         if (cameraSource != null) {
             val size = (cameraSource ?: return).previewSize
             if (size != null) {

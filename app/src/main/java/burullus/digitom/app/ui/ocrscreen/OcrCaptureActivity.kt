@@ -204,7 +204,7 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
         cameraSource = CameraSource.Builder(applicationContext, textRecognizer)
             .setFacing(CameraSource.CAMERA_FACING_BACK)
             .setRequestedPreviewSize(1280, 1024)
-            .setRequestedFps(20.0f)
+            .setRequestedFps(15.0f)
             .setFlashMode(if (flash) Camera.Parameters.FLASH_MODE_TORCH else null)
             .setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)
             .build()

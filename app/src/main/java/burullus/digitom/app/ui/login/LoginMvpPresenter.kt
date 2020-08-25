@@ -40,6 +40,6 @@ interface LoginMvpPresenter {
     /**
      *
      */
-    fun encrypt(token: String)
+    fun encrypt(token: String, ref_token: String)
 
 }

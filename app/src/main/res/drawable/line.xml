@@ -5,8 +5,8 @@
         android:toDegrees="0">
     <shape android:shape="line">
         <stroke
-                android:width="0dp"
-                android:color="#252D373C"
+                android:width="1dp"
+                android:color="#DADADA"
                 android:dashWidth="0dp"
                 android:dashGap="0dp" />
     </shape>

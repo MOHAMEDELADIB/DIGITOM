@@ -3,19 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
  apply plugin: 'kotlin-kapt'
 android {
-    signingConfigs {
-        debug {
-            storeFile file('C:\\Users\\20109\\key.jks')
-        }
-    }
     compileSdkVersion 30
     defaultConfig {
         applicationId "burullus.digitom.app"
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 30
-        versionCode 4
-        versionName "4"
+        versionCode 6
+        versionName "6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         compileOptions {
@@ -53,19 +48,19 @@ dependencies {
     //noinspection GroovyUntypedAccess
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //noinspection GroovyUntypedAccess
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
     //noinspection GroovyUntypedAccess
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     //noinspection GroovyUntypedAccess
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     //noinspection GroovyUntypedAccess
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     //noinspection GroovyUntypedAccess
-    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
     //noinspection GroovyUntypedAccess
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     //noinspection GroovyUntypedAccess
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     //noinspection GroovyUntypedAccess
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     //noinspection GroovyUntypedAccess
@@ -75,13 +70,13 @@ dependencies {
     //noinspection GroovyUntypedAccess
     implementation 'com.squareup.okhttp3:okhttp:4.8.0'
     //noinspection GroovyUntypedAccess
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     //noinspection GroovyUntypedAccess
-    implementation 'com.google.android.gms:play-services-vision:20.1.0'
+    implementation 'com.google.android.gms:play-services-vision:20.1.1'
     //noinspection GroovyUntypedAccess
     implementation 'com.google.android.gms:play-services-vision-license:12.0.1'
     //noinspection GroovyUntypedAccess
-    implementation 'com.google.android.gms:play-services-vision-image-label:18.0.4'
+    implementation 'com.google.android.gms:play-services-vision-image-label:18.0.5'
     //noinspection GroovyUntypedAccess
     implementation 'androidx.media:media:1.1.0'
     //noinspection GroovyUntypedAccess
@@ -125,14 +120,14 @@ dependencies {
     //noinspection GroovyUntypedAccess
     implementation'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
     //noinspection GroovyUntypedAccess
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0'
 
     //butter Knife
    // implementation 'com.jakewharton:butterknife:10.2.1'
  //   kapt 'com.jakewharton:butterknife-compiler:10.2.1'
     //noinspection GroovyUntypedAccess
     implementation 'com.jakewharton.timber:timber:4.7.1'
-
+    implementation 'com.google.android.gms:play-services-vision:20.1.1'
 
 
 }

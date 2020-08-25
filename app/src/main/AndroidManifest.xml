@@ -39,6 +39,7 @@
             android:icon="@mipmap/ic_launcher"
             android:installLocation="internalOnly"
             android:hardwareAccelerated="false"
+            android:usesCleartextTraffic="true"
             android:label="DIGITOM"
             android:largeHeap="true"
             android:roundIcon="@mipmap/ic_launcher"
@@ -57,9 +58,6 @@
              and release targets in src/debug/ and src/release/.
         -->
         <meta-data
-                android:name="asset_statements"
-                android:resource="@string/asset_statements" />
-        <meta-data
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version" />
         <meta-data
@@ -76,7 +74,7 @@
                 android:name=".ui.login.Login"
                 android:launchMode="singleTask"
                 android:screenOrientation="nosensor"
-                android:windowSoftInputMode="stateVisible" />
+                android:windowSoftInputMode="stateVisible"></activity>
         <activity
                 android:name=".ui.paging.Paging"
                 android:launchMode="singleTask"
@@ -91,18 +89,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                        android:host="*.cloud"
-                        android:scheme="https" />
-                <data
-                        android:host="*.cloud"
-                        android:scheme="http" />
-                <data
-                        android:host="*.siemens"
-                        android:scheme="https" />
-                <data
-                        android:host="*.siemens"
-                        android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:host="*.siemens.cloud" />
             </intent-filter>
         </activity>
         <activity
@@ -145,6 +134,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+                android:name=".ui.profile.Profile"
+                android:launchMode="singleTask"
+                android:screenOrientation="nosensor" />
+
     </application>
 
 </manifest>

@@ -7,10 +7,12 @@ data class LoginResponse(
     /**
      *
      */
-    var token: String,
+    var access_token: String,
     /**
      *
      */
+    var refresh_token: String,
+
     var non_field_errors: String
 )
 

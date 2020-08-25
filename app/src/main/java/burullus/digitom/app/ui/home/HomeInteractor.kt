@@ -90,10 +90,28 @@ class HomeInteractor(private val presenter: HomeMvpPresenter) : HomeMvpInteracto
      */
     @SuppressLint("CheckResult")
     override fun getuser() {
+
         Repository.getProfile()
-            .subscribe { (username) ->
+            .subscribe({ (username) ->
                 presenter.getusername(username)
-            }
+            },
+                { error ->
+                    if (error is HttpException) {
+                        if (error.code() != 500) {
+                            val gson = GsonBuilder().create()
+                            val mError: ErrorModelClass
+                            val responseBody: ResponseBody? =
+                                error.response()?.errorBody()
+                            mError =
+                                gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
+                            presenter.onError(mError)
+                        } else presenter.onerror(Server_error)
+                    }
+                    if (error is IOException) {
+                        presenter.onerror(Network_Message)
+                    }
+
+                })
     }
 
 }

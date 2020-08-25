@@ -27,7 +27,17 @@
     <string name="slc">SLC</string>
     <string name="_42mbv21ap001">42MBV21Ap001</string>
     <string name="background">background</string>
-    <string name="asset_statements" translatable="false">[{ \"include\": \"https://178.128.28.204/.well-known/assetlinks.json\" }]</string>
+    <string name="asset_statements" translatable="false">[{ \"include\": \"http://178.128.28.204/.well-known/assetlinks.json\" }]</string>
+    <string name="job_title">Job title</string>
+    <string name="line">line</string>
+    <string name="phone_number">Phone number</string>
+    <string name="change_passwords">Change password</string>
+    <string name="signout">Signout</string>
+    <string name="save">Save</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="username">User name</string>
+    <string name="profile_img">profile_img</string>
 
 
 </resources>

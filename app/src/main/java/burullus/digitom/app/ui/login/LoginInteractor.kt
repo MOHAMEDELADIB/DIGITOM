@@ -21,8 +21,8 @@ class LoginInteractor(private val presenter: LoginMvpPresenter) : LoginMvpIntera
      */
     override fun signin(email: String, password: String) {
         Repository.login(email, password)
-            .subscribe({ (token) ->
-                presenter.encrypt(token)
+            .subscribe({ (access_token, refresh_token) ->
+                presenter.encrypt(access_token, refresh_token)
                 presenter.onsuccess()
             }, { error ->
 

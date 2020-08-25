@@ -28,6 +28,7 @@ import burullus.digitom.app.data.network.model.ArticleData
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.login.Login
 import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity
+import burullus.digitom.app.ui.profile.Profile
 import com.google.android.material.navigation.NavigationView
 import com.leinardi.android.speeddial.SpeedDialView
 import kotlinx.android.synthetic.main.activity_home.*
@@ -55,7 +56,6 @@ class Home : BaseActivity(), HomeMvpView {
     private var mDrawerToggle: ActionBarDrawerToggle? = null
     private var speedDialView: SpeedDialView? = null
     private var requestCallPhone = 101
-
     /**
      *
      */
@@ -63,8 +63,8 @@ class Home : BaseActivity(), HomeMvpView {
         super.onCreate(savedInstanceState)
 
         window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-            , WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
         setContentView(R.layout.activity_home)
         navigationView = findViewById(R.id.nav_view)
@@ -72,7 +72,12 @@ class Home : BaseActivity(), HomeMvpView {
         val menuViewItem = navigationView?.menu?.findItem(R.id.menn)
         val signout = menuViewItem?.actionView?.findViewById<Button>(R.id.signout)
         speedDialView = findViewById(R.id.speedDial)
-
+        val header: View? = navigationView?.getHeaderView(0)
+        val userName = header?.findViewById<TextView>(R.id.name)
+        userName?.setOnClickListener {
+            val intent = Intent(this@Home, Profile::class.java)
+            startActivity(intent)
+        }
         signout?.setOnClickListener {
             presenter.signOutPressed()
         }

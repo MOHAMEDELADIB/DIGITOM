@@ -13,7 +13,8 @@ const val Active_email_Seg: String = "android-email-verify-key"
 /**
  * Host Url
  */
-const val URLA: String = "https://emd.digitom.mosaic-dev.siemens.cloud/user/api/"
+//const val URLA: String = "https://emd.digitom.mosaic-dev.siemens.cloud/user/api/"
+const val URLA: String = "http://178.128.28.204/user/api/"
 
 /**
  * SHARED_PREFERENCE_FILE
@@ -24,46 +25,52 @@ const val SHARED_PREFERENCE_FILE: String = "digitom"
  * Token in SHARED_PREFERENCE_FILE
  */
 const val SP_TOKEN: String = "token"
+const val RF_TOKEN: String = "refresh"
+
+/**
+ *
+ */
+const val Ref_token: String = "Refresh_Token"
 
 /**
  * Operation URL
  */
 const val operationURL: String =
-    "https://emd.digitom.mosaic-dev.siemens.cloud/operation/apiv1/detial/?q="
+    "http://178.128.28.204/operation/apiv1/detial/?q="
 
 /**
  *
  */
 const val pagingurl: String =
-    "https://emd.digitom.mosaic-dev.siemens.cloud/operation/apiv1/list/?q="
+    "http://178.128.28.204/operation/apiv1/list/?q="
 
 /**
  * ُElectrical URL
  */
 const val ElectURL: String =
-    "https://emd.digitom.mosaic-dev.siemens.cloud/electrical/apiv1/detial/?q="
+    "http://178.128.28.204/electrical/apiv1/detial/?q="
 
 /**
  * Mechenical URL
  */
 const val MechURL: String =
-    "https://emd.digitom.mosaic-dev.siemens.cloud/mechanical/apiv1/detial/?q="
+    "http://178.128.28.204/mechanical/apiv1/detial/?q="
 
 /**
  * IC URL
  */
-const val ICURL: String = "https://emd.digitom.mosaic-dev.siemens.cloud/ic/apiv1/detial/?q="
+const val ICURL: String = "http://178.128.28.204/ic/apiv1/detial/?q="
 
 /**
  * TOKEN CHECK URL
  */
 const val TokenCheck: String =
-    "https://emd.digitom.mosaic-dev.siemens.cloud/operation/apiv1/detial/?q=41MBV21AP001"
+    "http://178.128.28.204/operation/apiv1/detial/?q=41MBV21AP001"
 
 /**
  * News URL
  */
-const val NewsUrl: String = "https://emd.digitom.mosaic-dev.siemens.cloud/updates/apiv1/articles/"
+const val NewsUrl: String = "http://178.128.28.204/updates/apiv1/articles/"
 
 /**
  * Non Authenticate Message
@@ -197,7 +204,7 @@ val ICHeader: Array<String> =
 /**
  *
  */
-const val Network_Message: String = "timeout Unable to connect to the server"
+const val Network_Message: String = "Timeout unable to connect to the server"
 
 /**
  *
@@ -222,4 +229,9 @@ const val Rest_key: String = "android-password-reset-key"
 /**
  *
  */
-const val userURL: String = "https://emd.digitom.mosaic-dev.siemens.cloud/user/user/"
+const val userURL: String = "http://178.128.28.204/user/profile/"
+
+/*
+*
+*/
+const val refresh = "/user/api/token/refresh/"

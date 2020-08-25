@@ -71,7 +71,7 @@ class OcrGraphic internal constructor(
         loop1@ for (currentText in textComponents) {
             val left = translateX(currentText.boundingBox.left.toFloat())
             val bottom = translateY(currentText.boundingBox.bottom.toFloat())
-            var kksno: String = currentText.value.toUpperCase(Locale.ENGLISH)
+            val kksno: String = currentText.value.toUpperCase(Locale.ENGLISH)
             if (isKKSValid(kksno)) {
                 canvas?.drawText(kksno, left, bottom, textPaint ?: return)
                 (OcrCaptureActivity.getkks() ?: return).text = kksString
@@ -85,7 +85,7 @@ class OcrGraphic internal constructor(
     private fun isKKSValid(kks: String): Boolean {
         var pattern: Pattern
         var matcher: Matcher
-        var name: String = ""
+        var name = ""
         var result = false
         if (kks.length > 11) {
             name = kks.replace("O", "0")

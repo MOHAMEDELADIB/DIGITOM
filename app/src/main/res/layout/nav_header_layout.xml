@@ -70,14 +70,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:background="@drawable/buttonselector"
             android:fontFamily="@font/siemens"
             android:includeFontPadding="false"
+            android:nestedScrollingEnabled="false"
+            android:saveEnabled="false"
+            android:selectAllOnFocus="false"
+            android:soundEffectsEnabled="true"
             android:textColor="#000000"
+            android:textIsSelectable="false"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline111"
-            android:textIsSelectable="true"
             app:layout_constraintTop_toTopOf="@+id/guideline112" />
 
     <TextView
@@ -95,18 +100,5 @@
             app:layout_constraintStart_toStartOf="@+id/guideline111"
             app:layout_constraintTop_toBottomOf="@+id/name"
             app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/line" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,7 +44,19 @@ class Decrypt {
         IllegalBlockSizeException::class,
         InvalidAlgorithmParameterException::class
     )
-    fun decryptData(alias: String, encryptedData: ByteArray?, encryptionIv: ByteArray?): String {
+    fun decryptaccesstoken(alias: String, encryptedData: ByteArray?, encryptionIv: ByteArray?)
+            : String {
+        val cipher = Cipher.getInstance(TRANSFORMATION)
+        val spec = GCMParameterSpec(128, encryptionIv)
+        cipher.init(Cipher.DECRYPT_MODE, getSecretKey(alias), spec)
+        return String(cipher.doFinal(encryptedData), charset("UTF-8"))
+    }
+
+    /**
+     *
+     */
+    fun decryptrefreshtoken(alias: String, encryptedData: ByteArray?, encryptionIv: ByteArray?)
+            : String {
         val cipher = Cipher.getInstance(TRANSFORMATION)
         val spec = GCMParameterSpec(128, encryptionIv)
         cipher.init(Cipher.DECRYPT_MODE, getSecretKey(alias), spec)

@@ -33,5 +33,7 @@ class ErrorModelClass(
     /**
      *
      */
-    var detail: String
+    var detail: String,
+
+    var code: String
 )

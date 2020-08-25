@@ -1,5 +1,6 @@
 package burullus.digitom.app.utils.keystore
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
@@ -31,7 +32,7 @@ class Encrypt internal constructor() {
         BadPaddingException::class,
         IllegalBlockSizeException::class
     )
-    fun encryptText(alias: String, textToEncrypt: String): ByteArray {
+    fun encryptaccesstoken(alias: String, textToEncrypt: String): ByteArray {
         val cipher = Cipher.getInstance(TRANSFORMATION)
         cipher.init(Cipher.ENCRYPT_MODE, getSecretKey(alias))
         iv = cipher.iv
@@ -40,6 +41,19 @@ class Encrypt internal constructor() {
         return cipher.doFinal(textToEncrypt.toByteArray(charset("UTF-8")))
     }
 
+    /**
+     *
+     */
+    fun encryptRefreshToken(alias: String, textToEncrypt: String): ByteArray {
+        val cipher = Cipher.getInstance(TRANSFORMATION)
+        cipher.init(Cipher.ENCRYPT_MODE, getSecretKey(alias))
+        iv = cipher.iv
+        val ivencrypt = Base64.encodeToString(iv, Base64.NO_WRAP)
+        MySharedPreferences.saveIV2(ivencrypt)
+        return cipher.doFinal(textToEncrypt.toByteArray(charset("UTF-8")))
+    }
+
+    @SuppressLint("InlinedApi")
     @Throws(
         NoSuchAlgorithmException::class,
         NoSuchProviderException::class,
