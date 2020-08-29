@@ -3,5 +3,4 @@
     <item android:drawable="@color/lightgrey" android:state_pressed="true" /> <!-- pressed state -->
     <item android:drawable="@color/lightgrey" android:state_focused="true" /> <!-- focused state -->
     <item android:drawable="@android:color/transparent" /> <!-- default state -->
-
 </selector>

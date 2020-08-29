@@ -79,4 +79,12 @@ object MySharedPreferences {
         sharedPreferences.edit().putString("iv", "").apply()
     }
 
+    /**
+     *
+     */
+    fun clearRefresh() {
+        sharedPreferences.edit().putString(RF_TOKEN, "").apply()
+        sharedPreferences.edit().putString("iv2", "").apply()
+    }
+
 }

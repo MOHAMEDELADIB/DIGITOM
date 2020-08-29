@@ -44,7 +44,7 @@ class Decrypt {
         IllegalBlockSizeException::class,
         InvalidAlgorithmParameterException::class
     )
-    fun decryptaccesstoken(alias: String, encryptedData: ByteArray?, encryptionIv: ByteArray?)
+    fun decrypttoken(alias: String, encryptedData: ByteArray?, encryptionIv: ByteArray?)
             : String {
         val cipher = Cipher.getInstance(TRANSFORMATION)
         val spec = GCMParameterSpec(128, encryptionIv)
@@ -55,13 +55,7 @@ class Decrypt {
     /**
      *
      */
-    fun decryptrefreshtoken(alias: String, encryptedData: ByteArray?, encryptionIv: ByteArray?)
-            : String {
-        val cipher = Cipher.getInstance(TRANSFORMATION)
-        val spec = GCMParameterSpec(128, encryptionIv)
-        cipher.init(Cipher.DECRYPT_MODE, getSecretKey(alias), spec)
-        return String(cipher.doFinal(encryptedData), charset("UTF-8"))
-    }
+
 
     @Throws(
         NoSuchAlgorithmException::class,

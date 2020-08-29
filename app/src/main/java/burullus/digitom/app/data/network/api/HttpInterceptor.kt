@@ -26,15 +26,12 @@ import java.io.IOException
  *
  */
 class HttpInterceptor : Interceptor {
-    private val mEncrypt: Encrypt? = null
-
     /**
      *
      */
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         var request: Request = chain.request()
-
         //Build new request
         val builder: Request.Builder = request.newBuilder()
         val token: String = accesstoken //save token of this request for future
@@ -45,13 +42,17 @@ class HttpInterceptor : Interceptor {
         //if unauthorized
         if (response.code == 401) { //if unauthorized
             if (accesstoken != "") {
-                response.close()
                 refreshToken(refresh_Token)
-                setAuthHeader(builder, accesstoken) /* set auth token to updated */
+                setAuthHeader(builder, accesstoken)
+                /* set auth token
+
+                 to updated */
+                response.close()
                 request = builder.build()
                 return chain.proceed(request) //repeat request with new token
             }
         }
+
         return response
     }
 
@@ -62,14 +63,15 @@ class HttpInterceptor : Interceptor {
 
     @SuppressLint("CheckResult")
     private fun refreshToken(refresh: String) {
+        val mEncrypt = Encrypt()
         Repository.getrefresh(refresh)
             ?.subscribe({ (access) ->
                 accesstoken = access
                 val encryptedText =
-                    mEncrypt?.encryptaccesstoken("ALIAS", accesstoken)
+                    mEncrypt.encryptaccesstoken("ALIAS", accesstoken)
                 val text = Base64.encodeToString(encryptedText, Base64.NO_WRAP)
                 val encryptedText2 =
-                    mEncrypt?.encryptRefreshToken("ALIAS2", refresh_Token)
+                    mEncrypt.encryptRefreshToken("ALIAS2", refresh_Token)
                 val text2 =
                     Base64.encodeToString(encryptedText2, Base64.NO_WRAP)
                 MySharedPreferences.saveToken(text)
@@ -83,9 +85,11 @@ class HttpInterceptor : Interceptor {
                             error.response()?.errorBody()
                         mError = gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
                         val msg = mError.detail + "\n" + mError.code
-                        Toast.makeText(DIGITOM.applicationContext(), (msg), Toast.LENGTH_SHORT)
+                        Toast.makeText(DIGITOM.applicationContext(), (msg), Toast.LENGTH_LONG)
                             .show()
                         loginscreen()
+                        MySharedPreferences.clearToken()
+                        MySharedPreferences.clearRefresh()
                     } else {
                         Toast.makeText(
                             DIGITOM.applicationContext(),
@@ -112,5 +116,4 @@ class HttpInterceptor : Interceptor {
         Intent.FLAG_ACTIVITY_CLEAR_TASK
         DIGITOM.applicationContext().startActivity(intent)
     }
-
 }

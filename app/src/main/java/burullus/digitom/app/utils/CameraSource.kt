@@ -1186,6 +1186,7 @@ private constructor() {
          * set to a size that is the same aspect ratio as the preview size we choose.  Otherwise, the
          * preview images may be distorted on some devices.
          */
+        @SuppressLint("LogNotTimber")
         private fun generateValidPreviewSizeList(camera: Camera): List<SizePair> {
             val parameters = camera.parameters
             val supportedPreviewSizes =

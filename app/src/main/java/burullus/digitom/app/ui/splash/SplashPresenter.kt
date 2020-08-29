@@ -1,5 +1,6 @@
 package burullus.digitom.app.ui.splash
 
+import burullus.digitom.app.ui.splash.SplashActivity.Companion.accesstoken
 import burullus.digitom.app.ui.splash.SplashActivity.Companion.refresh_Token
 import burullus.digitom.app.utils.MySharedPreferences
 import burullus.digitom.app.utils.keystore.Decrypt
@@ -61,10 +62,11 @@ class SplashPresenter(
             if ((MySharedPreferences.getToken() ?: return).isNotEmpty()) {
                 try {
 
-                    refresh_Token =
-                        mDecrypt.decryptaccesstoken("ALIAS2", refresh, MySharedPreferences.getiv2())
-                    SplashActivity.accesstoken =
-                        mDecrypt.decryptaccesstoken("ALIAS", token, MySharedPreferences.getiv())
+                    if (refresh?.isNotEmpty() ?: return) refresh_Token =
+                        mDecrypt.decrypttoken("ALIAS2", refresh, MySharedPreferences.getiv2())
+                    if (token?.isNotEmpty() ?: return) accesstoken =
+                        mDecrypt.decrypttoken("ALIAS", token, MySharedPreferences.getiv())
+                    print(accesstoken)
                 } catch (e: UnrecoverableEntryException) {
                     e.printStackTrace()
                 } catch (e: NoSuchAlgorithmException) {

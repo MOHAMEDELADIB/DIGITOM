@@ -13,6 +13,7 @@ import burullus.digitom.app.ui.forgetpassword.ForgetpasswordActivity
 import burullus.digitom.app.ui.home.Home
 import burullus.digitom.app.ui.register.RegisterActivity
 import burullus.digitom.app.ui.splash.SplashActivity.Companion.accesstoken
+import burullus.digitom.app.ui.splash.SplashActivity.Companion.refresh_Token
 import burullus.digitom.app.utils.Validator
 import burullus.digitom.app.utils.keystore.Encrypt
 import kotlinx.android.synthetic.main.activity_main.*
@@ -46,6 +47,7 @@ class Login : BaseActivity(), LoginMvpView {
         mEncrypt = Encrypt()
         presenter = LoginPresenter(this, mEncrypt ?: return)
         accesstoken = ""
+        refresh_Token = ""
         sign_in.setOnClickListener {
             val mail = findViewById<EditText>(R.id.email_login)
             val password = findViewById<EditText>(R.id.pswrd)
