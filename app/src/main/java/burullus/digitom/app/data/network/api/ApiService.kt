@@ -7,12 +7,19 @@ import burullus.digitom.app.data.network.model.requests.*
 import burullus.digitom.app.data.network.model.responses.*
 import com.google.gson.GsonBuilder
 import io.reactivex.Observable
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import java.util.*
+import java.util.concurrent.TimeUnit
 import burullus.digitom.app.data.network.api.HttpInterceptor as HttpInterceptor1
+
 
 /**
  * API Interface
@@ -21,113 +28,132 @@ interface ApiService {
     /**
      * Register function
      */
-    @POST("signup/")
+    @POST("user/api/signup/")
     @Headers("Accept: application/json", "No-Authentication: true")
-    fun register(@Body signUp: SignUP): Observable<SignUpResponse>
+    fun register(@Body signUp : SignUP) : Observable<SignUpResponse>
 
     /**
      * Login Function
      */
     @Headers("Accept: application/json", "No-Authentication: true")
-    @POST("login/")
-    fun login(@Body login: Login): Observable<LoginResponse>
+    @POST("user/api/login/")
+    fun login(@Body login : Login) : Observable<LoginResponse>
 
     /**
      * Reset Password Function
      */
-    @POST("password/reset/")
+    @POST("user/api/password/reset/")
     @Headers("Accept: application/json", "No-Authentication: true")
-    fun reset(@Body reset: ResetPassword): Observable<ResetResponse>
+    fun reset(@Body reset : ResetPassword) : Observable<ResetResponse>
 
     /**
      * Get Data
      */
     @GET
-    fun getMEData(@Url url: String): Observable<MechenicalData>
+    fun getMEData(@Url url : String) : Observable<MechenicalData>
 
     /**
      * Get Data
      */
     @GET
-    fun getOPData(@Url url: String): Observable<OperationData>
+    fun getOPData(@Url url : String) : Observable<OperationData>
 
     /**
      *
      */
     @GET
-    fun getPaging(@Url url: String): Observable<Paging>
+    fun getPaging(@Url url : String) : Observable<Paging>
 
     /**
      * Get News Feed
      */
     @GET
-    fun getNew(@Url url: String): Observable<List<ArticleData>>
+    fun getNew(@Url url : String) : Observable<List<ArticleData>>
 
     /**
      * Get Data
      */
     @GET
-    fun gerELData(@Url url: String): Observable<ElectricalData>
+    fun gerELData(@Url url : String) : Observable<ElectricalData>
 
     /**
      * Get Data
      */
     @GET
-    fun getICData(@Url url: String): Observable<ICData>
+    fun getICData(@Url url : String) : Observable<ICData>
 
     /**
      * Forgetpassword Function
      */
-    @POST("password/reset/confirm/")
+    @POST("user/api/password/reset/confirm/")
     @Headers("Accept: application/json", "No-Authentication: true")
-    fun forgetAuth(@Body forgetAuth: ForgetAuth): Observable<ForgetAuthResponse>
+    fun forgetAuth(@Body forgetAuth : ForgetAuth) : Observable<ForgetAuthResponse>
 
     /**
      * SignOut Function
      */
-    @POST("logout/")
-    fun signOut(): Observable<SignoutResponse>
+    @POST("user/api/logout/")
+    fun signOut() : Observable<SignoutResponse>
 
     /**
      * Active account
      */
-    @POST("verify-email/")
+    @POST("user/api/verify-email/")
     @Headers("Accept: application/json", "No-Authentication: true")
-    fun activate(@Body active: ActivateRequest): Observable<ActivateResponse>
+    fun activate(@Body active : ActivateRequest) : Observable<ActivateResponse>
 
     /**
      *
      */
-    @GET("contacts/apiv1/list/")
-    fun getContact(): Observable<List<ContactList>>
+    @GET("user/api/contacts/apiv1/list/")
+    fun getContact() : Observable<List<ContactList>>
 
     /**
      *
      */
     @GET
-    fun userProfile(@Url url: String): Observable<UserProfile>
+    fun userProfile(@Url url : String) : Observable<UserProfile>
 
     /**
      *
      */
     @GET
-    fun getResult(@Url url: String): Observable<List<Paging>>
+    fun getResult(@Url url : String) : Observable<List<Paging>>
 
     /**
      *
      */
-    @POST("token/refresh/")
+    @POST("user/api/token/refresh/")
     @Headers("Accept: application/json", "No-Authentication: true")
-    fun getRefresh(@Body refresh: Refresh): Observable<RefreshResponse>
+    fun getRefresh(@Body refresh : Refresh) : Observable<RefreshResponse>
+
+    /**
+     *
+     */
+    @Multipart
+    @POST("user/profile/")
+    open fun UpdateData(
+        @PartMap partMap : HashMap<String, RequestBody>,
+        @Part file : MultipartBody.Part?
+    ) : Call<ResponseBody?>?
 
     companion object {
         /**
          * Retrofit client
          */
-        fun getApiService(): ApiService {
-            val client: OkHttpClient = OkHttpClient.Builder()
-                .addInterceptor(HttpInterceptor1())
-                .build()
+
+        val client : OkHttpClient = OkHttpClient.Builder()
+            .addInterceptor(HttpInterceptor1())
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .build()
+
+        /**
+         *
+         */
+
+
+        fun getApiService() : ApiService {
+            client.dispatcher.maxRequests = 1
             val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
             val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

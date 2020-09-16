@@ -8,6 +8,7 @@ import burullus.digitom.app.data.network.model.responses.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import burullus.digitom.app.data.network.model.requests.UserProfile as UserProfile1
 
 /**
  *
@@ -143,7 +144,7 @@ object Repository {
     /**
      * get user Profile
      */
-    fun getProfile(): Observable<UserProfile> {
+    fun getProfile() : Observable<UserProfile1> {
         return ApiService.getApiService().userProfile(userURL)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -152,12 +153,16 @@ object Repository {
     /**
      *
      */
-    fun getrefresh(refresh: String): Observable<RefreshResponse>? {
+    fun getrefresh(refresh : String) : Observable<RefreshResponse>? {
         val data = Refresh(refresh)
         return ApiService.getApiService().getRefresh(data)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
+
+    /**
+     *
+     */
 
 }
 

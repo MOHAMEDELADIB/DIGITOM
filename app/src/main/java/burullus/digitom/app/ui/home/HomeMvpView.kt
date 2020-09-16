@@ -69,7 +69,7 @@ interface HomeMvpView {
     /**
      *
      */
-    fun callNumber(number: String)
+    fun callNumber(number : String)
 
     /**
      *
@@ -79,5 +79,10 @@ interface HomeMvpView {
     /**
      *
      */
-    fun setusername(username: String)
+    fun loadProfile(username : String, photo : String, job : String)
+
+    /**
+     *
+     */
+    fun userprofileActivity()
 }

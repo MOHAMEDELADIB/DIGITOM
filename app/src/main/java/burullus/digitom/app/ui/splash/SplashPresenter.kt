@@ -31,12 +31,10 @@ class SplashPresenter(
         interactor.isAuthen(kks)
     }
 
-    /**
-     *
-     */
     override fun onerror() {
         View.loginActivity()
     }
+
 
     /**
      *
@@ -66,7 +64,6 @@ class SplashPresenter(
                         mDecrypt.decrypttoken("ALIAS2", refresh, MySharedPreferences.getiv2())
                     if (token?.isNotEmpty() ?: return) accesstoken =
                         mDecrypt.decrypttoken("ALIAS", token, MySharedPreferences.getiv())
-                    print(accesstoken)
                 } catch (e: UnrecoverableEntryException) {
                     e.printStackTrace()
                 } catch (e: NoSuchAlgorithmException) {

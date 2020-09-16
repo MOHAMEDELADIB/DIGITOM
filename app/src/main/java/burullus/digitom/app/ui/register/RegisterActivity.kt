@@ -93,7 +93,7 @@ class RegisterActivity : BaseActivity(), RegisterMvpView {
         progressBar2.visibility = View.INVISIBLE
     }
 
-    companion object
+
 }
 
 

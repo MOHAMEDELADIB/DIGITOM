@@ -3,6 +3,9 @@ package burullus.digitom.app
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import burullus.digitom.app.data.network.api.ApiService
+import java.util.logging.Level
+import java.util.logging.Logger
 
 
 /**
@@ -10,6 +13,7 @@ import android.content.Context
  */
 class DIGITOM : Application() {
 
+    private val LOG : Unit = Logger.getLogger(ApiService::class.java.name).setLevel(Level.FINE)
 
     init {
         instance = this

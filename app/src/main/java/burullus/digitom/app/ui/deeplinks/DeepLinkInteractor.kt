@@ -26,15 +26,18 @@ class DeepLinkInteractor(private val presenter: DeeplinkMvpPresenter) : DeepLink
             { error ->
 
                 if (error is HttpException) {
-                    if (error.code() != 500) {
-                        val gson = GsonBuilder().create()
-                        val mError: ErrorModelClass
-                        val responseBody: ResponseBody? =
-                            error.response()?.errorBody()
-                        mError = gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                        presenter.onDeeplinkError(mError)
-                    }
-                } else presenter.onNetworkError(Server_error)
+                    if (error.code() != 401) {
+                        if (error.code() != 500 && error.code() != 405) {
+                            val gson = GsonBuilder().create()
+                            val mError : ErrorModelClass
+                            val responseBody : ResponseBody? =
+                                error.response()?.errorBody()
+                            mError =
+                                gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
+                            presenter.onDeeplinkError(mError)
+                        }
+                    } else presenter.onNetworkError(Server_error)
+                }
                 if (error is IOException) {
                     presenter.onNetworkError(Network_Message)
                 }

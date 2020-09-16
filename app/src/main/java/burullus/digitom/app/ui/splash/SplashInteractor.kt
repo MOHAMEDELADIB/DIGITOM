@@ -1,6 +1,7 @@
 package burullus.digitom.app.ui.splash
 
 import android.annotation.SuppressLint
+import burullus.digitom.app.data.network.api.Server_error
 import burullus.digitom.app.data.network.api.welcome_Message
 import burullus.digitom.app.data.network.model.ErrorModelClass
 import burullus.digitom.app.data.repository.Repository
@@ -26,13 +27,13 @@ class SplashInteractor(private val presenter: SplashMvpPresenter) : SplashMvpInt
             }, { error ->
                 if (error is HttpException) {
                     val gson = GsonBuilder().create()
-                    val mError: ErrorModelClass
-                    val responseBody: ResponseBody? = error.response()?.errorBody()
-                    if (error.code() != 500) {
-                        mError = gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
+                    val mError : ErrorModelClass
+                    val responseBody : ResponseBody? = error.response()?.errorBody()
+                    if (error.code() != 500 && error.code() != 405) {
                         presenter.onerror()
                     } else {
                         presenter.onerror()
+                        presenter.loginMessage(Server_error)
                     }
                 }
                 if (error is IOException) {

@@ -28,22 +28,23 @@ class PagingInteractor(private val presenter: PagingPresenter) : PagingMvpIntera
                     { error ->
 
                         if (error is HttpException) {
-                            if (error.code() != 500) {
-                                val gson = GsonBuilder().create()
-                                val mError: ErrorModelClass
-                                val responseBody: ResponseBody? =
-                                    error.response()?.errorBody()
-                                mError =
-                                    gson.fromJson(
-                                        responseBody?.string(),
-                                        ErrorModelClass::class.java
-                                    )
+                            if (error.code() != 401) {
+                                if (error.code() != 500 && error.code() != 405) {
+                                    val gson = GsonBuilder().create()
+                                    val mError : ErrorModelClass
+                                    val responseBody : ResponseBody? =
+                                        error.response()?.errorBody()
+                                    mError =
+                                        gson.fromJson(
+                                            responseBody?.string(),
+                                            ErrorModelClass::class.java
+                                        )
 
-                                presenter.onerror(mError.detail)
+                                    presenter.onerror(mError.detail)
+                                }
+                            } else {
+                                presenter.onerror(Server_error)
                             }
-                        } else {
-                            presenter.onerror(Server_error)
-
                         }
                         if (error is IOException) {
                             presenter.onerror(Network_Message)
@@ -67,22 +68,23 @@ class PagingInteractor(private val presenter: PagingPresenter) : PagingMvpIntera
                     { error ->
 
                         if (error is HttpException) {
-                            if (error.code() != 500) {
-                                val gson = GsonBuilder().create()
-                                val mError: ErrorModelClass
-                                val responseBody: ResponseBody? =
-                                    error.response()?.errorBody()
-                                mError =
-                                    gson.fromJson(
-                                        responseBody?.string(),
-                                        ErrorModelClass::class.java
-                                    )
+                            if (error.code() != 401) {
+                                if (error.code() != 500 && error.code() != 405) {
+                                    val gson = GsonBuilder().create()
+                                    val mError : ErrorModelClass
+                                    val responseBody : ResponseBody? =
+                                        error.response()?.errorBody()
+                                    mError =
+                                        gson.fromJson(
+                                            responseBody?.string(),
+                                            ErrorModelClass::class.java
+                                        )
 
-                                presenter.onerror(mError.detail)
+                                    presenter.onerror(mError.detail)
+                                }
+                            } else {
+                                presenter.onerror(Server_error)
                             }
-                        } else {
-                            presenter.onerror(Server_error)
-
                         }
                         if (error is IOException) {
                             presenter.onerror(Network_Message)
@@ -106,27 +108,27 @@ class PagingInteractor(private val presenter: PagingPresenter) : PagingMvpIntera
                     { error ->
 
                         if (error is HttpException) {
-                            if (error.code() != 500) {
-                                val gson = GsonBuilder().create()
-                                val mError: ErrorModelClass
-                                val responseBody: ResponseBody? =
-                                    error.response()?.errorBody()
-                                mError =
-                                    gson.fromJson(
-                                        responseBody?.string(),
-                                        ErrorModelClass::class.java
-                                    )
+                            if (error.code() != 401) {
+                                if (error.code() != 500 && error.code() != 405) {
+                                    val gson = GsonBuilder().create()
+                                    val mError : ErrorModelClass
+                                    val responseBody : ResponseBody? =
+                                        error.response()?.errorBody()
+                                    mError =
+                                        gson.fromJson(
+                                            responseBody?.string(),
+                                            ErrorModelClass::class.java
+                                        )
 
-                                presenter.onerror(mError.detail)
+                                    presenter.onerror(mError.detail)
+                                } else {
+                                    presenter.onerror(Server_error)
+                                }
                             }
-                        } else {
-                            presenter.onerror(Server_error)
-
+                            if (error is IOException) {
+                                presenter.onerror(Network_Message)
+                            }
                         }
-                        if (error is IOException) {
-                            presenter.onerror(Network_Message)
-                        }
-
                     }
             }
         }

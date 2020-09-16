@@ -11,6 +11,7 @@ import burullus.digitom.app.R
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.forgetpassword.ForgetpasswordActivity
 import burullus.digitom.app.ui.home.Home
+
 import burullus.digitom.app.ui.register.RegisterActivity
 import burullus.digitom.app.ui.splash.SplashActivity.Companion.accesstoken
 import burullus.digitom.app.ui.splash.SplashActivity.Companion.refresh_Token
@@ -80,6 +81,7 @@ class Login : BaseActivity(), LoginMvpView {
         val intent = Home.getStartIntent(this@Login as Context)
         intent?.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         this@Login.startActivity(intent)
+        Toast.makeText(this, "Welcome to Digitom", Toast.LENGTH_LONG).show()
     }
 
     /**

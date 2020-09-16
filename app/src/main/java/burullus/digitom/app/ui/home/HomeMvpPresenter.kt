@@ -2,6 +2,7 @@ package burullus.digitom.app.ui.home
 
 import burullus.digitom.app.data.network.model.ArticleData
 import burullus.digitom.app.data.network.model.ErrorModelClass
+import burullus.digitom.app.data.network.model.requests.UserProfile
 
 /**
  *
@@ -75,15 +76,20 @@ interface HomeMvpPresenter {
     /**
      *
      */
-    fun getNumber(number: String)
+    fun getNumber(number : String)
 
     /**
      *
      */
-    fun onError(merror: ErrorModelClass)
+    fun onError(merror : ErrorModelClass)
 
     /**
      *
      */
-    fun getusername(username: String)
+    fun getusername(userProfile : UserProfile)
+
+    /**
+     *
+     */
+    fun userprofile()
 }

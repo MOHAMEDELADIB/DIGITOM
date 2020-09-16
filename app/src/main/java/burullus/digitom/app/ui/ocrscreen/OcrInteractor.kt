@@ -26,22 +26,24 @@ class OcrInteractor(private val presenter: OcrPresenter) : OcrMvpInteractor {
                     })
                     { error ->
                         if (error is HttpException) {
-                            if (error.code() != 500) {
-                                val gson = GsonBuilder().create()
-                                val mError: ErrorModelClass
-                                val responseBody: ResponseBody? =
-                                    error.response()?.errorBody()
-                                mError = gson.fromJson(
-                                    responseBody?.string(),
-                                    ErrorModelClass::class.java
-                                )
-                                presenter.onerror(mError.detail)
+                            if (error.code() != 401) {
+                                if (error.code() != 500 && error.code() != 405) {
+                                    val gson = GsonBuilder().create()
+                                    val mError : ErrorModelClass
+                                    val responseBody : ResponseBody? =
+                                        error.response()?.errorBody()
+                                    mError = gson.fromJson(
+                                        responseBody?.string(),
+                                        ErrorModelClass::class.java
+                                    )
+                                    presenter.onerror(mError.detail)
+                                }
+                            } else presenter.onerror(Server_error)
+                            if (error is IOException) {
+                                presenter.onerror(Network_Message)
                             }
-                        } else presenter.onerror(Server_error)
-                        if (error is IOException) {
-                            presenter.onerror(Network_Message)
-                        }
 
+                        }
                     }
             }
             "Mechanical " -> {
@@ -52,22 +54,23 @@ class OcrInteractor(private val presenter: OcrPresenter) : OcrMvpInteractor {
                     { error ->
 
                         if (error is HttpException) {
-                            if (error.code() != 500) {
-                                val gson = GsonBuilder().create()
-                                val mError: ErrorModelClass
-                                val responseBody: ResponseBody? =
-                                    error.response()?.errorBody()
-                                mError = gson.fromJson(
-                                    responseBody?.string(),
-                                    ErrorModelClass::class.java
-                                )
-                                presenter.onerror(mError.detail)
+                            if (error.code() != 401) {
+                                if (error.code() != 500 && error.code() != 405) {
+                                    val gson = GsonBuilder().create()
+                                    val mError : ErrorModelClass
+                                    val responseBody : ResponseBody? =
+                                        error.response()?.errorBody()
+                                    mError = gson.fromJson(
+                                        responseBody?.string(),
+                                        ErrorModelClass::class.java
+                                    )
+                                    presenter.onerror(mError.detail)
+                                }
+                            } else presenter.onerror(Server_error)
+                            if (error is IOException) {
+                                presenter.onerror(Network_Message)
                             }
-                        } else presenter.onerror(Server_error)
-                        if (error is IOException) {
-                            presenter.onerror(Network_Message)
                         }
-
                     }
             }
             "Electrical " -> {
@@ -78,22 +81,23 @@ class OcrInteractor(private val presenter: OcrPresenter) : OcrMvpInteractor {
                     { error ->
 
                         if (error is HttpException) {
-                            if (error.code() != 500) {
-                                val gson = GsonBuilder().create()
-                                val mError: ErrorModelClass
-                                val responseBody: ResponseBody? =
-                                    error.response()?.errorBody()
-                                mError = gson.fromJson(
-                                    responseBody?.string(),
-                                    ErrorModelClass::class.java
-                                )
-                                presenter.onerror(mError.detail)
+                            if (error.code() != 401) {
+                                if (error.code() != 500 && error.code() != 405) {
+                                    val gson = GsonBuilder().create()
+                                    val mError : ErrorModelClass
+                                    val responseBody : ResponseBody? =
+                                        error.response()?.errorBody()
+                                    mError = gson.fromJson(
+                                        responseBody?.string(),
+                                        ErrorModelClass::class.java
+                                    )
+                                    presenter.onerror(mError.detail)
+                                }
+                            } else presenter.onerror(Server_error)
+                            if (error is IOException) {
+                                presenter.onerror(Network_Message)
                             }
-                        } else presenter.onerror(Server_error)
-                        if (error is IOException) {
-                            presenter.onerror(Network_Message)
                         }
-
                     }
 
             }
@@ -105,18 +109,20 @@ class OcrInteractor(private val presenter: OcrPresenter) : OcrMvpInteractor {
                     { error ->
 
                         if (error is HttpException) {
-                            if (error.code() != 500) {
-                                val gson = GsonBuilder().create()
-                                val mError: ErrorModelClass
-                                val responseBody: ResponseBody? =
-                                    error.response()?.errorBody()
-                                mError = gson.fromJson(
-                                    responseBody?.string(),
-                                    ErrorModelClass::class.java
-                                )
-                                presenter.onerror(mError.detail)
+                            if (error.code() != 401) {
+                                if (error.code() != 500 && error.code() != 405) {
+                                    val gson = GsonBuilder().create()
+                                    val mError : ErrorModelClass
+                                    val responseBody : ResponseBody? =
+                                        error.response()?.errorBody()
+                                    mError = gson.fromJson(
+                                        responseBody?.string(),
+                                        ErrorModelClass::class.java
+                                    )
+                                    presenter.onerror(mError.detail)
+                                } else presenter.onerror(Server_error)
                             }
-                        } else presenter.onerror(Server_error)
+                        }
                         if (error is IOException) {
                             presenter.onerror(Network_Message)
                         }

@@ -11,13 +11,13 @@ class ChnagePasswordPresenter(
     /**
      * declare View Interface
      */
-    val view: ChangePasswordMvpView
+    val view : ChangePasswordMvpView
 ) : ChangePasswordMvpPresenter {
     /**
      * attach interactor
      */
-    var interactor: ChangePasswordMvpInteractor = ChangePasswordInteractor(this)
-    override fun authtoken(token: String, new_password1: String, new_password2: String) {
+    var interactor : ChangePasswordMvpInteractor = ChangePasswordInteractor(this)
+    override fun authtoken(token : String, new_password1 : String, new_password2 : String) {
         view.showprogressbar()
         interactor.auth(token, new_password1, new_password2)
     }
@@ -26,17 +26,17 @@ class ChnagePasswordPresenter(
         view.backActivity()
     }
 
-    override fun onsuccess(message: String) {
+    override fun onsuccess(message : String) {
         view.hideprogressbar()
         view.onsucess(message)
     }
 
-    override fun onerror(message: String) {
+    override fun onerror(message : String) {
         view.hideprogressbar()
         view.onerror(message)
     }
 
-    override fun onError(merror: ErrorModelClass) {
+    override fun onError(merror : ErrorModelClass) {
         var message = ""
         view.hideprogressbar()
         if (merror.detail != null) message = merror.detail
@@ -59,10 +59,8 @@ class ChnagePasswordPresenter(
             }
         }
         if (merror.token != null) {
-            for (i in 0 until merror.token.size) {
-                message += merror.token[i]
-                if (i > 0) message += ",\n"
-            }
+            message += merror.token
+
             view.backActivity()
         }
         view.onerror(message)

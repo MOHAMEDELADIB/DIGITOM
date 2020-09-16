@@ -16,8 +16,6 @@ import com.squareup.picasso.Picasso
  *
  */
 abstract class BaseActivity : AppCompatActivity() {
-
-
     /**
      *
      */
@@ -37,8 +35,6 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(event)
     }
-
-
     /**
      *
      */

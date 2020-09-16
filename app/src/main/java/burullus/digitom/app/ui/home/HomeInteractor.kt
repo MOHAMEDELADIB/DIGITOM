@@ -24,15 +24,17 @@ class HomeInteractor(private val presenter: HomeMvpPresenter) : HomeMvpInteracto
                 presenter.onsuccess(result)
             }, { error ->
                 if (error is HttpException) {
-                    if (error.code() != 500) {
-                        val gson = GsonBuilder().create()
-                        val mError: ErrorModelClass
-                        val responseBody: ResponseBody? =
-                            error.response()?.errorBody()
-                        mError =
-                            gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                        presenter.onError(mError)
-                    } else presenter.onerror(Server_error)
+                    if (error.code() != 401) {
+                        if (error.code() != 500 && error.code() != 405) {
+                            val gson = GsonBuilder().create()
+                            val mError : ErrorModelClass
+                            val responseBody : ResponseBody? =
+                                error.response()?.errorBody()
+                            mError =
+                                gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
+                            presenter.onError(mError)
+                        } else presenter.onerror(Server_error)
+                    }
                 }
                 if (error is IOException) {
                     presenter.onerror(Network_Message)
@@ -53,17 +55,21 @@ class HomeInteractor(private val presenter: HomeMvpPresenter) : HomeMvpInteracto
             }, { error ->
 
                 if (error is HttpException) {
-                    if (error.code() != 500) {
-                        val gson = GsonBuilder().create()
-                        val mError: ErrorModelClass
-                        val responseBody: ResponseBody? =
-                            error.response()?.errorBody()
-                        mError =
-                            gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                        if (error.code() == 401) presenter.onerror(noauthenticate)
-                        else presenter.onerror(
-                            mError.detail
-                        )
+                    if (error.code() != 401) {
+                        if (error.code() != 500 && error.code() != 405) {
+                            val gson = GsonBuilder().create()
+                            val mError : ErrorModelClass
+                            val responseBody : ResponseBody? =
+                                error.response()?.errorBody()
+                            mError =
+                                gson.fromJson(
+                                    responseBody?.string(),
+                                    ErrorModelClass::class.java
+                                )
+                            presenter.onerror(
+                                mError.detail
+                            )
+                        }
                     }
                 }
                 if (error is IOException) {
@@ -92,23 +98,28 @@ class HomeInteractor(private val presenter: HomeMvpPresenter) : HomeMvpInteracto
     override fun getuser() {
 
         Repository.getProfile()
-            .subscribe({ (username) ->
-                presenter.getusername(username)
+            .subscribe({ userProfile ->
+                presenter.getusername(userProfile)
             },
                 { error ->
                     if (error is HttpException) {
-                        if (error.code() != 500) {
-                            val gson = GsonBuilder().create()
-                            val mError: ErrorModelClass
-                            val responseBody: ResponseBody? =
-                                error.response()?.errorBody()
-                            mError =
-                                gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                            presenter.onError(mError)
-                        } else presenter.onerror(Server_error)
-                    }
-                    if (error is IOException) {
-                        presenter.onerror(Network_Message)
+                        if (error.code() != 401) {
+                            if (error.code() != 500 && error.code() != 405) {
+                                val gson = GsonBuilder().create()
+                                val mError : ErrorModelClass
+                                val responseBody : ResponseBody? =
+                                    error.response()?.errorBody()
+                                mError =
+                                    gson.fromJson(
+                                        responseBody?.string(),
+                                        ErrorModelClass::class.java
+                                    )
+                                presenter.onError(mError)
+                            } else presenter.onerror(Server_error)
+                        }
+                        if (error is IOException) {
+                            presenter.onerror(Network_Message)
+                        }
                     }
 
                 })

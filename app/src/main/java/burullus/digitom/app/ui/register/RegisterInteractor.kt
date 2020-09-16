@@ -26,15 +26,18 @@ class RegisterInteractor(private val presenter: RegisterMvpPresenter) : Register
             { error ->
 
                 if (error is HttpException) {
-                    val gson = GsonBuilder().create()
-                    val mError: ErrorModelClass
-                    val responseBody: ResponseBody? =
-                        error.response()?.errorBody()
-                    if (error.code() != 500) {
-                        mError = gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                        presenter.onerror(mError)
-                    } else {
-                        presenter.onNetworkError(Network_Message)
+                    if (error.code() != 401) {
+                        val gson = GsonBuilder().create()
+                        val mError : ErrorModelClass
+                        val responseBody : ResponseBody? =
+                            error.response()?.errorBody()
+                        if (error.code() != 500 && error.code() != 405) {
+                            mError =
+                                gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
+                            presenter.onerror(mError)
+                        } else {
+                            presenter.onNetworkError(Network_Message)
+                        }
                     }
                 }
                 if (error is IOException) {

@@ -2,6 +2,7 @@ package burullus.digitom.app.ui.home
 
 import burullus.digitom.app.data.network.model.ArticleData
 import burullus.digitom.app.data.network.model.ErrorModelClass
+import burullus.digitom.app.data.network.model.requests.UserProfile
 
 /**
  *
@@ -11,17 +12,17 @@ class HomePresenter(
     /**
      *
      */
-    val view: HomeMvpView
+    val view : HomeMvpView
 ) : HomeMvpPresenter {
     /**
      *
      */
-    var interactor: HomeMvpInteractor = HomeInteractor(this)
+    var interactor : HomeMvpInteractor = HomeInteractor(this)
 
     /**
      *
      */
-    override fun getnews(url: String) {
+    override fun getnews(url : String) {
         interactor.getnews(url)
         interactor.getuser()
     }
@@ -36,14 +37,14 @@ class HomePresenter(
     /**
      *
      */
-    override fun onsuccess(news: List<ArticleData>) {
+    override fun onsuccess(news : List<ArticleData>) {
         view.onsuccess(news)
     }
 
     /**
      *
      */
-    override fun onerror(message: String) {
+    override fun onerror(message : String) {
         view.onerror(message)
     }
 
@@ -104,7 +105,7 @@ class HomePresenter(
     /**
      *
      */
-    override fun loggedout(message: String) {
+    override fun loggedout(message : String) {
         view.singout(message)
         view.closedrawer()
     }
@@ -112,14 +113,14 @@ class HomePresenter(
     /**
      *
      */
-    override fun contactpressed(id: Int) {
+    override fun contactpressed(id : Int) {
         interactor.getnumber(id)
     }
 
     /**
      *
      */
-    override fun getNumber(number: String) {
+    override fun getNumber(number : String) {
         view.callNumber(number)
         view.closeSpeedDial()
     }
@@ -127,7 +128,7 @@ class HomePresenter(
     /**
      *
      */
-    override fun onError(merror: ErrorModelClass) {
+    override fun onError(merror : ErrorModelClass) {
         var message = ""
         if (merror.detail != null) view.onerror(merror.detail)
         if (merror.non_field_errors != null) {
@@ -142,7 +143,14 @@ class HomePresenter(
     /**
      *
      */
-    override fun getusername(username: String) {
-        view.setusername(username)
+    override fun getusername(userProfile : UserProfile) {
+        if (userProfile.job.isNullOrEmpty()) userProfile.job = ""
+        view.loadProfile(userProfile.username, userProfile.photo, userProfile.job.toString())
     }
+
+    override fun userprofile() {
+        view.userprofileActivity()
+        view.closedrawer()
+    }
+
 }

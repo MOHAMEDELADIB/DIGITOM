@@ -8,13 +8,13 @@ const val Active_email: String = "confirm-email"
 /**
  *
  */
-const val Active_email_Seg: String = "android-email-verify-key"
+const val Active_email_Seg : String = "digitom-confirm-email"
 
 /**
  * Host Url
  */
 //const val URLA: String = "https://emd.digitom.mosaic-dev.siemens.cloud/user/api/"
-const val URLA: String = "http://178.128.28.204/user/api/"
+const val URLA : String = "https://emd.digitom.mosaic.siemens-energy.cloud/"
 
 /**
  * SHARED_PREFERENCE_FILE
@@ -36,41 +36,42 @@ const val Ref_token: String = "Refresh_Token"
  * Operation URL
  */
 const val operationURL: String =
-    "http://178.128.28.204/operation/apiv1/detial/?q="
+    "https://emd.digitom.mosaic.siemens-energy.cloud/operation/apiv1/detial/?q="
 
 /**
  *
  */
 const val pagingurl: String =
-    "http://178.128.28.204/operation/apiv1/list/?q="
+    "https://emd.digitom.mosaic.siemens-energy.cloud/operation/apiv1/list/?q="
 
 /**
  * ُElectrical URL
  */
 const val ElectURL: String =
-    "http://178.128.28.204/electrical/apiv1/detial/?q="
+    "https://emd.digitom.mosaic.siemens-energy.cloud/electrical/apiv1/detial/?q="
 
 /**
  * Mechenical URL
  */
 const val MechURL: String =
-    "http://178.128.28.204/mechanical/apiv1/detial/?q="
+    "https://emd.digitom.mosaic.siemens-energy.cloud/mechanical/apiv1/detial/?q="
 
 /**
  * IC URL
  */
-const val ICURL: String = "http://178.128.28.204/ic/apiv1/detial/?q="
+const val ICURL : String = "https://emd.digitom.mosaic.siemens-energy.cloud/ic/apiv1/detial/?q="
 
 /**
  * TOKEN CHECK URL
  */
 const val TokenCheck: String =
-    "http://178.128.28.204/operation/apiv1/detial/?q=41MBV21AP001"
+    "https://emd.digitom.mosaic.siemens-energy.cloud/operation/apiv1/detial/?q=41MBV21AP001"
 
 /**
  * News URL
  */
-const val NewsUrl: String = "http://178.128.28.204/updates/apiv1/articles/"
+const val NewsUrl : String =
+    "https://emd.digitom.mosaic.siemens-energy.cloud/updates/apiv1/articles/"
 
 /**
  * Non Authenticate Message
@@ -187,7 +188,7 @@ val OperationHeaders: Array<String> =
  *
  */
 val MechenicalHeader: Array<String> =
-    arrayOf("Drawing & Partlist", "Datasheet", "Mehanical documentation", "General information")
+    arrayOf("Drawings & Partlist", "Datasheet", "Mehanical documentation", "General information")
 
 /**
  *
@@ -224,12 +225,12 @@ const val Verify: String = "Please Press the link to Verify your Email"
 /**
  *
  */
-const val Rest_key: String = "android-password-reset-key"
+const val Rest_key : String = "digitom-password-reset"
 
 /**
  *
  */
-const val userURL: String = "http://178.128.28.204/user/profile/"
+const val userURL : String = "httpS://emd.digitom.mosaic.siemens-energy.cloud/user/profile/"
 
 /*
 *

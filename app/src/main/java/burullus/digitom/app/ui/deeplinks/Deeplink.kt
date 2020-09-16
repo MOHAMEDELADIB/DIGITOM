@@ -110,7 +110,7 @@ class Deeplink : BaseActivity(), DeeplinkMvpview {
             param = (uri ?: return).pathSegments
             if (param.size > 2) {
                 key = (param[param.size - 2]) + "/" + (param[param.size - 1])
-                key2 = (param[param.size - 3])
+                key2 = (param[param.size - 4])
                 if (key2 == Rest_key) {
                     presenter.forgetpass(key)
                 }

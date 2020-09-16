@@ -38,6 +38,15 @@
     <string name="first_name">First name</string>
     <string name="username">User name</string>
     <string name="profile_img">profile_img</string>
+    <string name="choose_gallery">Choose from gallery</string>
+    <string name="take_photo">Take photo</string>
+    <string name="Cancel">Cancle</string>
+    <string name="message_need_permission">need permission</string>
+    <string name="message_grant_permission">Granted Permission</string>
+    <string name="label_setting">setting</string>
+    <string name="error_message">Permission is needed</string>
+    <string name="error_message_no_more_space">No Space</string>
+    <string name="error_message_insufficient_space">No sufficent space</string>
 
 
 </resources>

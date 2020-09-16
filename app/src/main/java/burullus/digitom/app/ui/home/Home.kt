@@ -29,8 +29,11 @@ import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.login.Login
 import burullus.digitom.app.ui.ocrscreen.OcrCaptureActivity
 import burullus.digitom.app.ui.profile.Profile
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.navigation.NavigationView
 import com.leinardi.android.speeddial.SpeedDialView
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 
@@ -56,6 +59,7 @@ class Home : BaseActivity(), HomeMvpView {
     private var mDrawerToggle: ActionBarDrawerToggle? = null
     private var speedDialView: SpeedDialView? = null
     private var requestCallPhone = 101
+
     /**
      *
      */
@@ -75,8 +79,7 @@ class Home : BaseActivity(), HomeMvpView {
         val header: View? = navigationView?.getHeaderView(0)
         val userName = header?.findViewById<TextView>(R.id.name)
         userName?.setOnClickListener {
-            val intent = Intent(this@Home, Profile::class.java)
-            startActivity(intent)
+            presenter.userprofile()
         }
         signout?.setOnClickListener {
             presenter.signOutPressed()
@@ -265,12 +268,22 @@ class Home : BaseActivity(), HomeMvpView {
     }
 
     @SuppressLint("SetTextI18n")
-    override fun setusername(username: String) {
-        val header: View? = navigationView?.getHeaderView(0)
+    override fun loadProfile(username : String, photo : String, job : String) {
+        val header : View? = navigationView?.getHeaderView(0)
         val userName = header?.findViewById<TextView>(R.id.name)
+        val userJob = header?.findViewById<TextView>(R.id.job)
+
         userName?.text = username.substring(0, 1).toUpperCase(Locale.US) + username.substring(1)
             .replace(".", " ")
+        val image = header?.findViewById<CircleImageView>(R.id.image_profile)
 
+        Glide.with(this)
+            .load(photo)
+            .apply(RequestOptions().centerCrop().circleCrop())
+            .into(image!!)
+
+
+        userJob?.text = job
     }
 
     override fun openIC() {
@@ -279,9 +292,11 @@ class Home : BaseActivity(), HomeMvpView {
         this@Home.startActivity(intent)
     }
 
-    /**
-     *
-     */
+    override fun userprofileActivity() {
+        val intent = Intent(this@Home, Profile::class.java)
+        startActivity(intent)
+    }
+
     override fun openElectrical() {
         val intent = OcrCaptureActivity.getStartIntent(this@Home as Context)
         intent?.putExtra("header", "Electrical ")
@@ -324,10 +339,15 @@ class Home : BaseActivity(), HomeMvpView {
         /**
          *
          */
-        fun getStartIntent(context: Context?): Intent? {
+        fun getStartIntent(context : Context?) : Intent? {
             return Intent(context, Home::class.java)
 
         }
+
+        /**
+         *
+         */
+
     }
 
 
@@ -345,4 +365,5 @@ class Home : BaseActivity(), HomeMvpView {
      */
     override fun onBackPressed() {
     }
+
 }

@@ -14,8 +14,6 @@ import java.io.IOException
  */
 @SuppressLint("CheckResult")
 class LoginInteractor(private val presenter: LoginMvpPresenter) : LoginMvpInteractor {
-
-
     /**
      *
      */
@@ -25,16 +23,17 @@ class LoginInteractor(private val presenter: LoginMvpPresenter) : LoginMvpIntera
                 presenter.encrypt(access_token, refresh_token)
                 presenter.onsuccess()
             }, { error ->
-
                 if (error is HttpException) {
-                    if (error.code() != 500) {
-                        val gson = GsonBuilder().create()
-                        val mError: ErrorModelClass
-                        val responseBody: ResponseBody? =
-                            error.response()?.errorBody()
-                        mError = gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                        presenter.onerror(mError)
-                    } else presenter.onNetworkError(Server_error)
+                    if (error.code() != 401) {
+                        if (error.code() != 500 && error.code() != 405) {
+                            val gson = GsonBuilder().create()
+                            val mError : ErrorModelClass
+                            val responseBody : ResponseBody? = error.response()?.errorBody()
+                            mError =
+                                gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
+                            presenter.onerror(mError)
+                        } else presenter.onNetworkError(Server_error)
+                    }
                 }
                 if (error is IOException) {
                     presenter.onNetworkError(error.message ?: return@subscribe)

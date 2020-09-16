@@ -33,13 +33,11 @@ class ForgetpasswordActivity : BaseActivity(), ForgetpasswordMvpView {
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forget_password2)
         validator.add(Layout_reg_mail)
         presenter = ForgetpasswordPresenter(this)
-
         stepnext.setOnClickListener {
             val mail = findViewById<EditText>(R.id.reg_mail).text.toString()
             if (validator.result()) presenter.forgetpressed(mail)
