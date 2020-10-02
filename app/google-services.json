@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "990340834973",
-    "firebase_url": "https://rugged-weaver-262006.firebaseio.com",
-    "project_id": "rugged-weaver-262006",
-    "storage_bucket": "rugged-weaver-262006.appspot.com"
+    "project_number": "511644551861",
+    "firebase_url": "https://digitom-46f54.firebaseio.com",
+    "project_id": "digitom-46f54",
+    "storage_bucket": "digitom-46f54.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:990340834973:android:ef9fb31a51e5cfa8ab1674",
+        "mobilesdk_app_id": "1:511644551861:android:3f01ef7e330f77ffff4cfc",
         "android_client_info": {
           "package_name": "burullus.digitom.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "990340834973-m7ka9htidcvn73n6og174fm6qlnveao4.apps.googleusercontent.com",
+          "client_id": "511644551861-3r80nq3psplhh12h2pdvqomo51bralkb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQh0WHFEp25fsV9LcyGMDT1fGAoHC0z0s"
+          "current_key": "AIzaSyCTeSBsit3Fp-3jnCAdFgG-eQvOzhJz5nQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "990340834973-m7ka9htidcvn73n6og174fm6qlnveao4.apps.googleusercontent.com",
+              "client_id": "511644551861-3r80nq3psplhh12h2pdvqomo51bralkb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

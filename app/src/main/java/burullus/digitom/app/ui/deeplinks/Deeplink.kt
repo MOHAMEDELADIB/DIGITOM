@@ -22,20 +22,20 @@ import kotlinx.android.synthetic.main.deeplink_activity.*
  */
 @SuppressLint("GoogleAppIndexingApiWarning")
 class Deeplink : BaseActivity(), DeeplinkMvpview {
-    private var uri: Uri? = null
-    private lateinit var param: List<String>
+    private var uri : Uri? = null
+    private lateinit var param : List<String>
     private var key = ""
     private var key2 = ""
 
     /**
      *
      */
-    lateinit var presenter: DeeplinkMvpPresenter
+    lateinit var presenter : DeeplinkMvpPresenter
 
     /**
      *
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
@@ -71,8 +71,8 @@ class Deeplink : BaseActivity(), DeeplinkMvpview {
      * this function for display success message if  the token is valid
      * navigate to login activity
      */
-    override fun deeplinkSuccess(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    override fun deeplinkSuccess(message : String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         intent = Intent(this@Deeplink, Login::class.java)
         startActivity(intent)
     }
@@ -81,16 +81,16 @@ class Deeplink : BaseActivity(), DeeplinkMvpview {
      *  this function for display error in case of token failure
      *  and navigate to Register activity for get another token
      */
-    override fun deeplinkError(message: String) {
+    override fun deeplinkError(message : String) {
         intent = Intent(this@Deeplink, RegisterActivity::class.java)
         startActivity(intent)
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     /**
      * This function is used to pass the token from deeplink to change password activity
      */
-    override fun deeplinknavigate(key: String) {
+    override fun deeplinknavigate(key : String) {
         val intent = Intent(this@Deeplink, ChangePassword::class.java)
         intent.putExtra("tokenkey", key)
         startActivity(intent)

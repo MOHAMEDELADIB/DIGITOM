@@ -23,20 +23,23 @@ import androidx.core.content.FileProvider
 import burullus.digitom.app.BuildConfig
 import burullus.digitom.app.R
 import burullus.digitom.app.ui.base.BaseActivity
+import burullus.digitom.app.ui.changepassword2.ChangePassword2
 import burullus.digitom.app.ui.login.Login
 import burullus.digitom.app.utils.FileCompressor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.karumi.dexter.listener.single.PermissionListener
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.profile_page.*
 import kotlinx.android.synthetic.main.profile_page.view.*
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.clearTop
+import timber.log.Timber
 import java.io.File
 import java.io.IOException
 import java.util.*
@@ -82,7 +85,6 @@ class Profile : BaseActivity(), ProfileMvpview {
         sign_out.setOnClickListener {
             presenter.logoutpressed()
         }
-
         save.setOnClickListener {
             val phone = phone_num.text.toString()
             val job = job_title.text.toString()
@@ -90,6 +92,9 @@ class Profile : BaseActivity(), ProfileMvpview {
             val last = last_name.text.toString()
             presenter.savepressed(phone, job, first, last, mPhotoFile)
             // uploadProfile(phone, job, first, last)
+        }
+        chang_pass.setOnClickListener {
+            presenter.changedPasswordPressed()
         }
         cardview.setOnClickListener {
             selectImage()
@@ -160,37 +165,79 @@ class Profile : BaseActivity(), ProfileMvpview {
      */
     override fun errormessage(error : String) {
 
-        Toast.makeText(this, error, Toast.LENGTH_SHORT)
+        Toast.makeText(this, error, Toast.LENGTH_LONG)
             .show()
     }
 
     override fun checkPermission() : Boolean {
-        for (mPermission in permissions) {
-            val result = ActivityCompat.checkSelfPermission(this, mPermission)
-            if (result == PackageManager.PERMISSION_DENIED) return false
-        }
+        val result = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+        if (result == PackageManager.PERMISSION_DENIED) return false
+        return true
+    }
+
+    /**
+     *
+     */
+    override fun checkGalleryPermission() : Boolean {
+        val result =
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (result == PackageManager.PERMISSION_DENIED) return false
         return true
     }
 
     override fun showPermissionDialog() {
-        Dexter.withActivity(this).withPermissions(permissions)
-            .withListener(object : MultiplePermissionsListener {
-                override fun onPermissionsChecked(report : MultiplePermissionsReport) {
-                    // check for permanent denial of any permission
-                    if (report.isAnyPermissionPermanentlyDenied) {
-                        showSettingsDialog()
-                    }
+        Dexter.withActivity(this)
+            .withPermission(Manifest.permission.CAMERA)
+            .withListener(object : PermissionListener {
+                override fun onPermissionGranted(response : PermissionGrantedResponse?) {
+                    presenter.cameraClick()
+                }
+
+                override fun onPermissionDenied(response : PermissionDeniedResponse?) {
+                    Timber.i("Access is denied")
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
-                    permissions : List<PermissionRequest>,
-                    token : PermissionToken
+                    permission : PermissionRequest?,
+                    token : PermissionToken?
                 ) {
-                    token.continuePermissionRequest()
+                    token?.cancelPermissionRequest()
+                    showSettingsDialog()
                 }
+
             }).withErrorListener { showErrorDialog() }
             .onSameThread()
             .check()
+
+    }
+
+    /**
+     *
+     */
+    override fun showGalleryPermissionDialog() {
+        Dexter.withActivity(this)
+            .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            .withListener(object : PermissionListener {
+                override fun onPermissionGranted(response : PermissionGrantedResponse?) {
+                    presenter.ChooseGalleryClick()
+                }
+
+                override fun onPermissionDenied(response : PermissionDeniedResponse?) {
+                    Timber.i("Access is denied")
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permission : PermissionRequest?,
+                    token : PermissionToken?
+                ) {
+                    token?.cancelPermissionRequest()
+                    showSettingsDialog()
+                }
+
+            }).withErrorListener { showErrorDialog() }
+            .onSameThread()
+            .check()
+
     }
 
 
@@ -223,7 +270,7 @@ class Profile : BaseActivity(), ProfileMvpview {
             dialog.cancel()
             openSettings()
         }
-        builder.setNegativeButton(getString(R.string.Cancel)) { dialog, which -> dialog.cancel() }
+        builder.setNegativeButton(getString(R.string.Cancel)) { dialog, _ -> dialog.cancel() }
         builder.show()
     }
 
@@ -234,10 +281,21 @@ class Profile : BaseActivity(), ProfileMvpview {
         startActivity(intent)
     }
 
+    /**
+     *
+     */
+    override fun changePassword() {
+        val intent = Intent(this@Profile, ChangePassword2::class.java)
+        startActivity(intent)
+    }
+
     override fun openSettings() {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
         val uri = Uri.fromParts("package", packageName, null)
         intent.data = uri
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+        // intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         startActivityForResult(intent, 101)
     }
 
@@ -245,7 +303,7 @@ class Profile : BaseActivity(), ProfileMvpview {
      *
      */
     override fun showErrorDialog() {
-        Toast.makeText(applicationContext, getString(R.string.error_message), Toast.LENGTH_SHORT)
+        Toast.makeText(applicationContext, getString(R.string.error_message), Toast.LENGTH_LONG)
             .show()
     }
 
@@ -374,7 +432,10 @@ class Profile : BaseActivity(), ProfileMvpview {
          *
          */
         var permissions : List<String> = listOf(
-            Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.CAMERA
+        )
+        var gallery_permissions : List<String> = listOf(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
     }
 

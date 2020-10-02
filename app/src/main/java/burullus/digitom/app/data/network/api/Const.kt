@@ -176,8 +176,6 @@ val KKSPattern: Array<String> = arrayOf(
  *
  */
 val KKSPatternlength: Array<Int> = arrayOf(25, 22, 20, 20, 20, 19, 18, 15, 14, 12)
-
-
 /**
  *
  */
@@ -236,3 +234,8 @@ const val userURL : String = "httpS://emd.digitom.mosaic.siemens-energy.cloud/us
 *
 */
 const val refresh = "/user/api/token/refresh/"
+
+/**
+ *
+ */
+const val Check : String = "Please Login to renew your session"

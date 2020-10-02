@@ -14,8 +14,4 @@ interface PagingMvpInteractor {
      */
     fun nextpage(nextpage: String)
 
-    /**
-     *
-     */
-    fun perviouspage(perviousPage: String)
 }

@@ -68,7 +68,7 @@ class DiAlog(activity: OcrCaptureActivity) : Dialog(activity),
      *
      */
     override fun onerror(message: String) {
-        Toast.makeText(mcontext, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(mcontext, message, Toast.LENGTH_LONG).show()
     }
 
     /**

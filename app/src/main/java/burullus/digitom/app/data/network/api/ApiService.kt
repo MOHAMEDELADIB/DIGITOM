@@ -89,6 +89,14 @@ interface ApiService {
     @Headers("Accept: application/json", "No-Authentication: true")
     fun forgetAuth(@Body forgetAuth : ForgetAuth) : Observable<ForgetAuthResponse>
 
+
+    /**
+     *
+     */
+    @POST("user/api/password/change/")
+    @Headers("Accept: application/json", "No-Authentication: true")
+    fun changePassword(@Body chnagePassword : chnagePassword) : Observable<ForgetAuthResponse>
+
     /**
      * SignOut Function
      */
@@ -127,6 +135,11 @@ interface ApiService {
     @Headers("Accept: application/json", "No-Authentication: true")
     fun getRefresh(@Body refresh : Refresh) : Observable<RefreshResponse>
 
+    @POST("user/api/token/refresh/")
+    @Headers("Accept: application/json", "No-Authentication: true")
+    @FormUrlEncoded
+    fun getRefresh2(@Field("refresh") refresh : String?) : Call<RefreshResponse>
+
     /**
      *
      */
@@ -144,7 +157,7 @@ interface ApiService {
 
         val client : OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(HttpInterceptor1())
-            .connectTimeout(5, TimeUnit.SECONDS)
+            .connectTimeout(2, TimeUnit.SECONDS)
             .build()
 
         /**
@@ -153,12 +166,21 @@ interface ApiService {
 
 
         fun getApiService() : ApiService {
-            client.dispatcher.maxRequests = 1
             val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
             val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
+                .baseUrl(URLA)
+                .build()
+            return retrofit.create(ApiService::class.java)
+        }
+
+        fun getApiService2() : ApiService {
+            val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
+            val retrofit = Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(URLA)
                 .build()
             return retrofit.create(ApiService::class.java)

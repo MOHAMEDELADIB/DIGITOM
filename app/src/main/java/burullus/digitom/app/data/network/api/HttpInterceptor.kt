@@ -38,22 +38,18 @@ class HttpInterceptor : Interceptor {
         val token : String = accesstoken //save token of this request for future
         setAuthHeader(builder, token) //write current token to request
         request = builder.build() //overwrite old request
-        var response : Response =
+        val response : Response =
             chain.proceed(request) //perform request, here original request will be executed
         //if unauthorized
         if (response.code == 401 && accesstoken.isNotEmpty()) {
-            response.close()
-            synchronized(client) {//if unauthorized
-                refreshToken(refresh_Token, builder)
-                if (token != accesstoken) {
-                    response.close()
-                    val request : Request = chain.request()
-                    oldrequest?.let { setAuthHeader(it, accesstoken) }
-                    return chain.proceed(request) //repeat request with new token
-                }
+            //if unauthorized
+            accesstoken = ""
+            synchronized(client) {
+                response.close()
+                refreshToken(refresh_Token)
+                return chain.proceed(request)
             }
         }
-
         return response
     }
 
@@ -63,12 +59,11 @@ class HttpInterceptor : Interceptor {
     }
 
     @SuppressLint("CheckResult")
-    private fun refreshToken(refresh : String, request : Request.Builder) {
+    private fun refreshToken(refresh : String) {
         val mEncrypt = Encrypt()
-        accesstoken = ""
-        oldrequest = request
         Repository.getrefresh(refresh)
             ?.subscribe({ (access) ->
+                accesstoken = ""
                 accesstoken = access
                 val encryptedText =
                     mEncrypt.encryptaccesstoken("ALIAS", accesstoken)
@@ -79,7 +74,7 @@ class HttpInterceptor : Interceptor {
                     Base64.encodeToString(encryptedText2, Base64.NO_WRAP)
                 MySharedPreferences.saveToken(text)
                 MySharedPreferences.saveRefToken(text2)
-
+                Repository.getrefresh(refresh)?.subscribe()?.dispose()
             }, { error ->
                 if (error is HttpException) {
                     val gson = GsonBuilder().create()
@@ -88,19 +83,24 @@ class HttpInterceptor : Interceptor {
                     mError = gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
                     if (mError != null) {
                         val msg = mError.detail
-                        if (!msg.isNullOrEmpty()) Toast.makeText(DIGITOM.applicationContext(),
+                        if (!msg.isNullOrEmpty()) Toast.makeText(
+                            DIGITOM.applicationContext(),
                             msg,
-                            Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                     if (error is IOException) {
-                        Toast.makeText(DIGITOM.applicationContext(),
-                            Server_error,
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            DIGITOM.applicationContext(),
+                            Network_Message,
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
                 loginscreen()
             })
     }
+
 
     private fun loginscreen() {
         accesstoken = ""
@@ -111,8 +111,7 @@ class HttpInterceptor : Interceptor {
         DIGITOM.applicationContext().startActivity(intent)
     }
 
-    companion object {
-        var oldrequest : Request.Builder? = null
-    }
 
 }
+
+

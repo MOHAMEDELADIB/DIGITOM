@@ -26,7 +26,6 @@ class PagingPresenter(
 
     override fun onsucess(mpage: Paging) {
         view.onsucess(mpage)
-        view.hideprogressbar()
     }
 
     override fun onerror(message: String) {
@@ -42,13 +41,6 @@ class PagingPresenter(
         interactor.nextpage(nextpage)
     }
 
-    /**
-     *
-     */
-    override fun perviouspage(perviousPage: String) {
-        view.showprogrssbar()
-        interactor.perviouspage(perviousPage)
-    }
 
     /**
      *

@@ -29,11 +29,6 @@ interface PagingMvpPresenter {
     /**
      *
      */
-    fun perviouspage(perviousPage: String)
-
-    /**
-     *
-     */
     fun backpressed()
 
 

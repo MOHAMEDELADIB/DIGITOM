@@ -8,7 +8,6 @@
     <uses-permission
             android:name="android.permission.INTERNET"
             android:required="true" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -42,7 +41,6 @@
             android:icon="@mipmap/ic_launcher"
             android:installLocation="internalOnly"
             android:hardwareAccelerated="false"
-            android:usesCleartextTraffic="true"
             android:label="DIGITOM"
             android:largeHeap="true"
             android:roundIcon="@mipmap/ic_launcher"
@@ -113,6 +111,11 @@
                 android:windowSoftInputMode="stateVisible" />
         <activity
                 android:name="burullus.digitom.app.ui.forgetpassword.ForgetpasswordActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="nosensor"
+                android:windowSoftInputMode="stateVisible" />
+        <activity
+                android:name=".ui.changepassword2.ChangePassword2"
                 android:launchMode="singleTask"
                 android:screenOrientation="nosensor"
                 android:windowSoftInputMode="stateVisible" />

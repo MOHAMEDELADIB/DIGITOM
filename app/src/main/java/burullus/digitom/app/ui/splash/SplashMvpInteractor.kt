@@ -8,5 +8,5 @@ interface SplashMvpInteractor {
     /**
      *
      */
-    fun isAuthen(kks: String)
+    fun isAuthen(refresh_token : String)
 }

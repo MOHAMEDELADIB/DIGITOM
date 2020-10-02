@@ -4,10 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import burullus.digitom.app.R
 import burullus.digitom.app.data.network.model.ArticleData
-import burullus.digitom.app.utils.JustifyTextView
 
 /**
  *
@@ -58,7 +58,7 @@ class NewsAdapter(private var newsList: MutableList<ArticleData>, private val ct
         /**
          *
          */
-        var body: JustifyTextView = itemView.findViewById(R.id.body)
+        var body : TextView = itemView.findViewById(R.id.body)
 
     }
 

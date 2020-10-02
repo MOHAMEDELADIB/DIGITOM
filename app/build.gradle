@@ -9,8 +9,8 @@ android {
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 30
-        versionCode 7
-        versionName "7"
+        versionCode 10
+        versionName "1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         compileOptions {
@@ -51,7 +51,7 @@ dependencies {
     //noinspection GroovyUntypedAccess
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //noinspection GroovyUntypedAccess
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     //noinspection GroovyUntypedAccess
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     //noinspection GroovyUntypedAccess
@@ -77,9 +77,9 @@ dependencies {
     //noinspection GroovyUntypedAccess
     implementation 'com.google.android.gms:play-services-vision-license:12.0.1'
     //noinspection GroovyUntypedAccess
-    implementation 'com.google.android.gms:play-services-vision-image-label:18.0.5'
+    implementation 'com.google.android.gms:play-services-vision-image-label:18.1.0'
     //noinspection GroovyUntypedAccess
-    implementation 'androidx.media:media:1.1.0'
+    implementation 'androidx.media:media:1.2.0'
     //noinspection GroovyUntypedAccess
     implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0'
     //noinspection GroovyUntypedAccess
@@ -121,17 +121,16 @@ dependencies {
     //noinspection GroovyUntypedAccess
     implementation'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
     //noinspection GroovyUntypedAccess
-    implementation 'com.android.support.constraint:constraint-layout:2.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.1'
 
     //butter Knife
    // implementation 'com.jakewharton:butterknife:10.2.1'
  //   kapt 'com.jakewharton:butterknife-compiler:10.2.1'
     //noinspection GroovyUntypedAccess
     implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation 'com.google.android.gms:play-services-vision:20.1.1'
-
+    implementation 'com.google.android.gms:play-services-vision:20.1.2'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation('com.github.bumptech.glide:glide:4.8.0@aar') {
+    implementation('com.github.bumptech.glide:glide:4.9.0@aar') {
         transitive = true
     }
 

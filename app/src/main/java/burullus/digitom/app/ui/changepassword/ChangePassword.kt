@@ -52,7 +52,7 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
             }
 
             if (password1 != password2) {
-                Toast.makeText(this, "Password doesn't Match", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Password doesn't Match", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -64,7 +64,7 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
     override fun onerror(message: String) {
 
 
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     /**
@@ -82,7 +82,7 @@ class ChangePassword : BaseActivity(), ChangePasswordMvpView {
     override fun onsucess(message: String) {
         val intent = Intent(this@ChangePassword, Login::class.java)
         startActivity(intent)
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     /**

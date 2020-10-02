@@ -25,7 +25,6 @@ class ChangePasswordInteractor(private val presenter : ChangePasswordMvpPresente
             .subscribe({ (detail) ->
                 presenter.onsuccess(detail)
             }, { error ->
-
                 if (error is HttpException) {
                     if (error.code() != 401) {
                         if (error.code() != 500 && error.code() != 405) {

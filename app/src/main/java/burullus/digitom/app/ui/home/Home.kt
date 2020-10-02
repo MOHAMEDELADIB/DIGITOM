@@ -81,6 +81,7 @@ class Home : BaseActivity(), HomeMvpView {
         userName?.setOnClickListener {
             presenter.userprofile()
         }
+
         signout?.setOnClickListener {
             presenter.signOutPressed()
         }
@@ -98,6 +99,7 @@ class Home : BaseActivity(), HomeMvpView {
     override fun onStart() {
         super.onStart()
         getnews()
+
     }
 
     private fun initUI() {
@@ -246,7 +248,7 @@ class Home : BaseActivity(), HomeMvpView {
 
         val intent = Login.getStartIntent(this@Home as Context)
         this@Home.startActivity(intent)
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     /**
@@ -280,7 +282,7 @@ class Home : BaseActivity(), HomeMvpView {
         Glide.with(this)
             .load(photo)
             .apply(RequestOptions().centerCrop().circleCrop())
-            .into(image!!)
+            .into(image ?: return)
 
 
         userJob?.text = job

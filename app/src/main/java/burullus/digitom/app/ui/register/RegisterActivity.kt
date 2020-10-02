@@ -60,7 +60,7 @@ class RegisterActivity : BaseActivity(), RegisterMvpView {
      *
      */
     override fun onsucess(message: String) {
-        Toast.makeText(this@RegisterActivity, "$message $Verify", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@RegisterActivity, "$message $Verify", Toast.LENGTH_LONG).show()
         val intent = Intent(this@RegisterActivity, Login::class.java)
         startActivity(intent)
     }
@@ -69,7 +69,7 @@ class RegisterActivity : BaseActivity(), RegisterMvpView {
      *
      */
     override fun onerror(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     /**

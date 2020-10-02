@@ -38,6 +38,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      *
      */
+
     fun setuppicasso() {
         if (!onetime) {
             onetime = true

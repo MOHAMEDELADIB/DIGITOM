@@ -48,12 +48,11 @@ class ProfilePresenter(
         map["last_name"] = last1
         map["job"] = job1
         map["phone_number"] = phone1
-        val file1 = file
-        if (file1 != null) {
-            val requestFile : RequestBody = file1.asRequestBody("image".toMediaTypeOrNull())
+        if (file != null) {
+            val requestFile : RequestBody = file.asRequestBody("image".toMediaTypeOrNull())
             val body = MultipartBody.Part.createFormData(
                 "photo",
-                file1.name, requestFile
+                file.name, requestFile
             )
             interactor.savedata(map, body)
         } else {
@@ -76,6 +75,10 @@ class ProfilePresenter(
     override fun saved() {
         view.progressbarHidden()
         view.errormessage("Your profile is updated")
+    }
+
+    override fun changedPasswordPressed() {
+        view.changePassword()
     }
 
     override fun loadprofile(userProfile : UserProfile) {
@@ -113,8 +116,8 @@ class ProfilePresenter(
     }
 
     override fun ChooseGalleryClick() {
-        if (!view.checkPermission()) {
-            view.showPermissionDialog()
+        if (!view.checkGalleryPermission()) {
+            view.showGalleryPermissionDialog()
             return
         }
         view.chooseGallery()

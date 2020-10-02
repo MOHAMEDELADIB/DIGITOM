@@ -1,5 +1,4 @@
 package burullus.digitom.app.ui.splash
-
 import burullus.digitom.app.ui.splash.SplashActivity.Companion.accesstoken
 import burullus.digitom.app.ui.splash.SplashActivity.Companion.refresh_Token
 import burullus.digitom.app.utils.MySharedPreferences

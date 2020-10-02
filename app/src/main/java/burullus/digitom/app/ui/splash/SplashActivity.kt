@@ -3,10 +3,10 @@ package burullus.digitom.app.ui.splash
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.WindowManager
 import android.widget.Toast
 import burullus.digitom.app.R
-import burullus.digitom.app.data.network.api.TokenCheck
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.home.Home.Companion.getStartIntent
 import burullus.digitom.app.ui.login.Login
@@ -21,15 +21,15 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
     /**
      *
      */
-    lateinit var presenter: SplashMvpPresenter
-    private var mDecrypt: Decrypt? = null
-    private var mDelayHandler: Handler? = null
-    private lateinit var mRunnable: Runnable
+    lateinit var presenter : SplashMvpPresenter
+    private var mDecrypt : Decrypt? = null
+    private var mDelayHandler : Handler? = null
+    private lateinit var mRunnable : Runnable
 
     /**
      *
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         this.window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
@@ -42,10 +42,12 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
         mRunnable = Runnable {
             if (!this@SplashActivity.isFinishing) {
                 setuppicasso()
-                presenter.isAuthen(TokenCheck)
+                presenter.isAuthen(refresh_Token)
             }
         }
-        mDelayHandler = Handler()
+        mDelayHandler = Handler(
+            Looper.myLooper() ?: return
+        )
         (mDelayHandler ?: return).postDelayed(mRunnable, 1000)
 
     }
@@ -58,7 +60,6 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
         val intent =
             getStartIntent(this@SplashActivity as Context)
         this@SplashActivity.startActivity(intent)
-
     }
 
     /**
@@ -75,7 +76,7 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
     /**
      *
      */
-    override fun loginMessage(message: String) {
+    override fun loginMessage(message : String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
@@ -99,12 +100,16 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
         /**
          *
          */
-        var onetime: Boolean = false
+        var onetime : Boolean = false
 
         /**
          *
          */
-        var accesstoken: String = ""
-        var refresh_Token: String = ""
+        var accesstoken : String = ""
+
+        /**
+         *
+         */
+        var refresh_Token : String = ""
     }
 }

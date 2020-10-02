@@ -260,7 +260,7 @@ class MainActivity : BaseActivity(), MainMvpview {
      *
      */
     override fun onerror(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     private fun updateUI() {

@@ -18,7 +18,6 @@
         </value>
       </option>
       <option name="SPACE_BEFORE_TYPE_COLON" value="true" />
-      <option name="ALLOW_TRAILING_COMMA" value="true" />
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
     <codeStyleSettings language="XML">

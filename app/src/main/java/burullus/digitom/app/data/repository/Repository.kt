@@ -102,12 +102,22 @@ object Repository {
      *
      */
     fun forgetauth(
-        token: String,
-        new_password1: String,
-        new_password2: String
-    ): Observable<ForgetAuthResponse> {
+        token : String,
+        new_password1 : String,
+        new_password2 : String
+    ) : Observable<ForgetAuthResponse> {
         val data = ForgetAuth(token, new_password1, new_password2)
         return ApiService.getApiService().forgetAuth(data)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun ChangePass(
+        new_password1 : String,
+        new_password2 : String
+    ) : Observable<ForgetAuthResponse> {
+        val data = chnagePassword(new_password1, new_password2)
+        return ApiService.getApiService().changePassword(data)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
@@ -115,7 +125,7 @@ object Repository {
     /**
      *
      */
-    fun logout(): Observable<SignoutResponse> {
+    fun logout() : Observable<SignoutResponse> {
 
         return ApiService.getApiService().signOut()
             .subscribeOn(Schedulers.io())
@@ -155,7 +165,7 @@ object Repository {
      */
     fun getrefresh(refresh : String) : Observable<RefreshResponse>? {
         val data = Refresh(refresh)
-        return ApiService.getApiService().getRefresh(data)
+        return ApiService.getApiService2().getRefresh(data)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

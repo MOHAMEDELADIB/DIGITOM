@@ -102,4 +102,7 @@ interface ProfileMvpview {
      *
      */
     fun loginActivity()
+    fun changePassword()
+    fun checkGalleryPermission() : Boolean
+    fun showGalleryPermissionDialog()
 }

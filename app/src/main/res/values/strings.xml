@@ -27,7 +27,6 @@
     <string name="slc">SLC</string>
     <string name="_42mbv21ap001">42MBV21Ap001</string>
     <string name="background">background</string>
-    <string name="asset_statements" translatable="false">[{ \"include\": \"http://178.128.28.204/.well-known/assetlinks.json\" }]</string>
     <string name="job_title">Job title</string>
     <string name="line">line</string>
     <string name="phone_number">Phone number</string>
@@ -41,12 +40,11 @@
     <string name="choose_gallery">Choose from gallery</string>
     <string name="take_photo">Take photo</string>
     <string name="Cancel">Cancle</string>
-    <string name="message_need_permission">need permission</string>
-    <string name="message_grant_permission">Granted Permission</string>
-    <string name="label_setting">setting</string>
-    <string name="error_message">Permission is needed</string>
     <string name="error_message_no_more_space">No Space</string>
-    <string name="error_message_insufficient_space">No sufficent space</string>
-
-
+    <string name="error_message_insufficient_space">No sufficient space</string>
+    <string name="error_message">Error occurred!</string>
+    <string name="message_need_permission">Need permissions</string>
+    <string name="message_grant_permission">This app needs permission to use this feature. You can grant them in app settings.</string>
+    <string name="label_setting">Goto settings</string>
+    <string name="cancel">Cancel</string>
 </resources>

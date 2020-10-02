@@ -265,7 +265,7 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
         }
         val listener = DialogInterface.OnClickListener { _, _ -> finish() }
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("digitom")
+        builder.setTitle("Digitom")
             .setMessage(R.string.no_camera_permission)
             .setPositiveButton(R.string.ok, listener)
             .show()
@@ -306,7 +306,7 @@ class OcrCaptureActivity : BaseActivity(), OcrMvpView {
      *
      */
     override fun onerror(messsage: String) {
-        Toast.makeText(this, messsage, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, messsage, Toast.LENGTH_LONG).show()
     }
 
 

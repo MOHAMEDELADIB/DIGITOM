@@ -74,6 +74,6 @@ interface ProfileMvpPresenter {
     /**
      *
      */
-
+    fun changedPasswordPressed()
 
 }
