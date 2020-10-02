@@ -28,5 +28,6 @@ interface SplashMvpPresenter {
     /**
      *
      */
-    fun decode(token: ByteArray?, refresh: ByteArray?)
+    fun decode(token : ByteArray?, refresh : ByteArray?)
+
 }

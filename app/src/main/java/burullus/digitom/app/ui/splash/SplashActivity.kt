@@ -1,16 +1,17 @@
 package burullus.digitom.app.ui.splash
 
+import android.app.NotificationManager
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
-import android.widget.Toast
 import burullus.digitom.app.R
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.home.Home.Companion.getStartIntent
 import burullus.digitom.app.ui.login.Login
 import burullus.digitom.app.utils.MySharedPreferences
+import burullus.digitom.app.utils.NotificationHelper
 import burullus.digitom.app.utils.keystore.Decrypt
 import burullus.digitom.app.ui.splash.SplashMvpView as SplashMvpView1
 
@@ -25,6 +26,8 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
     private var mDecrypt : Decrypt? = null
     private var mDelayHandler : Handler? = null
     private lateinit var mRunnable : Runnable
+    private lateinit var helper : NotificationHelper
+    lateinit var notificationManager : NotificationManager
 
     /**
      *
@@ -44,12 +47,16 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
                 setuppicasso()
                 presenter.isAuthen(refresh_Token)
             }
+            helper.notify(
+                1, helper.getNotification1("sss", getString(R.string.searching_for_kks))
+            )
+
         }
+        helper = NotificationHelper(this)
         mDelayHandler = Handler(
             Looper.myLooper() ?: return
         )
         (mDelayHandler ?: return).postDelayed(mRunnable, 1000)
-
     }
 
     /**
@@ -77,7 +84,11 @@ class SplashActivity : BaseActivity(), SplashMvpView1 {
      *
      */
     override fun loginMessage(message : String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+
+        helper.notify(
+            1, helper.getNotification1("sss", getString(R.string.default_web_client_id))
+        )
+
     }
 
     /**

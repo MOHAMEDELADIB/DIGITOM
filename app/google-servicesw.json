@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "511644551861",
+    "firebase_url": "https://digitom-46f54.firebaseio.com",
+    "project_id": "digitom-46f54",
+    "storage_bucket": "digitom-46f54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511644551861:android:3f01ef7e330f77ffff4cfc",
+        "android_client_info": {
+          "package_name": "burullus.digitom.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511644551861-3r80nq3psplhh12h2pdvqomo51bralkb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTeSBsit3Fp-3jnCAdFgG-eQvOzhJz5nQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511644551861-3r80nq3psplhh12h2pdvqomo51bralkb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
