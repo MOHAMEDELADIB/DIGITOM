@@ -17,5 +17,7 @@ interface SplashMvpView {
     /**
      *
      */
-    fun loginMessage(message: String)
+    fun loginMessage(message : String)
+
+
 }

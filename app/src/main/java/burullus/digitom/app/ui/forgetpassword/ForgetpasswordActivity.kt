@@ -1,6 +1,7 @@
 package burullus.digitom.app.ui.forgetpassword
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +10,10 @@ import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
 import burullus.digitom.app.R
+import burullus.digitom.app.data.network.api.Verify
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.login.Login
+import burullus.digitom.app.utils.NotificationHelper
 import burullus.digitom.app.utils.Validator
 import kotlinx.android.synthetic.main.activity_forget_password2.*
 
@@ -24,16 +27,21 @@ class ForgetpasswordActivity : BaseActivity(), ForgetpasswordMvpView {
     /**
      *
      */
-    lateinit var presenter: ForgetpasswordMvpPresenter
+    lateinit var presenter : ForgetpasswordMvpPresenter
+
+
+    private lateinit var helper : NotificationHelper
 
     /**
      *
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
+    @SuppressLint("NewApi")
+    override fun onCreate(savedInstanceState : Bundle?) {
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forget_password2)
         validator.add(Layout_reg_mail)
@@ -45,7 +53,7 @@ class ForgetpasswordActivity : BaseActivity(), ForgetpasswordMvpView {
         f3back.setOnClickListener {
             presenter.backpressed()
         }
-
+        helper = NotificationHelper(this)
     }
 
     /**
@@ -59,10 +67,12 @@ class ForgetpasswordActivity : BaseActivity(), ForgetpasswordMvpView {
     /**
      *
      */
+    @SuppressLint("NewApi")
     override fun onsucess(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         val intent = Intent(this@ForgetpasswordActivity, Login::class.java)
         startActivity(intent)
+        helper.notify(1, helper.getNotification1("Email Verification", "$message $Verify"))
     }
 
     /**

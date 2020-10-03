@@ -23,7 +23,7 @@ interface SplashMvpPresenter {
     /**
      *
      */
-    fun loginMessage(message: String)
+    fun loginMessage(message : String)
 
     /**
      *

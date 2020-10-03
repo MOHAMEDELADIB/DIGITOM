@@ -11,9 +11,9 @@ buildscript {
         //noinspection GroovyUntypedAccess
         classpath 'com.android.tools.build:gradle:4.0.1'
         //noinspection GroovyUntypedAccess
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10"
         //noinspection GroovyUntypedAccess
-        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.google.gms:google-services:4.3.4'
         //noinspection GroovyUntypedAccess
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'
         // NOTE: Do not place your application dependencies here; they belong

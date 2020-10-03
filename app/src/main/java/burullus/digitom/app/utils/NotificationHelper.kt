@@ -1,13 +1,19 @@
 package burullus.digitom.app.utils
 
 import android.app.Notification
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.ContextWrapper
+import android.graphics.Color
+import android.os.Build
+import androidx.annotation.RequiresApi
+import burullus.digitom.app.R
 
 /**
  * Helper class to manage notification channels, and create notifications.
  */
+@RequiresApi(Build.VERSION_CODES.O)
 internal class NotificationHelper
 /**
  * Registers notification channels, which can be used later by individual notifications.
@@ -17,6 +23,19 @@ internal class NotificationHelper
     (ctx : Context) : ContextWrapper(ctx) {
     private val manager : NotificationManager by lazy {
         getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    }
+
+
+    init {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val chan1 = NotificationChannel(
+                PRIMARY_CHANNEL,
+                getString(R.string.google_app_id), NotificationManager.IMPORTANCE_HIGH
+            )
+            chan1.lightColor = Color.GREEN
+            chan1.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+            manager.createNotificationChannel(chan1)
+        }
     }
 
     /**
@@ -33,11 +52,13 @@ internal class NotificationHelper
      */
     fun getNotification1(title : String, body : String) : Notification.Builder {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+
             val build = Notification.Builder(applicationContext, PRIMARY_CHANNEL)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setSmallIcon(smallIcon)
-                .setAutoCancel(true)
+                .setAutoCancel(false)
+                .setVisibility(Notification.VISIBILITY_PUBLIC)
             return build
         } else {
             val build = Notification.Builder(applicationContext)
@@ -45,6 +66,8 @@ internal class NotificationHelper
                 .setContentText(body)
                 .setSmallIcon(smallIcon)
                 .setAutoCancel(true)
+                .setVisibility(Notification.VISIBILITY_PUBLIC)
+                .setPriority(Notification.PRIORITY_MAX)
             return build
         }
     }

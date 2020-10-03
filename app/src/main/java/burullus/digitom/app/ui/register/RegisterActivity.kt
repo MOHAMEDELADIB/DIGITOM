@@ -1,5 +1,6 @@
 package burullus.digitom.app.ui.register
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ import burullus.digitom.app.R
 import burullus.digitom.app.data.network.api.Verify
 import burullus.digitom.app.ui.base.BaseActivity
 import burullus.digitom.app.ui.login.Login
+import burullus.digitom.app.utils.NotificationHelper
 import burullus.digitom.app.utils.Validator
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
@@ -23,10 +25,11 @@ class RegisterActivity : BaseActivity(), RegisterMvpView {
      */
     lateinit var presenter: RegisterMvpPresenter
     private val validator = Validator()
-
+    private lateinit var helper : NotificationHelper
     /**
      *
      */
+    @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -53,16 +56,18 @@ class RegisterActivity : BaseActivity(), RegisterMvpView {
                 confirmPassword.text.toString()
             )
         }
-
+        helper = NotificationHelper(this)
     }
 
     /**
      *
      */
+    @SuppressLint("NewApi")
     override fun onsucess(message: String) {
         Toast.makeText(this@RegisterActivity, "$message $Verify", Toast.LENGTH_LONG).show()
         val intent = Intent(this@RegisterActivity, Login::class.java)
         startActivity(intent)
+        helper.notify(1, helper.getNotification1("Email Verification", "$message $Verify"))
     }
 
     /**

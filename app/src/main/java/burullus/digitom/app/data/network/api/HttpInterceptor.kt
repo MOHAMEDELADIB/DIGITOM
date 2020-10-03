@@ -2,26 +2,19 @@
 
 package burullus.digitom.app.data.network.api
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Base64
-import android.widget.Toast
 import burullus.digitom.app.DIGITOM
-import burullus.digitom.app.data.network.api.ApiService.Companion.client
-import burullus.digitom.app.data.network.model.ErrorModelClass
+import burullus.digitom.app.data.network.model.RefreshResponse
 import burullus.digitom.app.data.repository.Repository
 import burullus.digitom.app.ui.login.Login
 import burullus.digitom.app.ui.splash.SplashActivity.Companion.accesstoken
 import burullus.digitom.app.ui.splash.SplashActivity.Companion.refresh_Token
 import burullus.digitom.app.utils.MySharedPreferences
 import burullus.digitom.app.utils.keystore.Encrypt
-import com.google.gson.GsonBuilder
-import okhttp3.Interceptor
-import okhttp3.Request
-import okhttp3.Response
-import okhttp3.ResponseBody
-import retrofit2.HttpException
-import java.io.IOException
+import com.google.gson.Gson
+import okhttp3.*
+
 
 /**
  *
@@ -30,7 +23,11 @@ class HttpInterceptor : Interceptor {
     /**
      *
      */
-    @Throws(IOException::class)
+    val mEncrypt = Encrypt()
+
+    /**
+     *
+     */
     override fun intercept(chain : Interceptor.Chain) : Response {
         var request : Request = chain.request()
         //Build new request
@@ -41,30 +38,26 @@ class HttpInterceptor : Interceptor {
         val response : Response =
             chain.proceed(request) //perform request, here original request will be executed
         //if unauthorized
-        if (response.code == 401 && accesstoken.isNotEmpty()) {
+        if (response.code == 401 && accesstoken.isNotEmpty() && token == accesstoken) {
             //if unauthorized
-            accesstoken = ""
-            synchronized(client) {
-                response.close()
-                refreshToken(refresh_Token)
-                return chain.proceed(request)
-            }
-        }
-        return response
-    }
+            response.close()
+            val body : RequestBody = FormBody.Builder()
+                .add("refresh", refresh_Token)
+                .build()
 
-    private fun setAuthHeader(builder : Request.Builder, token : String?) {
-        if (accesstoken != "")
-            builder.header("Authorization", String.format("Bearer %s", token))
-    }
+            val refreshTokenRequest =
+                request
+                    .newBuilder()
+                    .post(body)
+                    .url(URLA + "user/api/token/refresh/")
+                    .build()
+            val response2 : Response = chain.proceed(refreshTokenRequest)
+            if (response2.code / 100 == 2) {
 
-    @SuppressLint("CheckResult")
-    private fun refreshToken(refresh : String) {
-        val mEncrypt = Encrypt()
-        Repository.getrefresh(refresh)
-            ?.subscribe({ (access) ->
-                accesstoken = ""
-                accesstoken = access
+                val gson = Gson()
+                val entity : RefreshResponse =
+                    gson.fromJson(response2.body?.string(), RefreshResponse::class.java)
+                accesstoken = entity.access
                 val encryptedText =
                     mEncrypt.encryptaccesstoken("ALIAS", accesstoken)
                 val text = Base64.encodeToString(encryptedText, Base64.NO_WRAP)
@@ -75,34 +68,25 @@ class HttpInterceptor : Interceptor {
                 MySharedPreferences.saveToken(text)
                 MySharedPreferences.saveRefToken(text2)
                 Repository.getrefresh(refresh)?.subscribe()?.dispose()
-            }, { error ->
-                if (error is HttpException) {
-                    val gson = GsonBuilder().create()
-                    val mError : ErrorModelClass
-                    val responseBody : ResponseBody? = error.response()?.errorBody()
-                    mError = gson.fromJson(responseBody?.string(), ErrorModelClass::class.java)
-                    if (mError != null) {
-                        val msg = mError.detail
-                        if (!msg.isNullOrEmpty()) Toast.makeText(
-                            DIGITOM.applicationContext(),
-                            msg,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                    if (error is IOException) {
-                        Toast.makeText(
-                            DIGITOM.applicationContext(),
-                            Network_Message,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }
-                loginscreen()
-            })
+                response2.close()
+                val builder : Request.Builder = request.newBuilder()
+                setAuthHeader(builder, accesstoken)
+                request = builder.build()
+                return chain.proceed(request)
+            } else {
+                loginScreen()
+            }
+        }
+        return response
+    }
+
+    private fun setAuthHeader(builder : Request.Builder, token : String?) {
+        if (accesstoken != "")
+            builder.header("Authorization", String.format("Bearer %s", token))
     }
 
 
-    private fun loginscreen() {
+    private fun loginScreen() {
         accesstoken = ""
         refresh_Token = ""
         val intent = Intent(DIGITOM.applicationContext(), Login::class.java)
@@ -112,6 +96,9 @@ class HttpInterceptor : Interceptor {
     }
 
 
+
 }
+
+
 
 

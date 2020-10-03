@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">#025F8A</color>
     <color name="inbox_accent">#03A9F4</color>
 
     <!-- Material Color Palette -->
@@ -8,6 +7,10 @@
     <color name="material_blue_700">#1976D2</color>
     <color name="lightgrey">#f0f0f0</color>
     <color name="material_purple_500">#9C27B0</color>
-
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="black">#000000</color>
+    <color name="material_button_ripple_color">#33AAAAAA</color>
     <!-- Selectors -->
 </resources>

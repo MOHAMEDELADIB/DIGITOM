@@ -218,7 +218,7 @@ const val welcome_Message: String = "Welcome To DIGITOM"
 /**
  *
  */
-const val Verify: String = "Please Press the link to Verify your Email"
+const val Verify : String = "Please Goto your outlook mail to Verify your account"
 
 /**
  *

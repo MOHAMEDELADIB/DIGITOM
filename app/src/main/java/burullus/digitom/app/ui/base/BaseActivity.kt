@@ -1,16 +1,12 @@
 package burullus.digitom.app.ui.base
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Rect
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import burullus.digitom.app.ui.splash.SplashActivity.Companion.onetime
-import com.squareup.picasso.LruCache
-import com.squareup.picasso.Picasso
+
 
 /**
  *
@@ -19,7 +15,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      *
      */
-    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+    override fun dispatchTouchEvent(event : MotionEvent) : Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
             val v = currentFocus
             if (v is EditText) {
@@ -35,22 +31,8 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(event)
     }
-    /**
-     *
-     */
 
-    fun setuppicasso() {
-        if (!onetime) {
-            onetime = true
-            val options = BitmapFactory.Options()
-            options.inSampleSize = 25
-            options.inPreferredConfig = Bitmap.Config.RGB_565
-            val picasso = Picasso.Builder(this)
-                .memoryCache(LruCache(1024 * 100 * 1024))
-                .build()
-            Picasso.setSingletonInstance(picasso)
-        }
-    }
+
     /**
      *
 

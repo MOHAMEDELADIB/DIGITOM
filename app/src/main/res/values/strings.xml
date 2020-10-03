@@ -47,4 +47,14 @@
     <string name="message_grant_permission">This app needs permission to use this feature. You can grant them in app settings.</string>
     <string name="label_setting">Goto settings</string>
     <string name="cancel">Cancel</string>
+    <string name="app_name">In-App-Update-Example</string>
+    <string name="update">Update</string>
+    <string name="later">Later</string>
+    <string name="install">Install</string>
+    <string name="app_update_available">Digitom Update Available</string>
+    <string name="app_update_downloaded">Digitom Update Downloaded</string>
+    <string name="app_update_available_message">We have fixed some issues and added some  features in this update</string>
+    <string name="downloading">Downloading…</string>
+    <string name="installing_update">Installing Updates</string>
+    <string name="in_app_update">Digitom</string>
 </resources>
